@@ -16,8 +16,17 @@ import '../socials-list.ts'
 export class Navbar extends LitElement {
   navPages: (NavPage | NavGroup)[] = [
     { name: 'Home', path: '/'},
-    { name: 'About', path: null, subpages: []},
-    { name: 'My Work', path: null, subpages: []},
+    { name: 'About', path: null, subpages: [
+        { name: 'Biography', path: '/bio'},
+        { name: 'Resume', path: '/resume'}]
+    },
+    { name: 'My Work', path: null, subpages: [
+        { name: 'Software', path: '/my-work/software'},
+        { name: 'Graphics', path: '/my-work/graphics'},
+        { name: 'Photos', path: '/my-work/photos'},
+        { name: 'Music', path: '/my-work/music'}]
+    },
+    { name: 'Contact', path: '/contact'}
   ];
 
   render() {

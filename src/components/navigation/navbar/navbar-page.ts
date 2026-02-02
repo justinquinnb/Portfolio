@@ -11,14 +11,18 @@ export class NavbarPage extends LitElement {
   @property()
   page!: NavPage;
 
+  @property({type: Boolean})
+  forceSelected?: boolean;
 
   render() {
-    const currentPath = window.location.pathname;
-    const pageIsSelected = currentPath === this.page.path;
+    let pageIsSelected = this.forceSelected;
+    if (!pageIsSelected) {
+      pageIsSelected = window.location.pathname === this.page.path;
+    }
 
     return html`
       ${(this.page.path == null)
-          ? html`${this.page.name}`
+          ? html`<span ?data-selected=${pageIsSelected}>${this.page.name}</span>`
           : html`<a ?data-selected=${pageIsSelected} href=${this.page.path}>${this.page.name}</a>`}
     `
   }
@@ -31,12 +35,15 @@ export class NavbarPage extends LitElement {
           color: var(--q-dark-gray);
       }
 
-      a[data-selected] {
-          color: var(--q-orange);
-      }
-
       a:hover {
           color: var(--q-gray);
+      }
+
+      a[data-selected], span[data-selected] {
+          /* 1. Try the internal override variable first */
+          /* 2. Fall back to the standard orange */
+          color: var(--internal-header-color, var(--q-orange));
+          transition: color 0.2s ease-in-out;
       }
   `;
 }
