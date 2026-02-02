@@ -79,6 +79,7 @@ export class Navbar extends LitElement {
             height: 4vh;
             min-width: 100%;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            z-index: 10;
         }
 
         /* Common container behavior */

@@ -41,7 +41,8 @@ export class SocialsList extends LitElement {
 
       a {
           text-decoration: none;
-          color: var(--q-black)
+          color: var(--q-black);
+          transition: color 0.2s ease-in-out;
       }
 
       a:visited {
@@ -50,6 +51,7 @@ export class SocialsList extends LitElement {
       
       a:hover {
           color: var(--q-gray);
+          transition: color 0.2s ease-in-out;
       }
 
       wa-icon {

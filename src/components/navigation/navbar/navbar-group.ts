@@ -21,7 +21,7 @@ export class NavbarGroup extends LitElement {
 
     return html`
       <div id="navbar-dropdown">
-        <navbar-page .page=${this.pageGroup} .forceSelected=${subpageIsSelected}></navbar-page>
+        <navbar-page class="dropdown-parent" .page=${this.pageGroup} .forceSelected=${subpageIsSelected}></navbar-page>
         <ul id="navbar-dropdown-content">
           ${this.pageGroup.subpages.map(p => html`
             <li><navbar-page .page=${p}></navbar-page></li>
@@ -41,12 +41,12 @@ export class NavbarGroup extends LitElement {
       #navbar-dropdown-content {
           display: none;
           position: absolute;
-          z-index: 0;
+          z-index: 10;
           top: 100%;
           left: -1rem;
       }
 
-      /* The Bridge: Use a pseudo-element on the content container */
+      /* Hover area bridge for dropdown content container */
       #navbar-dropdown-content::before {
           content: "";
           position: absolute;
@@ -60,6 +60,7 @@ export class NavbarGroup extends LitElement {
           pointer-events: auto;
       }
       
+      /* Dropdown shadow (to prevent weird shadow overlap) */
       #navbar-dropdown-content::after {
           content: "";
           position: absolute;
@@ -89,12 +90,14 @@ export class NavbarGroup extends LitElement {
 
       /* When the dropdown is hovered, target the IMMEDIATELY nested navbar-page */
       #navbar-dropdown:hover > navbar-page {
-          --internal-header-color: var(--q-dark-gray);
+          --internal-parent-color: var(--q-dark-gray);
+          --internal-parent-decoration: underline;
       }
 
       /* Ensure the sub-pages inside the <ul> stay orange if selected */
       #navbar-dropdown-content navbar-page {
-          --internal-header-color: var(--q-orange);
+          --internal-parent-color: var(--q-orange);
+          --internal-parent-decoration: none;
       }
   `;
 }

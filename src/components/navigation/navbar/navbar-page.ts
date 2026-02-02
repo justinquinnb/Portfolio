@@ -27,23 +27,27 @@ export class NavbarPage extends LitElement {
     `
   }
 
-  static styles = css`   
-      a, p, a:visited{
-          font-weight: 500;
+  static styles = css`
+      /* Base styles for text elements */
+      a, p, span, a:visited {
           font-size: 1.2rem;
-          text-decoration: none;
+          font-weight: 500;
           color: var(--q-dark-gray);
+          text-decoration: var(--internal-parent-decoration, none);
+          transition: color 0.2s ease-in-out;
+          user-select: none;
       }
 
+      /* Hover state */
       a:hover {
           color: var(--q-gray);
       }
 
-      a[data-selected], span[data-selected] {
-          /* 1. Try the internal override variable first */
-          /* 2. Fall back to the standard orange */
-          color: var(--internal-header-color, var(--q-orange));
-          transition: color 0.2s ease-in-out;
+      /* Selected state (with internal overrides) */
+      a[data-selected],
+      span[data-selected] {
+          color: var(--internal-parent-color, var(--q-orange));
+          text-decoration: var(--internal-parent-decoration, none);
       }
   `;
 }
