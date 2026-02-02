@@ -1,5 +1,5 @@
 import { LitElement, css, html } from 'lit'
-import { customElement} from 'lit/decorators.js'
+import {customElement, property} from 'lit/decorators.js'
 import jqIconLight from '../../../assets/brand/jqicon-light.png'
 import {centeredContent} from "../../../css/container-styles.ts";
 import '@awesome.me/webawesome/dist/components/icon/icon.js';
@@ -29,7 +29,8 @@ export class Navbar extends LitElement {
     { name: 'Contact', path: '/contact'}
   ];
 
-  hasScrolled: boolean = false;
+  @property({type: Boolean})
+  atTopOfPage: boolean = true;
 
   connectedCallback() {
     super.connectedCallback();
@@ -41,13 +42,13 @@ export class Navbar extends LitElement {
     window.removeEventListener('scroll', this._handleScroll);
   }
 
-  _handleScroll() {
-    this.hasScrolled = window.scrollY > 0;
+  private _handleScroll = () => {
+    this.atTopOfPage = window.scrollY === 0;
   }
 
   render() {
     return html`
-      <nav ?hasScrolled="${this.hasScrolled}">
+      <nav ?data-at-top=${this.atTopOfPage}>
         <div class="centered-content">
           <div id="wordmark">
             <a href="/">
@@ -59,7 +60,7 @@ export class Navbar extends LitElement {
             <ul id="page-groups">
               ${map(this.navPages, (page) => {
                 if (!('subpages' in page)) {
-                  return html`<li><navbar-page .page=${page}></navbar-page></li>`
+                  return html`<li><navbar-page class="top-level" .page=${page}></navbar-page></li>`
                 } else {
                   return html`<li><navbar-group .pageGroup=${page}></navbar-group></li>`
                 }
@@ -102,6 +103,23 @@ export class Navbar extends LitElement {
             justify-content: space-between;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
             background-color: var(--q-white);
+            --top-level-page-default-color: var(--q-dark-gray);
+            transition: 
+                background-color 0.2s ease-in-out,
+                box-shadow 0.2s ease-in-out,
+                --top-level-page-default-color 0.2s ease-in-out;
+        }
+        
+        nav[data-at-top] {
+            background-color: transparent;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            --top-level-page-default-color: var(--q-white);
+        }
+
+        nav:hover {
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            --top-level-page-default-color: var(--q-dark-gray);
+            background-color: var(--q-white);
         }
 
         nav div, 
@@ -110,10 +128,22 @@ export class Navbar extends LitElement {
             gap: 0.8rem;
         }
 
-        /* --- Section Distribution --- */
+        /* Section Distribution */
         #wordmark,
         #socials {
             flex: 1 1 20%;
+            opacity: 100%;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        nav[data-at-top] #wordmark,
+        nav[data-at-top] #socials {
+            opacity: 0;
+        }
+
+        nav:hover #wordmark,
+        nav:hover #socials {
+            opacity: 100%;
         }
 
         #page-selection {

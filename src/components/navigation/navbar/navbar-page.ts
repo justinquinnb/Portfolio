@@ -27,9 +27,9 @@ export class NavbarPage extends LitElement {
     `
   }
 
-  static styles = css`
+  static styles = css`      
       /* Base styles for text elements */
-      a, p, span, a:visited {
+      a, span, a:visited {
           font-size: 1.2rem;
           font-weight: 500;
           color: var(--q-dark-gray);
@@ -38,7 +38,10 @@ export class NavbarPage extends LitElement {
           user-select: none;
       }
 
-      /* Hover state */
+      a, span, a:visited {
+          color: var(--top-level-page-default-color);
+      }
+
       a:hover {
           color: var(--q-gray);
       }

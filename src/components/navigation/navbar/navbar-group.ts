@@ -21,7 +21,7 @@ export class NavbarGroup extends LitElement {
 
     return html`
       <div id="navbar-dropdown">
-        <navbar-page class="dropdown-parent" .page=${this.pageGroup} .forceSelected=${subpageIsSelected}></navbar-page>
+        <navbar-page class="dropdown-parent top-level" .page=${this.pageGroup} .forceSelected=${subpageIsSelected}></navbar-page>
         <ul id="navbar-dropdown-content">
           ${this.pageGroup.subpages.map(p => html`
             <li><navbar-page .page=${p}></navbar-page></li>
