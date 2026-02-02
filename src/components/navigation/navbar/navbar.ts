@@ -17,8 +17,8 @@ export class Navbar extends LitElement {
   navPages: (NavPage | NavGroup)[] = [
     { name: 'Home', path: '/'},
     { name: 'About', path: null, subpages: [
-        { name: 'Biography', path: '/bio'},
-        { name: 'Resume', path: '/resume'}]
+        { name: 'Biography', path: '/about/bio'},
+        { name: 'Resume', path: '/about/resume'}]
     },
     { name: 'My Work', path: null, subpages: [
         { name: 'Software', path: '/my-work/software'},
@@ -29,9 +29,25 @@ export class Navbar extends LitElement {
     { name: 'Contact', path: '/contact'}
   ];
 
+  hasScrolled: boolean = false;
+
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('scroll', this._handleScroll);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('scroll', this._handleScroll);
+  }
+
+  _handleScroll() {
+    this.hasScrolled = window.scrollY > 0;
+  }
+
   render() {
     return html`
-      <nav>
+      <nav ?hasScrolled="${this.hasScrolled}">
         <div class="centered-content">
           <div id="wordmark">
             <a href="/">
@@ -63,6 +79,11 @@ export class Navbar extends LitElement {
     css`
         :host {
             display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
         }
 
         /* --- Shared Layout Logic --- */
@@ -79,9 +100,8 @@ export class Navbar extends LitElement {
             width: 100%;
             padding: 0.6rem 0;
             justify-content: space-between;
-
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            z-index: 10;
+            background-color: var(--q-white);
         }
 
         nav div, 
