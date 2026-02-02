@@ -32,26 +32,27 @@ export class SocialsList extends LitElement {
 
   static styles = css`
       ul {
-          list-style-type: none;
           display: flex;
           flex-direction: row;
-          gap: .3rem;
+          gap: 0.3rem;
+
+          margin: 0;
           padding: 0;
+          list-style-type: none;
       }
 
       a {
-          text-decoration: none;
           color: var(--q-black);
+          text-decoration: none;
           transition: color 0.2s ease-in-out;
       }
 
       a:visited {
           color: var(--q-black);
       }
-      
+
       a:hover {
           color: var(--q-gray);
-          transition: color 0.2s ease-in-out;
       }
 
       wa-icon {

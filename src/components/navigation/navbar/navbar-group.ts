@@ -33,71 +33,72 @@ export class NavbarGroup extends LitElement {
 
   static styles = css`
       #navbar-dropdown {
-          float: left;
           position: relative;
+          float: left;
           --group-header-color: var(--q-orange);
       }
 
       #navbar-dropdown-content {
           display: none;
           position: absolute;
-          z-index: 10;
           top: 100%;
           left: -1rem;
+          z-index: 10;
       }
 
       /* Hover area bridge for dropdown content container */
       #navbar-dropdown-content::before {
           content: "";
           position: absolute;
-          /* Pulls the 'hitbox' up into the navbar so hover doesn't break */
-          top: -.3rem;
+          top: -0.3rem;
           left: 0;
           right: 0;
-          height: .3rem;
+          height: 0.3rem;
+
           background: transparent;
-          /* pointer-events ensures it catches the mouse */
           pointer-events: auto;
       }
-      
+
       /* Dropdown shadow (to prevent weird shadow overlap) */
       #navbar-dropdown-content::after {
           content: "";
           position: absolute;
           top: 1rem;
-          height: calc(100% - 1rem);
           left: 0;
           right: 0;
+          height: calc(100% - 1rem);
           z-index: -1;
+
           background-color: var(--q-white);
-          border-radius: 0 0 .2rem .2rem;
           box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 0 0 0.2rem 0.2rem;
       }
 
+      /* Interaction Logic */
       #navbar-dropdown:hover #navbar-dropdown-content {
           display: block;
       }
 
-      ul {
-          list-style: none;
-          padding: .1rem 1rem .4rem 1rem;
-          margin: 0;
-      }
-
-      li {
-          padding-top: .5rem;
-      }
-
-      /* When the dropdown is hovered, target the IMMEDIATELY nested navbar-page */
+      /* Target the IMMEDIATELY nested navbar-page when parent is hovered */
       #navbar-dropdown:hover > navbar-page {
           --internal-parent-color: var(--q-dark-gray);
           --internal-parent-decoration: underline;
       }
 
-      /* Ensure the sub-pages inside the <ul> stay orange if selected */
+      /* Ensure the sub-pages inside the dropdown stay orange if selected */
       #navbar-dropdown-content navbar-page {
           --internal-parent-color: var(--q-orange);
           --internal-parent-decoration: none;
+      }
+      
+      ul {
+          margin: 0;
+          padding: 0.1rem 1rem 0.4rem 1rem;
+          list-style: none;
+      }
+
+      li {
+          padding-top: 0.5rem;
       }
   `;
 }

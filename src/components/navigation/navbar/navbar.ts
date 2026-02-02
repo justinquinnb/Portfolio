@@ -65,6 +65,7 @@ export class Navbar extends LitElement {
             display: block;
         }
 
+        /* --- Shared Layout Logic --- */
         nav,
         nav div,
         #wordmark a,
@@ -74,22 +75,22 @@ export class Navbar extends LitElement {
         }
 
         nav {
-            justify-content: space-between;
-            padding: 0.6rem 0;
             height: 4vh;
-            min-width: 100%;
+            width: 100%;
+            padding: 0.6rem 0;
+            justify-content: space-between;
+
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
             z-index: 10;
         }
 
-        /* Common container behavior */
-        nav div,
+        nav div, 
         #wordmark a {
-            gap: 0.8rem;
             height: 100%;
+            gap: 0.8rem;
         }
 
-        /* Layout distribution */
+        /* --- Section Distribution --- */
         #wordmark,
         #socials {
             flex: 1 1 20%;
@@ -103,16 +104,14 @@ export class Navbar extends LitElement {
         #wordmark { justify-content: flex-start; }
         #socials  { justify-content: flex-end; }
 
-        /* Typography & Links */
         #wordmark a {
             color: var(--q-dark-gray);
             font-weight: 700;
             font-size: 1.3rem;
             text-decoration: none;
-            transform: translateY(1px);
-
-            /* Prevention of wrapping */
             white-space: nowrap;
+
+            transform: translateY(1px);
             flex-shrink: 0;
         }
 
@@ -121,36 +120,34 @@ export class Navbar extends LitElement {
         }
 
         ul {
-            list-style: none;
-            padding: 0;
             margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
         #page-groups {
-            display: flex;
             gap: 1.5rem;
             justify-content: space-between;
             width: auto;
         }
 
         #page-groups li {
-            font-weight: 500;
             font-size: 1.2rem;
+            font-weight: 500;
             white-space: nowrap;
         }
-        
-        @media(max-width: 640px) {            
+
+        @media (max-width: 640px) {
             #socials {
                 display: none;
             }
 
-            #wordmark {
+            #wordmark,
+            #page-selection {
                 flex: 1 1 50%;
-                justify-content: flex-start;
             }
 
             #page-selection {
-                flex: 1 1 50%;
                 justify-content: flex-end;
             }
         }
