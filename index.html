@@ -8,11 +8,19 @@
   <link rel="stylesheet" href="./src/index.css" />
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
   <script type="module" src="/src/components/page-frame.ts"></script>
+  <script type="module" src="/src/components/base/jq-header.ts"></script>
   <script src="https://kit.fontawesome.com/4d8104b6dc.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <page-frame>
-  <h1>Home</h1>
+  <jq-header
+      imgSrc="/src/assets/general/leader-hero.png"
+      imgAlt="Justin Quinn leading DevDogs meeting in full class auditorium"
+      backgroundText="Justin Quinn"
+      foregroundText="Hey,\nI'm Justin."
+  >
+    <img src="./src/assets/brand/jqicon-dark.png" alt="Justin Quinn icon" style="width: 15%; max-width: 8rem; justify-self: end; padding: 2rem">
+  </jq-header>
 </page-frame>
 </body>
 </html>
