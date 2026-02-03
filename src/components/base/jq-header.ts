@@ -1,4 +1,4 @@
-import {LitElement, html, css} from 'lit'
+import {LitElement, html, css, type TemplateResult, type PropertyValues} from 'lit'
 import {customElement, property} from 'lit/decorators.js'
 
 /**
@@ -25,15 +25,21 @@ export class JqHeader extends LitElement {
   @property()
   repeatedText: string = "";
 
+  _formattedForegroundText: TemplateResult | TemplateResult[] = html``;
+
+  willUpdate(changedProperties: PropertyValues<this>) {
+    if (changedProperties.has('backgroundText')) {
+      const repetitionCount = Math.ceil(6000 / this.backgroundText.length);
+      this.repeatedText = (this.backgroundText + " ").repeat(repetitionCount);
+
+      // Look for the literal string "\n" and force a line break there
+      this._formattedForegroundText = this.foregroundText.split('\\n').map((line, index, array) =>
+          index < array.length - 1 ? html`${line}<br>` : html`${line}`
+      );
+    }
+  }
+
   render() {
-    const repetitionCount = Math.ceil(6000 / this.backgroundText.length);
-    this.repeatedText = (this.backgroundText + " ").repeat(repetitionCount);
-
-    // Look for the literal string "\n" and force a line break there
-    const formattedForegroundText = this.foregroundText.split('\\n').map((line, index, array) =>
-        index < array.length - 1 ? html`${line}<br>` : line
-    );
-
     return html`
       <header>
         <div class="hero-container">
@@ -44,7 +50,7 @@ export class JqHeader extends LitElement {
           <p aria-hidden="true" class="repeated-text">${this.repeatedText}</p>
         </div>
         <div class="header-content">
-          <h1>${formattedForegroundText}</h1>
+          <h1>${this._formattedForegroundText}</h1>
           <slot></slot>
         </div>
       </header>

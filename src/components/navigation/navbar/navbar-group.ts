@@ -12,16 +12,10 @@ export class NavbarGroup extends LitElement {
   @property()
   pageGroup!: NavGroup;
 
-
   render() {
-    const currentPath: string = window.location.pathname;
-    const subpageIsSelected = this.pageGroup.subpages
-    .map(sp => sp.path)
-    .includes(currentPath);
-
     return html`
       <div class="navbar-dropdown">
-        <navbar-page class="dropdown-parent top-level" .page=${this.pageGroup} .forceSelected=${subpageIsSelected}></navbar-page>
+        <navbar-page class="dropdown-parent top-level" .page=${this.pageGroup} .forceSelected=${this._isSubpageSelected()}></navbar-page>
         <ul class="navbar-dropdown-content">
           ${this.pageGroup.subpages.map(p => html`
             <li><navbar-page .page=${p}></navbar-page></li>
@@ -29,6 +23,13 @@ export class NavbarGroup extends LitElement {
         </ul>
       </div>
     `
+  }
+
+  private _isSubpageSelected() {
+    const currentPath: string = window.location.pathname;
+    return this.pageGroup.subpages
+    .map(sp => sp.path)
+    .includes(currentPath);
   }
 
   static styles = css`

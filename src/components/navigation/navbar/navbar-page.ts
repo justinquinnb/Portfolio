@@ -1,6 +1,6 @@
 import { LitElement, css, html } from 'lit'
 import { customElement} from 'lit/decorators.js'
-import {property} from 'lit/decorators.js'
+import {property, state} from 'lit/decorators.js'
 import type {NavPage} from '../nav.types.ts';
 
 /**
@@ -15,16 +15,15 @@ export class NavbarPage extends LitElement {
   forceSelected?: boolean;
 
   render() {
-    let pageIsSelected = this.forceSelected;
-    if (!pageIsSelected) {
-      pageIsSelected = window.location.pathname === this.page.path;
-    }
-
     return html`
       ${(this.page.path == null)
-          ? html`<span ?data-selected=${pageIsSelected}>${this.page.name}</span>`
-          : html`<a ?data-selected=${pageIsSelected} href=${this.page.path}>${this.page.name}</a>`}
+          ? html`<span ?data-selected=${this._isThisPageSelected()}>${this.page.name}</span>`
+          : html`<a ?data-selected=${this._isThisPageSelected()} href=${this.page.path}>${this.page.name}</a>`}
     `
+  }
+
+  private _isThisPageSelected() {
+    return this.forceSelected || window.location.pathname === this.page?.path;
   }
 
   static styles = css`      
