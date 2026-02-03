@@ -1,4 +1,4 @@
-import {LitElement, html, css, type TemplateResult, type PropertyValues} from 'lit'
+import {LitElement, html, css, type TemplateResult, type PropertyValues, type CSSResult} from 'lit'
 import {customElement, property} from 'lit/decorators.js'
 
 /**
@@ -25,10 +25,12 @@ export class JqHeader extends LitElement {
   @property()
   repeatedText: string = "";
 
-  _formattedForegroundText: TemplateResult | TemplateResult[] = html``;
+  private _formattedForegroundText: TemplateResult | TemplateResult[] = html``;
+
+  private _numLines = 1;
 
   willUpdate(changedProperties: PropertyValues<this>) {
-    if (changedProperties.has('backgroundText')) {
+    if (changedProperties.has('backgroundText') && changedProperties.get('backgroundText') == undefined) {
       const repetitionCount = Math.ceil(6000 / this.backgroundText.length);
       this.repeatedText = (this.backgroundText + " ").repeat(repetitionCount);
 
@@ -36,6 +38,8 @@ export class JqHeader extends LitElement {
       this._formattedForegroundText = this.foregroundText.split('\\n').map((line, index, array) =>
           index < array.length - 1 ? html`${line}<br>` : html`${line}`
       );
+
+      this._numLines = this.foregroundText.split('\\n').length;
     }
   }
 
@@ -50,7 +54,7 @@ export class JqHeader extends LitElement {
           <p aria-hidden="true" class="repeated-text">${this.repeatedText}</p>
         </div>
         <div class="header-content">
-          <h1>${this._formattedForegroundText}</h1>
+          <h1 style="--time-from-lines: ${((this._numLines - 1) * 0.1) + 0.2}s">${this._formattedForegroundText}</h1>
           <slot></slot>
         </div>
       </header>
@@ -58,6 +62,10 @@ export class JqHeader extends LitElement {
   }
 
   static styles = css`
+      :host {
+          transition-duration: var(--time-from-lines);
+      }
+      
       header {
           display: grid;
           grid-template-areas: "stack";
@@ -143,7 +151,7 @@ export class JqHeader extends LitElement {
           flex-grow: 1.5;
           white-space: pre-line;
           margin: 0 0 -.35cap;
-          animation: riseUp 0.3s ease-out;
+          animation: riseUp var(--time-from-lines) ease-out;
       }
       
       @media (max-width: 740px) {
