@@ -18,7 +18,7 @@ export class SocialsList extends LitElement {
 
   render() {
     return html`
-      <ul id="socials-list" aria-label="Justin Quinn's Social Media Accounts">
+      <ul class="socials-list" aria-label="Justin Quinn's Social Media Accounts">
         ${map(this.socials, (s) => html`
           <li>
             <a target="_blank" rel="noopener noreferrer" href=${s.url} aria-label=${s.label}>

@@ -20,9 +20,9 @@ export class NavbarGroup extends LitElement {
     .includes(currentPath);
 
     return html`
-      <div id="navbar-dropdown">
+      <div class="navbar-dropdown">
         <navbar-page class="dropdown-parent top-level" .page=${this.pageGroup} .forceSelected=${subpageIsSelected}></navbar-page>
-        <ul id="navbar-dropdown-content">
+        <ul class="navbar-dropdown-content">
           ${this.pageGroup.subpages.map(p => html`
             <li><navbar-page .page=${p}></navbar-page></li>
           `)}
@@ -32,13 +32,13 @@ export class NavbarGroup extends LitElement {
   }
 
   static styles = css`
-      #navbar-dropdown {
+      .navbar-dropdown {
           position: relative;
           float: left;
           --group-header-color: var(--q-orange);
       }
 
-      #navbar-dropdown-content {
+      .navbar-dropdown-content {
           display: none;
           position: absolute;
           top: 100%;
@@ -47,7 +47,7 @@ export class NavbarGroup extends LitElement {
       }
 
       /* Hover area bridge for dropdown content container */
-      #navbar-dropdown-content::before {
+      .navbar-dropdown-content::before {
           content: "";
           position: absolute;
           top: -0.3rem;
@@ -60,7 +60,7 @@ export class NavbarGroup extends LitElement {
       }
 
       /* Dropdown shadow (to prevent weird shadow overlap) */
-      #navbar-dropdown-content::after {
+      .navbar-dropdown-content::after {
           content: "";
           position: absolute;
           top: 1rem;
@@ -75,22 +75,22 @@ export class NavbarGroup extends LitElement {
       }
 
       /* Interaction Logic */
-      #navbar-dropdown:hover #navbar-dropdown-content {
+      .navbar-dropdown:hover .navbar-dropdown-content {
           display: block;
       }
 
       /* Target the IMMEDIATELY nested navbar-page when parent is hovered */
-      #navbar-dropdown:hover > navbar-page {
+      .navbar-dropdown:hover > navbar-page {
           --internal-parent-color: var(--q-dark-gray);
           --internal-parent-decoration: underline;
       }
 
       /* Ensure the sub-pages inside the dropdown stay orange if selected */
-      #navbar-dropdown-content navbar-page {
+      .navbar-dropdown-content navbar-page {
           --internal-parent-color: var(--q-orange);
           --internal-parent-decoration: none;
       }
-      
+
       ul {
           margin: 0;
           padding: 0.1rem 1rem 0.4rem 1rem;

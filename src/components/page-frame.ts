@@ -4,6 +4,8 @@ import './navigation/navbar/jq-navbar.ts';
 
 /**
  * Content positioned between a navbar and a footer
+ *
+ * @slot page body content
  */
 @customElement('page-frame')
 export class PageFrame extends LitElement {

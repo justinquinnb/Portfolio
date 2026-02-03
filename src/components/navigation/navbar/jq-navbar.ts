@@ -50,14 +50,14 @@ export class JqNavbar extends LitElement {
     return html`
       <nav ?data-at-top=${this.atTopOfPage}>
         <div class="centered-content">
-          <div id="wordmark">
+          <div class="wordmark">
             <a href="/">
               <img src=${jqIconLight} alt="Justin Quinn Icon"/>
               <p>Justin Quinn</p>
             </a>
           </div>
-          <div id="page-selection">
-            <ul id="page-groups">
+          <div class="page-selection">
+            <ul class="page-groups">
               ${map(this.navPages, (page) => {
                 if (!('subpages' in page)) {
                   return html`<li><navbar-page class="top-level" .page=${page}></navbar-page></li>`
@@ -67,7 +67,7 @@ export class JqNavbar extends LitElement {
               })}
             </ul>
           </div>
-          <div id="socials">
+          <div class="socials">
             <socials-list></socials-list>
           </div>
         </div>
@@ -90,7 +90,7 @@ export class JqNavbar extends LitElement {
         /* --- Shared Layout Logic --- */
         nav,
         nav div,
-        #wordmark a,
+        .wordmark a,
         ul {
             display: flex;
             align-items: center;
@@ -123,38 +123,38 @@ export class JqNavbar extends LitElement {
         }
 
         nav div, 
-        #wordmark a {
+        .wordmark a {
             height: 100%;
             gap: 0.8rem;
         }
 
         /* Section Distribution */
-        #wordmark,
-        #socials {
+        .wordmark,
+        .socials {
             flex: 1 1 20%;
             opacity: 100%;
             transition: opacity 0.2s ease-in-out;
         }
 
-        nav[data-at-top] #wordmark,
-        nav[data-at-top] #socials {
+        nav[data-at-top] .wordmark,
+        nav[data-at-top] .socials {
             opacity: 0;
         }
 
-        nav:hover #wordmark,
-        nav:hover #socials {
+        nav:hover .wordmark,
+        nav:hover .socials {
             opacity: 100%;
         }
 
-        #page-selection {
+        .page-selection {
             flex: 1 1 60%;
             justify-content: center;
         }
 
-        #wordmark { justify-content: flex-start; }
-        #socials  { justify-content: flex-end; }
+        .wordmark { justify-content: flex-start; }
+        .socials  { justify-content: flex-end; }
 
-        #wordmark a {
+        .wordmark a {
             color: var(--q-dark-gray);
             font-weight: 700;
             font-size: 1.3rem;
@@ -165,7 +165,7 @@ export class JqNavbar extends LitElement {
             flex-shrink: 0;
         }
 
-        #wordmark a img {
+        .wordmark a img {
             height: 100%;
         }
 
@@ -175,29 +175,29 @@ export class JqNavbar extends LitElement {
             list-style: none;
         }
 
-        #page-groups {
+        .page-groups {
             gap: 1.5rem;
             justify-content: space-between;
             width: auto;
         }
 
-        #page-groups li {
+        .page-groups li {
             font-size: 1.2rem;
             font-weight: 500;
             white-space: nowrap;
         }
 
         @media (max-width: 640px) {
-            #socials {
+            .socials {
                 display: none;
             }
 
-            #wordmark,
-            #page-selection {
+            .wordmark,
+            .page-selection {
                 flex: 1 1 50%;
             }
 
-            #page-selection {
+            .page-selection {
                 justify-content: flex-end;
             }
         }
