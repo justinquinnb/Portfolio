@@ -41,6 +41,7 @@ export class JqHeader extends LitElement {
         </div>
         <div class="repeated-text-container">
           <p aria-hidden="true" class="repeated-text">${this.repeatedText}</p>
+          <p aria-hidden="true" class="repeated-text">${this.repeatedText}</p>
         </div>
         <div class="header-content">
           <h1>${formattedForegroundText}</h1>
@@ -109,20 +110,24 @@ export class JqHeader extends LitElement {
           position: absolute; /* Take out of flow */
           top: 0;
           left: 0;
-          width: 100%;
+          width: 200%;
           height: 100%;
           overflow: hidden; /* Cuts off the repeated text */
           pointer-events: none;
+          display: flex;
+          flex-direction: row;
       }
 
       .repeated-text {
+          width: 100%;
           margin: 0;
           font-weight: 200;
           font-size: 1.6rem;
           color: var(--q-white);
           opacity: 0.1;
           line-height: 1.1;
-          word-break: break-all;
+          word-break: break-all; /* TODO: Mildly problematic in creating seams with misspellings */
+          animation: scrollText 120s linear infinite;
       }
 
       .header-content h1 {
@@ -132,11 +137,32 @@ export class JqHeader extends LitElement {
           flex-grow: 1.5;
           white-space: pre-line;
           margin: 0 0 -.35cap;
+          animation: riseUp 0.3s ease-out;
       }
       
       @media (max-width: 740px) {
           ::slotted(*) {
               display: none;
+          }
+      }
+      
+      @keyframes scrollText {
+          0% {
+              transform: translateX(0);
+          }
+          100% {
+              /* Moves half the total width (since content is duplicated once) */
+              transform: translateX(-100%);
+          }
+      }
+      
+      @keyframes riseUp {
+          0% {
+              transform: translateY(100%);
+          }
+          
+          100% {
+              transform: translateY(0);
           }
       }
   `
