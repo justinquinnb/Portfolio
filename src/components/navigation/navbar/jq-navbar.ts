@@ -12,8 +12,8 @@ import '../socials-list.ts'
 /**
  * The primary, web navigation
  */
-@customElement('nav-bar')
-export class Navbar extends LitElement {
+@customElement('jq-navbar')
+export class JqNavbar extends LitElement {
   navPages: (NavPage | NavGroup)[] = [
     { name: 'Home', path: '/'},
     { name: 'About', path: null, subpages: [
@@ -207,6 +207,6 @@ export class Navbar extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'nav-bar': Navbar
+    'jq-navbar': JqNavbar
   }
 }
