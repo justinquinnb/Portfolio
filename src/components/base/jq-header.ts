@@ -61,11 +61,13 @@ export class JqHeader extends LitElement {
       }
 
       /* 1. The Content (Dictates Space) */
-
       .header-content {
           grid-area: stack;
           z-index: 3;
           position: relative;
+          margin-inline: auto;
+          width: 100%;
+          max-width: 1300px;
           padding: 8rem 0 0 0; /* This padding defines the minimum height */
           display: flex;
           flex-direction: row;

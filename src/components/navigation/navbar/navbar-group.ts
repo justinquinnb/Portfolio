@@ -63,7 +63,7 @@ export class NavbarGroup extends LitElement {
       .navbar-dropdown-content::after {
           content: "";
           position: absolute;
-          top: 1rem;
+          top: .9rem;
           left: 0;
           right: 0;
           height: calc(100% - 1rem);
