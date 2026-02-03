@@ -39,11 +39,14 @@ export class NavbarGroup extends LitElement {
       }
 
       .navbar-dropdown-content {
-          display: none;
+          opacity: 0;
+          visibility: hidden;
           position: absolute;
           top: 100%;
           left: -1rem;
           z-index: 10;
+          
+          transition: opacity 0.15s ease-in-out; /* So this feels a little snappier */
       }
 
       /* Hover area bridge for dropdown content container */
@@ -76,7 +79,8 @@ export class NavbarGroup extends LitElement {
 
       /* Interaction Logic */
       .navbar-dropdown:hover .navbar-dropdown-content {
-          display: block;
+          opacity: 1;
+          visibility: visible;
       }
 
       /* Target the IMMEDIATELY nested navbar-page when parent is hovered */
