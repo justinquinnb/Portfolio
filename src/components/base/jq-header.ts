@@ -26,7 +26,8 @@ export class JqHeader extends LitElement {
   repeatedText: string = "";
 
   render() {
-    this.repeatedText = (this.backgroundText + " ").repeat(500);
+    const repetitionCount = Math.ceil(6000 / this.backgroundText.length);
+    this.repeatedText = (this.backgroundText + " ").repeat(repetitionCount);
 
     // Look for the literal string "\n" and force a line break there
     const formattedForegroundText = this.foregroundText.split('\\n').map((line, index, array) =>
