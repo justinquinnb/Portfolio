@@ -102,6 +102,7 @@ export class JqHeader extends LitElement {
           flex-grow: 1.5;
           margin: 0 0 -.35cap;
           animation: rise-up var(--time-from-lines) ease-out;
+          filter: drop-shadow(0 4px 4px var(--q-black))
       }
 
       .hero-container,
