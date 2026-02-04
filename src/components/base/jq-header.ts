@@ -31,7 +31,7 @@ export class JqHeader extends LitElement {
 
   willUpdate(changedProperties: PropertyValues<this>) {
     if (changedProperties.has('backgroundText') && changedProperties.get('backgroundText') == undefined) {
-      const repetitionCount = Math.ceil(6000 / this.backgroundText.length);
+      const repetitionCount = Math.ceil(3000 / this.backgroundText.length);
       this.repeatedText = (this.backgroundText + " ").repeat(repetitionCount);
 
       // Look for the literal string "\n" and force a line break there
@@ -64,97 +64,103 @@ export class JqHeader extends LitElement {
   static styles = css`
       :host {
           transition-duration: var(--time-from-lines);
+          width: 100%;
+          max-height: 45vh;
       }
       
       header {
           display: grid;
           grid-template-areas: "stack";
           width: 100%;
-          position: relative;
-          /* The header height will now be exactly the height of the tallest 
-             non-absolute element (which is .header-content) */
-      }
-
-      /* 1. The Content (Dictates Space) */
-      .header-content {
-          grid-area: stack;
-          z-index: 3;
-          position: relative;
-          margin-inline: auto;
-          width: 100%;
-          max-width: 1300px;
-          padding: 8rem 0 0 0; /* This padding defines the minimum height */
-          display: flex;
-          flex-direction: row;
-          justify-content: start;
-          align-items: end;
-      }
-
-      /* 2. Background Image (Follows Content Space) */
-      .hero-container {
-          grid-area: stack;
-          z-index: 1;
-          position: absolute; /* Take out of flow */
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--q-dark-gray);
           overflow: hidden;
-
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
+          position: relative;
+          height: min-content;
       }
-
-      .hero-container img {
-          margin: 0 0 0 15%;
-          width: 80%;
-          object-fit: cover;
-          mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 70%);
-      }
-
-      /* 3. Decorative Text (Follows Content Space) */
-
-      .repeated-text-container {
+      
+      header div {
           grid-area: stack;
-          z-index: 2;
-          position: absolute; /* Take out of flow */
-          top: 0;
-          left: 0;
-          width: 200%;
-          height: 100%;
-          overflow: hidden; /* Cuts off the repeated text */
-          pointer-events: none;
+          max-height: 45vh;
+      }
+
+      .header-content {
+          position: relative;
+          z-index: 3;
+          width: 100%;
+          padding-top: 5%;
+          margin: 0 auto;
+          max-width: 1200px;
           display: flex;
           flex-direction: row;
+          align-items: end;
+          justify-content: center;
+          height: min-content;
       }
 
-      .repeated-text {
-          width: 100%;
-          margin: 0;
-          font-weight: 200;
-          font-size: 1.6rem;
-          color: var(--q-white);
-          opacity: 0.1;
-          line-height: 1.1;
-          word-break: break-all; /* TODO: Mildly problematic in creating seams with misspellings */
-          animation: scroll-text 120s linear infinite;
-      }
-
-      .header-content h1 {
+      .header-content > h1 {
           color: var(--q-white);
           font-size: 8rem;
-          flex-basis: 50%;
           flex-grow: 1.5;
-          white-space: pre-line;
           margin: 0 0 -.35cap;
           animation: rise-up var(--time-from-lines) ease-out;
+      }
+
+      .hero-container,
+      .repeated-text-container {
+          min-height: 0;
+          overflow: hidden;
+      }
+
+      .repeated-text-container {
+          position: absolute;
+          width: 200%;
+          height: 100%;
+          min-height: 0;
+          display: flex;
+          flex-direction: row;
+          opacity: 10%;
+      }
+
+      .repeated-text-container p {
+          margin: 0;
+          word-break: break-all;
+          color: var(--q-white);
+          font-weight: 200;
+          line-height: 1.1;
+          font-size: 1.6rem;
+          animation: scroll-text 120s linear infinite;
+      }
+      
+      .hero-container {
+          background-color: var(--q-dark-gray);
+          display: flex;
+          flex-direction: row;
+          justify-content: end;
+          align-items: center;
+      }
+      
+      .hero-container img {
+          position: absolute;
+          object-fit: cover;
+          margin-right: 15%;
+          width: 60%;
+          mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 70%);
+          opacity: 0;
+          animation: fade-in 0.4s linear forwards;
       }
       
       @media (max-width: 740px) {
           ::slotted(*) {
               display: none;
+          }
+      }
+      
+      @keyframes fade-in {
+          0% {
+              opacity: 0;
+          }
+          
+          100% {
+              opacity: 100%;
           }
       }
       
