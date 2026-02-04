@@ -141,7 +141,7 @@ export class JqHeader extends LitElement {
           opacity: 0.1;
           line-height: 1.1;
           word-break: break-all; /* TODO: Mildly problematic in creating seams with misspellings */
-          animation: scrollText 120s linear infinite;
+          animation: scroll-text 120s linear infinite;
       }
 
       .header-content h1 {
@@ -151,7 +151,7 @@ export class JqHeader extends LitElement {
           flex-grow: 1.5;
           white-space: pre-line;
           margin: 0 0 -.35cap;
-          animation: riseUp var(--time-from-lines) ease-out;
+          animation: rise-up var(--time-from-lines) ease-out;
       }
       
       @media (max-width: 740px) {
@@ -160,7 +160,7 @@ export class JqHeader extends LitElement {
           }
       }
       
-      @keyframes scrollText {
+      @keyframes scroll-text {
           0% {
               transform: translateX(0);
           }
@@ -170,7 +170,7 @@ export class JqHeader extends LitElement {
           }
       }
       
-      @keyframes riseUp {
+      @keyframes rise-up {
           0% {
               transform: translateY(100%);
           }
