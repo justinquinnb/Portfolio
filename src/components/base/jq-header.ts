@@ -70,7 +70,6 @@ export class JqHeader extends LitElement {
           display: grid;
           grid-template-areas: "stack";
           width: 100%;
-          overflow: hidden;
           position: relative;
           /* The header height will now be exactly the height of the tallest 
              non-absolute element (which is .header-content) */
@@ -92,7 +91,6 @@ export class JqHeader extends LitElement {
       }
 
       /* 2. Background Image (Follows Content Space) */
-
       .hero-container {
           grid-area: stack;
           z-index: 1;
@@ -102,17 +100,17 @@ export class JqHeader extends LitElement {
           width: 100%;
           height: 100%;
           background-color: var(--q-dark-gray);
+          overflow: hidden;
+
           display: flex;
-          flex-direction: row;
-          justify-content: center;
+          justify-content: flex-end;
+          align-items: center;
       }
 
       .hero-container img {
           margin: 0 0 0 15%;
           width: 80%;
-          height: 100%; /* Forces image to match header-content height */
           object-fit: cover;
-          display: block;
           mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 70%);
       }
 
