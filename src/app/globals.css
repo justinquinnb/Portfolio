@@ -34,7 +34,7 @@ body {
 
 body {
   background: var(--page-background-color);
-  font-family: League Spartan, sans-serif;
+  font-family: var(--font-league-spartan), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
