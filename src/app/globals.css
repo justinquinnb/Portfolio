@@ -8,6 +8,22 @@
   --box-shadow: 0 4px 4px rgba(var(--shadow-color), 0.25);
 }
 
+:root {
+  --page-background-color: var(--q-white);
+  --full-bleed-background-color: var(--q-dark-gray);
+  --primary-background-color: var(--q-white);
+  --section-background-color: var(--q-light-gray);
+  --container-on-section-color: var(--q-white);
+  --text-on-full-bleed-color: var(--q-white);
+  --emphasis-color: var(--q-orange);
+  --action-color: var(--q-orange);
+  --text-on-action-color: var(--q-white);
+  --primary-text-color: var(--q-black);
+  --large-text-color: var(--q-dark-gray);
+  --shadow-color: var(--q-black);
+  --link-hover-color: var(--q-gray);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --page-background-color: var(--q-white);
@@ -22,7 +38,7 @@
     --primary-text-color: var(--q-black);
     --large-text-color: var(--q-dark-gray);
     --shadow-color: var(--q-black);
-    --hover-color: var(--q-light-gray);
+    --link-hover-color: var(--q-gray);
   }
 }
 
@@ -40,32 +56,75 @@ body {
   margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
 h1 {
   font-size: 8rem;
+  color: var(--text-on-full-bleed-color);
 }
 
 h2 {
   font-size: 4rem;
+  font-weight: 800;
+  color: var(--text-on-full-bleed-color);
 }
 
 h3 {
   font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--large-text-color)
 }
 
 h4 {
   font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--large-text-color)
+}
+
+h5 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-text-color)
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary-text-color)
+}
+
+button {
+  font-size: 1.2rem;
+  color: var(--text-on-action-color);
+  background-color: var(--action-color);
+}
+
+p {
+  font-weight: 400;
+  color: var(--primary-text-color);
+}
+
+a, Link {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+h4.unselected {
+  font-weight: 300;
 }
 
 .display-text {
   font-size: 1.2rem;
+  color: var(--large-text-color)
 }
 
-p {
-  color: var(--primary-text-color);
-}
-
-a {
-  color: inherit;
+.emphasis {
+  color: var(--emphasis-color);
 }
 
 @media (prefers-color-scheme: light) {
