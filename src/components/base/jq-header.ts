@@ -25,15 +25,20 @@ export class JqHeader extends LitElement {
   @property()
   repeatedText: string = "";
 
+  @property()
+  subtitleText?: string;
+
   private _formattedForegroundText: TemplateResult | TemplateResult[] = html``;
 
   private _numLines = 1;
 
   willUpdate(changedProperties: PropertyValues<this>) {
-    if (changedProperties.has('backgroundText') && changedProperties.get('backgroundText') == undefined) {
+    if (changedProperties.has('backgroundText')) {
       const repetitionCount = Math.ceil(3000 / this.backgroundText.length);
       this.repeatedText = (this.backgroundText + " ").repeat(repetitionCount);
+    }
 
+    if (changedProperties.has('foregroundText')) {
       // Look for the literal string "\n" and force a line break there
       this._formattedForegroundText = this.foregroundText.split('\\n').map((line, index, array) =>
           index < array.length - 1 ? html`${line}<br>` : html`${line}`
@@ -58,12 +63,13 @@ export class JqHeader extends LitElement {
           <slot></slot>
         </div>
       </header>
+      <h3>TEST 3</h3>
     `
   }
 
   static styles = css`
       :host {
-          transition-duration: var(--time-from-lines);
+          transition-duration: var(--time-from-lines, 0.2s);
           width: 100%;
           max-height: 45vh;
       }
@@ -74,7 +80,6 @@ export class JqHeader extends LitElement {
           width: 100%;
           overflow: hidden;
           position: relative;
-          height: min-content;
       }
       
       header div {
@@ -101,7 +106,7 @@ export class JqHeader extends LitElement {
           font-size: 8rem;
           flex-grow: 1.5;
           margin: 0 0 -.35cap;
-          animation: rise-up var(--time-from-lines) ease-out;
+          animation: rise-up var(--time-from-lines, 0.2s) ease-out;
           filter: drop-shadow(0 4px 4px var(--q-black))
       }
 
