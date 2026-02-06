@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000" height="1000"><svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f1432f;
+      }
+
+      .cls-2 {
+        fill: #ffe4dd;
+      }
+
+      .cls-3 {
+        fill: #302525;
+      }
+    </style>
+  </defs>
+  <g id="Orange_QW" data-name="Orange QW">
+    <circle class="cls-3" cx="500" cy="500" r="500"></circle>
+    <path class="cls-2" d="M805,673.79c-69.47,92.71-180.23,152.7-305,152.7s-235.53-59.99-305-152.7l78.06-78.07c48.71,73.49,132.17,121.94,226.94,121.94,55.45,0,107.03-16.59,150.04-45.08l-171.8-171.8,76.88-76.88,249.89,249.89Z"></path>
+    <path class="cls-1" d="M478.23,500.78l171.8,171.8c-43.01,28.49-94.59,45.08-150.04,45.08-94.77,0-178.22-48.46-226.94-121.94-28.53-43.03-45.14-94.63-45.14-150.13,0-150.26,121.81-272.07,272.07-272.07s272.07,121.81,272.07,272.07c0,55.45-16.59,107.03-45.08,150.04l-171.8-171.8-76.96,76.96Z"></path>
+  </g>
+</svg></svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

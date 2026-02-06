@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Home",
+    "path": "/"
+  },
+  {
+    "name": "About",
+    "path": "/about/",
+    "visitable": false,
+    "subpages": [
+      {
+        "name": "Biography",
+        "path": "/about/bio"
+      },
+      {
+        "name": "Resume",
+        "path": "/about/resume"
+      }
+    ]
+  },
+  {
+    "name": "My Work",
+    "path": "/my-work/",
+    "visitable": false,
+    "subpages": [
+      {
+        "name": "Software",
+        "path": "/my-work/software"
+      },
+      {
+        "name": "Graphics",
+        "path": "/my-work/graphics"
+      },
+      {
+        "name": "Photos",
+        "path": "/my-work/photos"
+      },
+      {
+        "name": "Music",
+        "path": "/my-work/music"
+      }
+    ]
+  },
+  {
+    "name": "Contact",
+    "path": "/contact"
+  }
+]
