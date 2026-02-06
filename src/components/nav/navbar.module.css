@@ -1,0 +1,167 @@
+.navbar {
+    padding: 0.6rem 10%;
+
+    min-height: 50px;
+    max-height: 6vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: var(--default-box-shadow);
+    background-color: var(--page-background-color);
+
+    --top-level-page-default-color: var(--large-text-color);
+    transition:
+        background-color 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out,
+        --top-level-page-default-color 0.2s ease-in-out;
+}
+
+.navbar[scrolled-to-top] {
+    background-color: transparent;
+    box-shadow: 0 0 0 0;
+    --top-level-page-default-color: var(--text-on-full-bleed-color);
+}
+
+.navbar:hover {
+    box-shadow: var(--default-box-shadow);
+    --top-level-page-default-color: var(--large-text-color);
+    background-color: var(--page-background-color);
+}
+
+.navigation,
+.navigation ul {
+    list-style: none;
+}
+
+.wordmark,
+.navigation,
+.socials {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.wordmark,
+.socials {
+    flex: 1 1 20%;
+    opacity: 100%;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.navbar[scrolled-to-top] .wordmark,
+.navbar[scrolled-to-top] .socials {
+    opacity: 0;
+}
+
+.navbar:hover .wordmark,
+.navbar:hover .socials {
+    opacity: 1;
+}
+
+/* Wordmark */
+.wordmark {
+    justify-content: start;
+    text-decoration: none;
+    gap: 0.2rem;
+}
+
+.wordmark:hover {
+    color: var(--large-text-color);
+}
+
+.wordmark p {
+    font-weight: 700;
+    font-size: 1.3rem;
+    white-space: nowrap;
+    transform: translateY(1px);
+}
+
+.wordmark img {
+    padding: 0.6rem 0;
+}
+
+/* Navigation */
+.navigation {
+    flex: 1 1 60%;
+    justify-content: center;
+    gap: 1.5rem;
+    font-weight: 500;
+}
+
+.group {
+    position: relative;
+}
+
+.group:hover {
+    text-decoration: underline;
+    color: var(--large-text-color);
+}
+
+.group:hover .children {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.parent {
+    pointer-events: none;
+}
+
+.selected .not-visitable:hover {
+    color: var(--large-text-color);
+}
+
+.selected {
+    color: var(--emphasis-color);
+}
+
+.parent,
+.childless {
+    text-decoration: none;
+    text-wrap: nowrap;
+}
+
+.children {
+    opacity: 0;
+    transform: translateY(-8%);
+    pointer-events: none;
+    position: absolute;
+    left: -1rem;
+    padding: 0.2rem 0.8rem 0.8rem 0.8rem;
+    border-radius: 0 0 0.2rem 0.2rem;
+    transition: opacity 0.15s ease-in-out,
+        transform 0.15s ease-in-out; /* So this feels a little snappier */
+}
+
+.children::after {
+    content: "";
+    position: absolute;
+    top: .9rem;
+    left: 0;
+    right: 0;
+    height: calc(100% - 1rem);
+    z-index: -1;
+
+    background-color: var(--page-background-color);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 0.2rem 0.2rem;
+}
+
+.children a {
+    text-decoration: none;
+}
+
+.children li {
+    padding-top: 0.5rem;
+}
+
+/* Socials */
+.socials {
+    justify-content: end;
+    gap: 0.3rem;
+    color: var(--large-text-color);
+    font-size: 1.3rem;
+}

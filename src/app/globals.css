@@ -6,9 +6,7 @@
   --q-light-gray: #F1DAD4;
   --q-white: #FFE4DD;
   --box-shadow: 0 4px 4px rgba(var(--shadow-color), 0.25);
-}
 
-:root {
   --page-background-color: var(--q-white);
   --full-bleed-background-color: var(--q-dark-gray);
   --primary-background-color: var(--q-white);
@@ -20,8 +18,11 @@
   --text-on-action-color: var(--q-white);
   --primary-text-color: var(--q-black);
   --large-text-color: var(--q-dark-gray);
+  --brand-text-color: var(--q-dark-gray);
   --shadow-color: var(--q-black);
   --link-hover-color: var(--q-gray);
+
+  --default-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 @media (prefers-color-scheme: light) {
@@ -40,6 +41,12 @@
     --shadow-color: var(--q-black);
     --link-hover-color: var(--q-gray);
   }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html,
@@ -106,8 +113,16 @@ p {
   color: var(--primary-text-color);
 }
 
-a, Link {
+a {
   color: inherit;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
 a:hover {

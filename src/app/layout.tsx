@@ -4,6 +4,8 @@ import "./globals.css";
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Navbar from "@/components/nav/Navbar";
+import Footer from "@/components/nav/Footer";
 config.autoAddCss = false
 
 const leagueSpartan = League_Spartan({
@@ -27,7 +29,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Justin Quinn" />
       </head>
       <body>
-        {children}
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
