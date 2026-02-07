@@ -108,6 +108,11 @@
 
 .parent {
     pointer-events: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.group:hover .parent {
+    color: var(--large-text-color);
 }
 
 .selected .not-visitable:hover {
