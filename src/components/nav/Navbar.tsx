@@ -26,10 +26,12 @@ export default function Navbar() {
 
   return (
       <nav className={`${styles.navbar} ${isAtTop ? styles.atTop : ''}`}>
-        <Link className={styles.wordmark} href={"/"}>
-          <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={50} height={50} />
-          <p>Justin Quinn</p>
-        </Link>
+        <div className={styles.wordmark}>
+          <Link href={"/"}>
+            <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={50} height={50} />
+          </Link>
+          <Link className={styles.word} href={"/"}>Justin Quinn</Link>
+        </div>
         <ul className={styles.navigation}>
           {topLevelElements.map((topLevelElement) => {
             if (!('subpages' in topLevelElement)) {

@@ -59,8 +59,12 @@
 /* Wordmark */
 .wordmark {
     justify-content: start;
-    text-decoration: none;
     gap: 0.2rem;
+}
+
+.wordmark a {
+    text-decoration: none;
+    color: var(--large-text-color);
 }
 
 .atTop .wordmark {
@@ -71,14 +75,14 @@
     color: var(--large-text-color);
 }
 
-.wordmark p {
+.wordmark .word {
     font-weight: 700;
     font-size: 1.3rem;
     white-space: nowrap;
     transform: translateY(1px);
 }
 
-.wordmark img {
+.wordmark a img {
     padding: 0.6rem 0;
 }
 
@@ -199,7 +203,7 @@
 }
 
 @media (max-width: 620px) {
-    .wordmark p {
+    .wordmark .word {
         display: none;
     }
 }
