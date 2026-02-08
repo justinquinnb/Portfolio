@@ -12,6 +12,7 @@ export default function Home() {
         <h5>Header 5</h5>
         <h6>Header 6</h6>
         <p className="display-text"> Display paragraph text.</p><p>Regular paragraph text with <Link href="/">link</Link></p>
+        <p style={{ height: '1000px'}}>Filler text</p>
       </>
   );
 }

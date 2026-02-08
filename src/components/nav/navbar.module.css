@@ -19,18 +19,6 @@
         --top-level-page-default-color 0.2s ease-in-out;
 }
 
-.navbar[scrolled-to-top] {
-    background-color: transparent;
-    box-shadow: 0 0 0 0;
-    --top-level-page-default-color: var(--text-on-full-bleed-color);
-}
-
-.navbar:hover {
-    box-shadow: var(--default-box-shadow);
-    --top-level-page-default-color: var(--large-text-color);
-    background-color: var(--page-background-color);
-}
-
 .navigation,
 .navigation ul {
     list-style: none;
@@ -51,9 +39,10 @@
     transition: opacity 0.2s ease-in-out;
 }
 
-.navbar[scrolled-to-top] .wordmark,
-.navbar[scrolled-to-top] .socials {
-    opacity: 0;
+.navbar.atTop {
+    background: transparent;
+    box-shadow: none;
+    --top-level-page-default-color: var(--text-on-full-bleed-color);
 }
 
 .navbar:hover .wordmark,
@@ -61,11 +50,21 @@
     opacity: 1;
 }
 
+.navbar:hover {
+    box-shadow: var(--default-box-shadow);
+    --top-level-page-default-color: var(--large-text-color);
+    background-color: var(--page-background-color);
+}
+
 /* Wordmark */
 .wordmark {
     justify-content: start;
     text-decoration: none;
     gap: 0.2rem;
+}
+
+.atTop .wordmark {
+    opacity: 0;
 }
 
 .wordmark:hover {
@@ -129,6 +128,15 @@
     text-wrap: nowrap;
 }
 
+.parent:not(.selected),
+.childless:not(.selected) {
+    color: var(--top-level-page-default-color);
+}
+
+.childless:hover {
+    color: var(--link-hover-color)
+}
+
 .children {
     opacity: 0;
     transform: translateY(-8%);
@@ -169,4 +177,35 @@
     gap: 0.3rem;
     color: var(--large-text-color);
     font-size: 1.3rem;
+}
+
+.atTop .socials {
+    opacity: 0;
+}
+
+@media (max-width: 780px) {
+    .wordmark,
+    .navigation {
+        flex: 1 1 50%;
+    }
+
+    .navigation {
+        justify-content: right;
+    }
+
+    .socials {
+        display: none;
+    }
+}
+
+@media (max-width: 620px) {
+    .wordmark p {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        display: none;
+    }
 }

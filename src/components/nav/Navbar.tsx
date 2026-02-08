@@ -7,12 +7,25 @@ import Socials from "@/components/nav/Socials";
 import {usePathname} from "next/navigation";
 import {NavGroup, NavPage} from "@/types/nav-page";
 import styles from './navbar.module.css';
+import React, {useEffect} from "react";
 
 export default function Navbar() {
   const topLevelElements: (NavPage | NavGroup)[] = pagesJson;
+  const [isAtTop, setIsAtTop] = React.useState(false);
+
+  const handleScroll = () => {
+    setIsAtTop(window.scrollY == 0);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }
+  })
 
   return (
-      <nav className={`${styles.navbar}`}>
+      <nav className={`${styles.navbar} ${isAtTop ? styles.atTop : ''}`}>
         <Link className={styles.wordmark} href={"/"}>
           <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={50} height={50} />
           <p>Justin Quinn</p>
