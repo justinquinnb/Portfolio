@@ -1,0 +1,16 @@
+.radial_nav {
+    position: absolute;
+    top: 0;
+}
+
+.menu_button.is_open {
+    display: none;
+}
+
+.menu {
+    background: var(--page-background-color);
+}
+
+.menu:not(.is_open) {
+    display: none;
+}

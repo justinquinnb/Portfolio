@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
 
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import Navbar from "@/components/nav/Navbar";
+import { config } from "@fortawesome/fontawesome-svg-core"
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import Navbar from "@/components/nav/bar/Navbar";
 import Footer from "@/components/nav/Footer";
+import Navigation from "@/components/nav/Navigation";
 config.autoAddCss = false
 
 const leagueSpartan = League_Spartan({
-  subsets: ['latin'],
-  variable: '--font-league-spartan'
+  subsets: ["latin"],
+  variable: "--font-league-spartan"
 })
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Justin Quinn" />
       </head>
       <body>
-        <Navbar />
+        <Navigation />
         <main>{children}</main>
         <Footer />
       </body>
