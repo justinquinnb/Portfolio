@@ -1,6 +1,30 @@
 .radial_nav {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.menu_button {
+    margin: 1rem;
+    background: var(--emphasis-color);
+    border-radius: 50%;
+    box-shadow: var(--default-box-shadow);
+    min-width: 45px;
+    min-height: 45px;
+    position: relative;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.menu_button .is_scrolling {
+    opacity: 0;
+}
+
+.menu_button .menu_icon {
+    padding-top: 0.3rem;
+    font-size: 2.4rem;
 }
 
 .menu_button.is_open {
@@ -8,7 +32,14 @@
 }
 
 .menu {
+    height: 16rem;
+    width: 16rem;
+    position: absolute;
+    bottom: -8rem;
+
     background: var(--page-background-color);
+    border-radius: 50%;
+    box-shadow: var(--default-box-shadow);
 }
 
 .menu:not(.is_open) {

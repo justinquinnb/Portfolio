@@ -207,3 +207,9 @@
         display: none;
     }
 }
+
+@media (max-width: 440px) {
+    .navbar {
+        padding: 0.6rem 5%;
+    }
+}

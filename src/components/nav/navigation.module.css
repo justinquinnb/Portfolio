@@ -1,3 +1,8 @@
+.radial { /* temporary until radial nav is made */
+    display: none;
+}
+
+/* TODO continue radial nav work
 @media (max-width: 480px) {
     .bar {
         display: none;
@@ -9,3 +14,4 @@
         display: none;
     }
 }
+*/
