@@ -1,0 +1,38 @@
+.footer {
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+
+    background: var(--section-background-color);
+}
+
+.nav,
+.branding {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.branding p {
+    padding: 1rem;
+    color: var(--accent-text-color);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.info .nav {
+    justify-content: space-between;
+}
+
+.info p {
+    margin-top: 1rem;
+}
+
+.nav ul {
+    list-style: none;
+}

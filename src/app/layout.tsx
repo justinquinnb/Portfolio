@@ -3,8 +3,8 @@ import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
-import Footer from "@/components/nav/Footer";
-import Navigation from "@/components/nav/Navigation";
+import Footer from "@/components/frame-elements/nav/Footer";
+import Navigation from "@/components/frame-elements/nav/Navigation";
 import 'material-symbols';
 config.autoAddCss = false
 

@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link";
-import pagesJson from "../../../data/pages.json";
+import pagesJson from "../../../../data/pages.json";
 import Image from "next/image";
-import Socials from "@/components/nav/Socials";
+import Socials from "@/components/frame-elements/nav/Socials";
 import {usePathname} from "next/navigation";
 import {NavGroup, NavPage} from "@/types/nav-page";
 import styles from "./navbar.module.css";

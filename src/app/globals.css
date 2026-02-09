@@ -21,6 +21,7 @@
   --brand-text-color: var(--q-dark-gray);
   --shadow-color: var(--q-black);
   --link-hover-color: var(--q-gray);
+  --accent-text-color: var(--q-gray);
 
   --default-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -40,6 +41,7 @@
     --large-text-color: var(--q-dark-gray);
     --shadow-color: var(--q-black);
     --link-hover-color: var(--q-gray);
+    --accent-text-color: var(--q-gray);
   }
 }
 
@@ -126,6 +128,10 @@ nav {
   position: fixed;
   width: 100%;
   z-index: 100;
+}
+
+footer {
+  width: 100%;
 }
 
 a:hover {

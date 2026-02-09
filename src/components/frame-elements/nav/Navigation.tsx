@@ -1,5 +1,5 @@
-import Navbar from "@/components/nav/bar/Navbar";
-import RadialNav from "@/components/nav/radial/RadialNav";
+import Navbar from "@/components/frame-elements/nav/bar/Navbar";
+import RadialNav from "@/components/frame-elements/nav/radial/RadialNav";
 import styles from "./navigation.module.css";
 
 /**
