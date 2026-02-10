@@ -1,4 +1,13 @@
 :root {
+  /** Min breakpoint sizes */
+  --xs: 0;
+  --sm: 576px;
+  --md: 768px;
+  --lg: 992px;
+  --xl: 1200px;
+  --xxl: 1400px;
+
+  /* Color palette */
   --q-black: #1E1E1E;
   --q-dark-gray: #302525;
   --q-orange: #F1432F;
@@ -7,6 +16,7 @@
   --q-white: #FFE4DD;
   --box-shadow: 0 4px 4px rgba(var(--shadow-color), 0.25);
 
+  /* Theme */
   --page-background-color: var(--q-white);
   --full-bleed-background-color: var(--q-dark-gray);
   --primary-background-color: var(--q-white);

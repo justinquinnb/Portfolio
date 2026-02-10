@@ -29,17 +29,17 @@ export default function Navbar({ className}: { className?: string }) {
   })
 
   return (
-      <nav className={`${styles.navbar} ${isAtTop ? styles.atTop : ""} ${className}`}>
+      <nav className={`${styles.navbar} ${isAtTop ? styles.scrolledToTop : ""} ${className}`}>
         <div className={styles.wordmark}>
-          <Link href={"/public"}>
-            <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={50} height={50} />
+          <Link href={"/"}>
+            <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={40} height={40} />
           </Link>
-          <Link className={styles.word} href={"/public"}>Justin Quinn</Link>
+          <Link className={styles.word} href={"/"}>Justin Quinn</Link>
         </div>
         <ul className={styles.navigation}>
           {topLevelElements.map((topLevelElement) => {
             if (!("subpages" in topLevelElement)) {
-              return (<li key={topLevelElement.name}><NavbarItem className={styles.childless} page={topLevelElement}></NavbarItem></li>)
+              return (<li key={topLevelElement.name}><NavbarItem className={styles.childlessPage} page={topLevelElement}></NavbarItem></li>)
             } else {
               return (<li key={topLevelElement.name}><NavbarGroup pageGroup={topLevelElement}></NavbarGroup></li>)
             }
@@ -55,24 +55,20 @@ function NavbarGroup({pageGroup}: {pageGroup: NavGroup}) {
   const isGroupSelected = currentPath.startsWith(pageGroup.path);
 
   return (
-      <div className={styles.group}>
-        <NavbarItem className={styles.parent} page={pageGroup} isSelected={isGroupSelected} />
-        <ul className={styles.children}>
+      <div className={styles.pageGroup}>
+        <NavbarItem className={`${styles.pageGroupParent} ${isGroupSelected ? styles.childSelected : ""}`} page={pageGroup} />
+        <ul className={styles.pageGroupChildren}>
           {pageGroup.subpages.map((subpage: NavPage) =>
-              (<li key={subpage.name}><NavbarItem page={subpage} className={styles.child}/></li>)
+              (<li key={subpage.name}><NavbarItem page={subpage} className={styles.childPage}/></li>)
           )}
         </ul>
       </div>
   )
 }
 
-function NavbarItem({page, isSelected, className}: {page: NavPage; isSelected?: boolean; className?: string}) {
-  if (isSelected == undefined) {
-    const currentPath = usePathname();
-    isSelected = currentPath === page.path;
-  }
-
-  const selectedClass = isSelected ? styles.selected : "";
+function NavbarItem({page, className}: {page: NavPage; isSelected?: boolean; className?: string}) {
+  const currentPath = usePathname();
+  const selectedClass = currentPath === page.path ? styles.selected : "";
 
   if ("visitable" in page && !page.visitable) {
     return (<span className={`${className} display-text ${selectedClass} not-visitable`}>{page.name}</span>)

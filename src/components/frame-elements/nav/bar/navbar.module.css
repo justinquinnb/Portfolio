@@ -1,215 +1,143 @@
 .navbar {
-    padding: 0.6rem 10%;
-
-    min-height: 50px;
-    max-height: 6vh;
-
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 0.2rem 1rem;
+    height: fit-content;
 
-    box-shadow: var(--default-box-shadow);
     background-color: var(--page-background-color);
+    box-shadow: var(--default-box-shadow);
+    --tli-color: var(--large-text-color);
 
-    --top-level-page-default-color: var(--large-text-color);
     transition:
         background-color 0.2s ease-in-out,
         box-shadow 0.2s ease-in-out,
-        --top-level-page-default-color 0.2s ease-in-out;
+        --tli-color 0.2s ease-in-out;
 }
 
-.navigation,
-.navigation ul {
-    list-style: none;
-}
-
-.wordmark,
-.navigation,
-.socials {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.wordmark,
-.socials {
-    flex: 1 1 20%;
-    opacity: 100%;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.navbar.atTop {
-    background: transparent;
+/* Scrolled to Top State */
+.navbar.scrolledToTop:not(:hover) {
+    background-color: transparent;
     box-shadow: none;
-    --top-level-page-default-color: var(--text-on-full-bleed-color);
-}
 
-.navbar:hover .wordmark,
-.navbar:hover .socials {
-    opacity: 1;
-}
+    .wordmark, .socials {
+        opacity: 0;
+    }
 
-.navbar:hover {
-    box-shadow: var(--default-box-shadow);
-    --top-level-page-default-color: var(--large-text-color);
-    background-color: var(--page-background-color);
+    --tli-color: var(--text-on-full-bleed-color);
 }
 
 /* Wordmark */
 .wordmark {
-    justify-content: start;
-    gap: 0.2rem;
-}
+    display: flex;
+    align-items: center;
 
-.wordmark a {
-    text-decoration: none;
-    color: var(--large-text-color);
-}
+    transition: opacity 0.2s;
 
-.atTop .wordmark {
-    opacity: 0;
-}
+    .word {
+        display: none;
+    }
 
-.wordmark:hover {
-    color: var(--large-text-color);
-}
-
-.wordmark .word {
-    font-weight: 700;
-    font-size: 1.3rem;
-    white-space: nowrap;
-    transform: translateY(1px);
-}
-
-.wordmark a img {
-    padding: 0.6rem 0;
+    img {
+        padding: 0.2rem 0;
+    }
 }
 
 /* Navigation */
 .navigation {
-    flex: 1 1 60%;
-    justify-content: center;
+    display: flex;
+    align-items: center;
     gap: 1.5rem;
-    font-weight: 500;
-}
 
-.group {
-    position: relative;
-}
+    list-style: none;
 
-.group:hover {
-    text-decoration: underline;
-    color: var(--large-text-color);
-}
+    li .childlessPage,
+    li .pageGroupParent {
+        color: var(--tli-color);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
 
-.group:hover .children {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-}
+    li .pageGroupParent {
+        pointer-events: none;
+    }
 
-.parent {
-    pointer-events: none;
-    transition: color 0.2s ease-in-out;
-}
+    li a:hover {
+        color: var(--link-hover-color);
+    }
 
-.group:hover .parent {
-    color: var(--large-text-color);
-}
+    li .selected {
+        color: var(--emphasis-color);
+    }
 
-.selected .not-visitable:hover {
-    color: var(--large-text-color);
-}
+    li .childSelected {
+        color: var(--emphasis-color);
+    }
 
-.selected {
-    color: var(--emphasis-color);
-}
+    /* Dropdowns */
+    .pageGroupChildren {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10%);
 
-.parent,
-.childless {
-    text-decoration: none;
-    text-wrap: nowrap;
-}
+        list-style: none;
 
-.parent:not(.selected),
-.childless:not(.selected) {
-    color: var(--top-level-page-default-color);
-}
+        position: absolute;
+        left: -1rem;
+        padding: 0.2rem 0.8rem 0.8rem 0.8rem;
+        border-radius: 0 0 0.2rem 0.2rem;
 
-.childless:hover {
-    color: var(--link-hover-color)
-}
+        transition:
+            background-color 0.2s ease-in-out,
+            opacity 0.2s ease-in-out,
+            transform 0.15s ease-in-out,
+            visibility 0.15s;
 
-.children {
-    opacity: 0;
-    transform: translateY(-8%);
-    pointer-events: none;
-    position: absolute;
-    left: -1rem;
-    padding: 0.2rem 0.8rem 0.8rem 0.8rem;
-    border-radius: 0 0 0.2rem 0.2rem;
-    transition: opacity 0.15s ease-in-out,
-        transform 0.15s ease-in-out; /* So this feels a little snappier */
-}
+        li {
+            margin-top: 0.4rem;
+        }
 
-.children::after {
-    content: "";
-    position: absolute;
-    top: .9rem;
-    left: 0;
-    right: 0;
-    height: calc(100% - 1rem);
-    z-index: -1;
+        a {
+            text-decoration: none;
+        }
+    }
 
-    background-color: var(--page-background-color);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 0 0 0.2rem 0.2rem;
-}
+    .pageGroupChildren::after {
+        content: "";
+        position: absolute;
+        top: .9rem;
+        left: 0;
+        right: 0;
+        height: calc(100% - 1rem);
+        z-index: -1;
 
-.children a {
-    text-decoration: none;
-}
+        background-color: var(--page-background-color);
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 0 0 0.2rem 0.2rem;
+    }
 
-.children li {
-    padding-top: 0.5rem;
+    .pageGroup {
+        position: relative;
+    }
+
+    .pageGroup:hover {
+        color: var(--large-text-color);
+        text-decoration: underline 2px;
+
+        .childSelected {
+            color: var(--large-text-color);
+        }
+
+        .pageGroupChildren {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
 
 /* Socials */
 .socials {
-    justify-content: end;
-    gap: 0.3rem;
-    color: var(--large-text-color);
-    font-size: 1.3rem;
-}
-
-.atTop .socials {
-    opacity: 0;
-}
-
-@media (max-width: 780px) {
-    .wordmark,
-    .navigation {
-        flex: 1 1 50%;
-    }
-
-    .navigation {
-        justify-content: right;
-    }
-
-    .socials {
-        display: none;
-    }
-}
-
-@media (max-width: 620px) {
-    .wordmark .word {
-        display: none;
-    }
-}
-
-@media (max-width: 440px) {
-    .navbar {
-        padding: 0.6rem 5%;
-    }
+    display: none;
+    transition: opacity 0.2s;
 }
