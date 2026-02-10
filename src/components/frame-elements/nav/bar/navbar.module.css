@@ -2,36 +2,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.2rem 1rem;
     height: fit-content;
+    padding: 0.2rem 1rem;
 
+    --tli-color: var(--large-text-color);
     background-color: var(--page-background-color);
     box-shadow: var(--default-box-shadow);
-    --tli-color: var(--large-text-color);
 
     transition:
         background-color 0.2s ease-in-out,
         box-shadow 0.2s ease-in-out,
         --tli-color 0.2s ease-in-out;
-}
 
-/* Scrolled to Top State */
-.navbar.scrolledToTop:not(:hover) {
-    background-color: transparent;
-    box-shadow: none;
+    /* Scrolled State */
+    &.scrolledToTop:not(:hover) {
+        background-color: transparent;
+        box-shadow: none;
+        --tli-color: var(--text-on-full-bleed-color);
 
-    .wordmark, .socials {
-        opacity: 0;
+        .wordmark, .socials {
+            opacity: 0;
+        }
     }
-
-    --tli-color: var(--text-on-full-bleed-color);
 }
 
-/* Wordmark */
 .wordmark {
     display: flex;
     align-items: center;
-
     transition: opacity 0.2s;
 
     .word {
@@ -43,100 +40,83 @@
     }
 }
 
-/* Navigation */
 .navigation {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-
     list-style: none;
 
-    li .childlessPage,
-    li .pageGroupParent {
-        color: var(--tli-color);
-        text-decoration: none;
-        transition: color 0.2s;
-    }
+    /* Grouped Link Styles */
+    li {
+        .childlessPage,
+        .pageGroupParent {
+            color: var(--tli-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
 
-    li .pageGroupParent {
-        pointer-events: none;
-    }
+        .pageGroupParent {
+            pointer-events: none;
+        }
 
-    li a:hover {
-        color: var(--link-hover-color);
-    }
+        a:hover {
+            color: var(--link-hover-color);
+        }
 
-    li .selected {
-        color: var(--emphasis-color);
-    }
-
-    li .childSelected {
-        color: var(--emphasis-color);
+        .selected,
+        .childSelected {
+            color: var(--emphasis-color);
+        }
     }
 
     /* Dropdowns */
+    .pageGroup {
+        position: relative;
+
+        &:hover {
+            color: var(--large-text-color);
+            text-decoration: underline 2px;
+
+            .childSelected {
+                color: var(--large-text-color);
+            }
+
+            .pageGroupChildren {
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
     .pageGroupChildren {
+        position: absolute;
+        left: -1rem;
         visibility: hidden;
         opacity: 0;
         transform: translateY(-10%);
-
+        padding: 0.2rem 0.8rem 0.8rem;
         list-style: none;
-
-        position: absolute;
-        left: -1rem;
-        padding: 0.2rem 0.8rem 0.8rem 0.8rem;
-        border-radius: 0 0 0.2rem 0.2rem;
-
         transition:
-            background-color 0.2s ease-in-out,
-            opacity 0.2s ease-in-out,
-            transform 0.15s ease-in-out,
+            background-color, opacity, transform 0.2s ease-in-out,
             visibility 0.15s;
 
-        li {
-            margin-top: 0.4rem;
-        }
+        li { margin-top: 0.4rem; }
+        a { text-decoration: none; }
 
-        a {
-            text-decoration: none;
-        }
-    }
-
-    .pageGroupChildren::after {
-        content: "";
-        position: absolute;
-        top: .9rem;
-        left: 0;
-        right: 0;
-        height: calc(100% - 1rem);
-        z-index: -1;
-
-        background-color: var(--page-background-color);
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 0 0 0.2rem 0.2rem;
-    }
-
-    .pageGroup {
-        position: relative;
-    }
-
-    .pageGroup:hover {
-        color: var(--large-text-color);
-        text-decoration: underline 2px;
-
-        .childSelected {
-            color: var(--large-text-color);
-        }
-
-        .pageGroupChildren {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0.9rem 0 0 0;
+            height: calc(100% - 1rem);
+            z-index: -1;
+            background-color: var(--page-background-color);
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 0 0 0.2rem 0.2rem;
         }
     }
 }
 
-/* Socials */
 .socials {
     display: none;
     transition: opacity 0.2s;
