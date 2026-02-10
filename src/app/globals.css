@@ -1,11 +1,15 @@
 :root {
-  /** Min breakpoint sizes */
-  --xs: 0;
-  --sm: 576px;
-  --md: 768px;
-  --lg: 992px;
-  --xl: 1200px;
-  --xxl: 1400px;
+  /* Min breakpoint sizes */
+  --xs: 0px;
+  --sm: 321px;
+  --md: 481px;
+  --lg: 769px;
+  --xl: 1025px;
+  --xxl: 1201px;
+
+  /* Accessibility Constraints */
+  --max-interactive-width: 64rem;
+  --max-reading-width: 50ch;
 
   /* Color palette */
   --q-black: #1E1E1E;
@@ -63,7 +67,8 @@
 
 html,
 body {
-  max-width: 100vw;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -132,16 +137,6 @@ a {
   color: inherit;
   text-decoration: underline;
   transition: color 0.2s ease-in-out;
-}
-
-nav {
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-}
-
-footer {
-  width: 100%;
 }
 
 a:hover {
