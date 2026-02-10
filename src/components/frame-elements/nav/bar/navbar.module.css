@@ -37,7 +37,7 @@
 .wordmark {
     display: flex;
     align-items: center;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s ease-in-out;
 
     .word {
         display: none;
@@ -60,7 +60,7 @@
         .pageGroupParent {
             color: var(--tli-color);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.2s ease-in-out;
         }
 
         .pageGroupParent {
@@ -106,8 +106,10 @@
         padding: 0.2rem 0.8rem 0.8rem;
         list-style: none;
         transition:
-            background-color, opacity, transform 0.2s ease-in-out,
-            visibility 0.15s;
+            background-color 0.2s ease-in-out,
+            opacity 0.2s ease-in-out,
+            transform 0.2s ease-in-out,
+            visibility 0.15s ease-in-out;
 
         li { margin-top: 0.4rem; }
         a { text-decoration: none; }
@@ -127,7 +129,7 @@
 
 .socials {
     display: none;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s ease-in-out;
 }
 
 @media (min-width: 576px) {
