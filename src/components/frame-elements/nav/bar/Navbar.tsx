@@ -30,22 +30,27 @@ export default function Navbar({ className}: { className?: string }) {
 
   return (
       <nav className={`${styles.navbar} ${isAtTop ? styles.scrolledToTop : ""} ${className}`}>
-        <div className={styles.wordmark}>
-          <Link href={"/"}>
-            <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={40} height={40} />
-          </Link>
-          <Link className={styles.word} href={"/"}>Justin Quinn</Link>
-        </div>
-        <ul className={styles.navigation}>
-          {topLevelElements.map((topLevelElement) => {
-            if (!("subpages" in topLevelElement)) {
-              return (<li key={topLevelElement.name}><NavbarItem className={styles.childlessPage} page={topLevelElement}></NavbarItem></li>)
-            } else {
-              return (<li key={topLevelElement.name}><NavbarGroup pageGroup={topLevelElement}></NavbarGroup></li>)
-            }
-          })}
-        </ul>
-        <Socials className={styles.socials}/>
+        <div className={styles.centerIsland}>
+          <div className={styles.wordmark}>
+            <Link href={"/"}>
+              <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={40}
+                     height={40}/>
+            </Link>
+            <Link className={styles.word} href={"/"}>Justin Quinn</Link>
+          </div>
+          <ul className={styles.navigation}>
+            {topLevelElements.map((topLevelElement) => {
+              if (!("subpages" in topLevelElement)) {
+                return (<li key={topLevelElement.name}><NavbarItem className={styles.childlessPage}
+                                                                   page={topLevelElement}></NavbarItem>
+                </li>)
+              } else {
+                return (<li key={topLevelElement.name}><NavbarGroup
+                    pageGroup={topLevelElement}></NavbarGroup></li>)
+              }
+            })}
+          </ul>
+          <Socials className={styles.socials}/></div>
       </nav>
   );
 }

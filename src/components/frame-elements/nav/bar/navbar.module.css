@@ -1,6 +1,6 @@
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: fit-content;
     padding: 0.2rem 1rem;
@@ -24,6 +24,14 @@
             opacity: 0;
         }
     }
+}
+
+.navbar .centerIsland {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    width: 100%;
 }
 
 .wordmark {
@@ -120,4 +128,37 @@
 .socials {
     display: none;
     transition: opacity 0.2s;
+}
+
+@media (min-width: 576px) {
+    .navbar {
+        padding: 0.2rem 6%;
+    }
+
+    .wordmark {
+        .word {
+            padding-left: 0.5rem;
+            display: inline;
+            text-decoration: none;
+
+            color: var(--large-text-color);
+            font-weight: 700;
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar .centerIsland {
+        max-width: var(--max-interactive-width);
+    }
+
+    .socials {
+        display: flex;
+        justify-content: end;
+        gap: 0.3rem;
+        color: var(--large-text-color);
+        font-size: 1.3rem;
+    }
 }
