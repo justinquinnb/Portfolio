@@ -79,33 +79,31 @@ export default function RadialNav({ className }: { className?: string }) {
 
   function findNavPlacement(
       index: number, totalItems: number, distance: number, maxSpan: number,
-      origin: {x: number, y: number}): {x: string, y: string}
+      origin: {x: string, y: string}): {x: string, y: string}
   {
     if (index == 0 && totalItems > 3) {
-      console.log(`Calculated position: x: 0, y: 0`);
-      return {x: "50%", y: "55%"};
+      return origin;
     }
 
     const largerAngle: number = 90 + (maxSpan / 2);
     const smallerAngle: number = 90 - (maxSpan / 2);
     const numRadialItems: number = totalItems > 3 ? totalItems - 2 : totalItems - 1;
     const angleIncrements: number = (largerAngle - smallerAngle) / (numRadialItems);
-    console.log(`AngleIncrements: ${angleIncrements}`);
 
     const indexShift: number = totalItems > 3 ? 1 : 0;
     const angleInRadians = (largerAngle - (angleIncrements * (index - indexShift))) * Math.PI / 180;
-    const x = (distance * Math.cos(angleInRadians));
-    const y = (distance * Math.sin(angleInRadians));
 
-    console.log(`Calculated position: x: ${x}, y: ${y}`);
+    const scaledRadius: string = `(100% * ${distanceFromCenter})`;
+    const x: string = `(${scaledRadius} * cos(${angleInRadians}))`;
+    const y: string = `(${scaledRadius} * sin(${angleInRadians}))`;
 
-    return {x: `calc(${x}px + 50%)`, y: `calc(${y}px + 50%)`};
+    return {x: `calc(${x}px + ${origin.x})`, y: `calc(${y}px + ${origin.y})`};
   }
 
   // Int is rem
-  const distanceFromCenter = 110;
+  const distanceFromCenter = .5;
   const maxSpan = 160;
-  const origin = {x: 500, y: 500};
+  const origin = {x: "50%", y: "50%"};
 
   return (
       <nav className={`${styles.radialNav} ${className}`}>
