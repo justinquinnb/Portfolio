@@ -23,8 +23,8 @@
     box-shadow: var(--default-box-shadow);
 
     transition:
-        display 0.15s allow-discrete ease-in-out,
-        scale 0.15s ease-in-out;
+        display 0.10s allow-discrete ease-in-out,
+        scale 0.10s ease-in-out;
 
     @starting-style {
         scale: 0;
@@ -55,8 +55,9 @@
     aspect-ratio: 1;
     scale: 0;
 
-    background-color: blue;
+    background-color: var(--section-background-color);
     border-radius: 50%;
+    box-shadow: var(--default-top-box-shadow);
     transition:
         display 0.15s allow-discrete ease-in-out,
         scale 0.15s ease-in-out;
