@@ -1,47 +1,83 @@
-.radial_nav {
+.radialNav {
     position: fixed;
+
     bottom: 0;
+    width: 100vw;
+}
+
+.menuButton {
+    width: 3.75rem;
+    height: 3.75rem;
+    scale: 1;
+
+    position: absolute;
+    bottom: 1.5rem;
+    justify-self: center;
+    z-index: 100;
 
     display: flex;
-    flex-direction: row;
     justify-content: center;
-}
+    align-items: center;
 
-.menu_button {
-    margin: 1rem;
-    background: var(--emphasis-color);
     border-radius: 50%;
     box-shadow: var(--default-box-shadow);
-    min-width: 45px;
-    min-height: 45px;
-    position: relative;
-    transition: opacity 0.2s ease-in-out;
+
+    transition:
+        display 0.15s allow-discrete ease-in-out,
+        scale 0.15s ease-in-out;
+
+    @starting-style {
+        scale: 0;
+    }
+
+    &.isOpen {
+        display: none;
+        scale: 0;
+    }
+
+    .menuIcon {
+        font-size: 2.4rem;
+    }
 }
 
-.menu_button .is_scrolling {
-    opacity: 0;
-}
-
-.menu_button .menu_icon {
-    padding-top: 0.3rem;
-    font-size: 2.4rem;
-}
-
-.menu_button.is_open {
-    display: none;
-}
-
+/* Container of all menu groups */
 .menu {
-    height: 16rem;
-    width: 16rem;
-    position: absolute;
-    bottom: -8rem;
-
-    background: var(--page-background-color);
-    border-radius: 50%;
-    box-shadow: var(--default-box-shadow);
-}
-
-.menu:not(.is_open) {
     display: none;
+
+    position: absolute;
+    justify-self: center;
+    --current-height: min(100vw, 20rem);
+    bottom: calc(-.5 * var(--current-height) + 1.5rem);
+    z-index: 99;
+
+    width: 100%;
+    max-width: 20rem;
+    aspect-ratio: 1;
+    scale: 0;
+
+    background-color: blue;
+    border-radius: 50%;
+    transition:
+        display 0.15s allow-discrete ease-in-out,
+        scale 0.15s ease-in-out;
+
+    &.isOpen {
+        display: block;
+        scale: 1;
+
+        @starting-style {
+            scale: 0;
+        }
+    }
 }
+
+/* Actual group of pages to select within the menu */
+.menuGroup {
+    position: absolute;
+    display: none;
+
+    &.selected {
+        display: flex;
+    }
+}
+

@@ -3,6 +3,7 @@
 import React, {useEffect, useRef} from "react";
 import styles from "./radialnav.module.css";
 import {useOnClickOutside, useTimeout} from 'usehooks-ts'
+import {usePathname} from "next/navigation";
 
 /**
  * Radial navigation menu for small (mobile) screens.
@@ -10,8 +11,6 @@ import {useOnClickOutside, useTimeout} from 'usehooks-ts'
  */
 export default function RadialNav({ className }: { className?: string }) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [menuGroup, setMenuGroup] = React.useState("Main");
-
   const menuRef = useRef<HTMLDivElement>(null!);
 
   // Close when clicking outside
@@ -26,25 +25,31 @@ export default function RadialNav({ className }: { className?: string }) {
     setIsOpen(!isOpen);
   }
 
-  const isScrolling = false;
+  // Ensure the correct group is displayed on menu open
+  const currentPath = usePathname();
+  let menuGroup = "main";
+  if (currentPath.startsWith("/about") || currentPath === "/contact") {
+    menuGroup = "me";
+  } else if (currentPath.startsWith("/my-work")) {
+    menuGroup = "work";
+  }
 
   return (
-      <nav className={`${styles.radial_nav} ${className}`}>
+      <nav className={`${styles.radialNav} ${className}`}>
         <button
-            className={`${styles.menu_button} ${isOpen ? styles.is_open : ''}
-              ${isScrolling ? styles.is_scrolling : ''}`}
+            className={`${styles.menuButton} ${isOpen ? styles.isOpen : ''}`}
             onClick={toggleMenu}
             aria-label={"Show Navigation Menu"}
-        ><span className={`material-symbols-sharp ${styles.menu_icon}`}>menu</span></button>
-        <div className={`${styles.menu} ${isOpen ? styles.is_open : ''}`} ref={menuRef}>
-          <div className={styles.main}>
-            <p>MENU!</p>
+        ><span className={`material-symbols-sharp ${styles.menuIcon}`}>menu</span></button>
+        <div className={`${styles.menu} ${isOpen ? styles.isOpen : ''}`} ref={menuRef}>
+          <div className={`${styles.menuGroup} ${styles.main} ${menuGroup === "main" ? styles.isSelected : ""}`}>
+            <p>Main</p>
           </div>
-          <div className={styles.about}>
-
+          <div className={`${styles.menuGroup} ${styles.me} ${menuGroup === "me" ? styles.isSelected : ""}`}>
+            <p>Me</p>
           </div>
-          <div className={styles.my_work}>
-
+          <div className={`${styles.menuGroup} ${styles.myWork} ${menuGroup === "work" ? styles.isSelected : ""}`}>
+            <p>Work</p>
           </div>
         </div>
       </nav>
