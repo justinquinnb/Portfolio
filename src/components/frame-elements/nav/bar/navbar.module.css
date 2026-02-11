@@ -28,14 +28,13 @@
             opacity: 0;
         }
     }
-}
 
-.navbar .centerIsland {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: fit-content;
-    width: 100%;
+    .centerIsland {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
 }
 
 .wordmark {

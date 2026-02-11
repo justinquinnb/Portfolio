@@ -14,6 +14,9 @@
 }
 
 .info {
+    width: 70%;
+    margin: 0 auto;
+
     .nav {
         display: flex;
         justify-content: space-between;
@@ -28,6 +31,7 @@
         margin-top: 1rem;
         color: var(--accent-text-color);
         justify-self: center;
+        text-align: center;
     }
 }
 
@@ -44,10 +48,13 @@
     }
 
     .info {
+        width: auto;
+        margin: 0 0;
         justify-content: end;
 
         & > p {
             justify-self: start;
+            text-align: start;
         }
     }
 
@@ -77,6 +84,6 @@
 
 @media (min-width: 1025px) {
     .footer .centerIsland {
-        max-width: calc(var(--max-interactive-width) * 0.8);
+        max-width: calc(var(--max-interactive-width) * 0.75);
     }
 }
