@@ -85,6 +85,8 @@ export default function RadialNav({ className }: { className?: string }) {
       return origin;
     }
 
+    const maxDimension = 20;
+
     const largerAngle: number = 90 + (maxSpan / 2);
     const smallerAngle: number = 90 - (maxSpan / 2);
     const numRadialItems: number = totalItems > 3 ? totalItems - 2 : totalItems - 1;
@@ -93,11 +95,13 @@ export default function RadialNav({ className }: { className?: string }) {
     const indexShift: number = totalItems > 3 ? 1 : 0;
     const angleInRadians = (largerAngle - (angleIncrements * (index - indexShift))) * Math.PI / 180;
 
-    const scaledRadius: string = `(100% * ${distanceFromCenter})`;
-    const x: string = `(${scaledRadius} * cos(${angleInRadians}))`;
-    const y: string = `(${scaledRadius} * sin(${angleInRadians}))`;
+    const maxRadius = maxDimension * distanceFromCenter;
+    const maxX = maxRadius * Math.cos(angleInRadians);
+    const maxY = maxRadius * Math.sin(angleInRadians);
+    const scaledX = `calc((${maxX / maxDimension} * 100%) + ${origin.x})`
+    const scaledY = `calc((${maxY / maxDimension} * 100%) + ${origin.y})`
 
-    return {x: `calc(${x}px + ${origin.x})`, y: `calc(${y}px + ${origin.y})`};
+    return {x: scaledX, y: scaledY};
   }
 
   // Int is rem
