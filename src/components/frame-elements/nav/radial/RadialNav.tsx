@@ -79,33 +79,42 @@ export default function RadialNav({ className }: { className?: string }) {
       index: number, totalItems: number, distance: number, maxSpan: number,
       origin: {x: string, y: string}): {x: string, y: string}
   {
+    // Place the first element of a 4-element+ group in the very center
     if (index == 0 && totalItems > 3) {
       return origin;
     }
 
-    const maxDimension = 20;
+    // Menu dimensions
+    const dimension = 20;
+    const maxDimension = `${dimension}rem`;
 
+    // Determine left and right placement boundaries
     const largerAngle: number = 90 + (maxSpan / 2);
     const smallerAngle: number = 90 - (maxSpan / 2);
+
+    // Determine the required angle increment based on the arrangement the item count requires
     const numRadialItems: number = totalItems > 3 ? totalItems - 2 : totalItems - 1;
     const angleIncrements: number = (largerAngle - smallerAngle) / (numRadialItems);
-
     const indexShift: number = totalItems > 3 ? 1 : 0;
     const angleInRadians = (largerAngle - (angleIncrements * (index - indexShift))) * Math.PI / 180;
 
-    const maxRadius = maxDimension * distanceFromCenter;
-    const maxX = maxRadius * Math.cos(angleInRadians);
-    const maxY = maxRadius * Math.sin(angleInRadians);
-    const scaledX = `calc((${maxX / maxDimension} * 100%) + ${origin.x})`
-    const scaledY = `calc((${maxY / maxDimension} * 100%) + ${origin.y})`
+    // Determine the max radius from the centerpoint to an item
+    const maxRadius = `${dimension / 2}rem * ${distanceFromCenter}`; // dim/2 = radius;
+
+    // Convert the polar coords to cartesian
+    const maxX = `${maxRadius} * cos(${angleInRadians})`;
+    const maxY = `${maxRadius} * sin(${angleInRadians})`;
+
+    // Scale the cartesian coords against current dimensions, then offset for origin
+    const scaledX = `calc((${maxX} / ${maxDimension} * 100%) + ${origin.x})`;
+    const scaledY = `calc((${maxY} / ${maxDimension} * 100%) + ${origin.y})`;
 
     return {x: scaledX, y: scaledY};
   }
 
-  // Int is rem
-  const distanceFromCenter = .5;
-  const maxSpan = 160;
-  const origin = {x: "50%", y: "50%"};
+  const distanceFromCenter = 0.70; // % from centerpoint to circumference along radius
+  const maxSpan = 160; // degrees of circumference to consider
+  const origin = {x: "50%", y: "50%"}; // origin of translation
 
   return (
       <nav className={`${styles.radialNav} ${className}`}>
@@ -120,7 +129,8 @@ export default function RadialNav({ className }: { className?: string }) {
               const position: {x: string, y: string} = findNavPlacement(
                   index, list.length, distanceFromCenter, maxSpan, origin);
               return (
-                  <RadialNavItem key={item.label} navItem={item} inlineStyles={{left: position.x, bottom: position.y}}
+                  <RadialNavItem key={item.label} navItem={item}
+                                 inlineStyles={{left: position.x, bottom: position.y}}
                                  className={item.label.toLowerCase().replace(" ", "")}/>
               )
             })}
@@ -130,7 +140,8 @@ export default function RadialNav({ className }: { className?: string }) {
               const position: {x: string, y: string} = findNavPlacement(
                   index, list.length, distanceFromCenter, maxSpan, origin);
               return (
-                  <RadialNavItem key={item.label} navItem={item} inlineStyles={{left: position.x, bottom: position.y}}
+                  <RadialNavItem key={item.label} navItem={item}
+                                 inlineStyles={{left: position.x, bottom: position.y}}
                                  className={item.label.toLowerCase().replace(" ", "")}/>
               )
             })}
@@ -140,7 +151,8 @@ export default function RadialNav({ className }: { className?: string }) {
               const position: {x: string, y: string} = findNavPlacement(
                   index, list.length, distanceFromCenter, maxSpan, origin);
               return (
-                  <RadialNavItem key={item.label} navItem={item} inlineStyles={{left: position.x, bottom: position.y}}
+                  <RadialNavItem key={item.label} navItem={item}
+                                 inlineStyles={{left: position.x, bottom: position.y}}
                                  className={item.label.toLowerCase().replace(" ", "")}/>
               )
             })}
