@@ -57,21 +57,21 @@ export default function RadialNav({ className }: { className?: string }) {
           <div className={`${styles.menuGroup} ${styles.main} ${menuGroup === "main" ? styles.isSelected : ""}`}>
             {menuGroups.main.map((item: PositionedRadialNavItem) =>
                 <RadialNavItem key={item.label} navItem={item}
-                               className={item.label.toLowerCase().replace(" ", "")}
+                               className={styles[item.label.toLowerCase().replace(" ", "")]}
                 />
             )}
           </div>
           <div className={`${styles.menuGroup} ${styles.about} ${menuGroup === "about" ? styles.isSelected : ""}`}>
             {menuGroups.about.map((item: PositionedRadialNavItem) =>
                 <RadialNavItem key={item.label} navItem={item}
-                               className={item.label.toLowerCase().replace(" ", "")}
+                               className={styles[item.label.toLowerCase().replace(" ", "")]}
                 />
             )}
           </div>
           <div className={`${styles.menuGroup} ${styles.myWork} ${menuGroup === "work" ? styles.isSelected : ""}`}>
             {menuGroups.work.map((item: PositionedRadialNavItem) =>
                 <RadialNavItem key={item.label} navItem={item}
-                               className={item.label.toLowerCase().replace(" ", "")}
+                               className={styles[item.label.toLowerCase().replace(" ", "")]}
                 />
             )}
           </div>
