@@ -11,12 +11,22 @@ import type {RadialNavItem} from "@/types/radial-nav-item";
  * @constructor
  */
 export default function RadialNav({ className }: { className?: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [menuGroup, setMenuGroup] = React.useState("main");
+  // Ensure the correct group is displayed on menu open
+  const currentPath = usePathname();
+  const [menuGroup, setMenuGroup] = React.useState(() => {
+    if (currentPath.startsWith("/about") || currentPath === "/contact") {
+      return "about";
+    } else if (currentPath.startsWith("/my-work")) {
+      return "work";
+    } else {
+      return "main";
+    }
+  });
   const menuRef = useRef<HTMLDivElement>(null!);
   const router = useRouter();
 
   // Close when clicking outside
+  const [isOpen, setIsOpen] = useState(false);
   const handleClickOutside = () => {
     setIsOpen(false);
   }
@@ -27,18 +37,6 @@ export default function RadialNav({ className }: { className?: string }) {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   }
-
-  // Ensure the correct group is displayed on menu open
-  const currentPath = usePathname();
-  useEffect(() => {
-    if (currentPath.startsWith("/about") || currentPath === "/contact") {
-      setMenuGroup("about");
-    } else if (currentPath.startsWith("/my-work")) {
-      setMenuGroup("work");
-    } else {
-      setMenuGroup("main");
-    }
-  }, [currentPath]);
 
   // Page group definitions
   const universalGroupItems: RadialNavItem[] = [
