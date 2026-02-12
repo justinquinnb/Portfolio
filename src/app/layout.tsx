@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-import { League_Spartan } from "next/font/google";
+import type {Metadata} from "next";
+import {League_Spartan} from "next/font/google";
 import "./globals.css";
-import { config } from "@fortawesome/fontawesome-svg-core"
+import {config} from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import Footer from "@/components/frame-elements/nav/Footer";
 import Navigation from "@/components/frame-elements/nav/Navigation";
 import 'material-symbols';
+
 config.autoAddCss = false
 
 const leagueSpartan = League_Spartan({

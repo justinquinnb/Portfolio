@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faInstagram, faGithub, faThreads } from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faGithub, faInstagram, faLinkedin, faThreads} from "@fortawesome/free-brands-svg-icons";
 import styles from "./socials.module.css";
 
 export default function Socials({className}: {className?: string}) {
