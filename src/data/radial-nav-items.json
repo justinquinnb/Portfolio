@@ -37,7 +37,7 @@
     {
       "label": "Resume",
       "iconName": "description",
-      "target":  {"path":  "about/resume"},
+      "target":  {"path":  "/about/resume"},
       "actionDesc": "Go to resume page"
     },
     {

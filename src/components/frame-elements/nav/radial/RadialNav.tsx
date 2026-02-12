@@ -44,13 +44,10 @@ export default function RadialNav({ className }: { className?: string }) {
     setIsOpen(!isOpen);
   }
 
-  // TODO: prevent reload when selecting current page
-  // TODO: hide menu when selecting current page
-
   // Hydrate nav items (position and actions)
   const router = useRouter();
   const [menuGroups] = useState(
-      () => buildMenuGroups(router, setMenuGroup));
+      () => buildMenuGroups(router, setMenuGroup, setIsOpen, () => currentPath));
 
   return (
       <nav className={`${styles.radialNav} ${className}`}>
@@ -112,9 +109,12 @@ function RadialNavItem(
  *
  * @param router the app router (used to generate item actions)
  * @param groupChanger the groupChanger method (used to generate item actions)
+ * @param menuToggler the method to toggle the menu's display
+ * @param currentPath the method to obtain the client's current path
  */
 function buildMenuGroups(
-    router: AppRouterInstance, groupChanger: (group: string) => void):
+    router: AppRouterInstance, groupChanger: (group: string) => void,
+    menuToggler: (show: boolean) => void, currentPath: () => string):
     {main: PositionedRadialNavItem[], about: PositionedRadialNavItem[], work: PositionedRadialNavItem[]}
 {
   const mainGroupTemplate: RadialNavItemData[] = radialNavItemsJson.main;
@@ -126,13 +126,16 @@ function buildMenuGroups(
 
   // Hydrate the universal items first
   const universalItems: HydratedRadialNavItem[] = buildRadialNavItemGroup(
-      universalItemsTemplate, [], router, groupChanger
+      universalItemsTemplate, [], router, groupChanger, menuToggler, currentPath
   );
 
   return {
-    main: buildRadialNavItemGroup(mainGroupTemplate, [], router, groupChanger),
-    about: buildRadialNavItemGroup(aboutGroupTemplate, universalItems, router, groupChanger),
-    work: buildRadialNavItemGroup(workGroupTemplate, universalItems, router, groupChanger)
+    main: buildRadialNavItemGroup(mainGroupTemplate, [], router, groupChanger, menuToggler,
+        currentPath),
+    about: buildRadialNavItemGroup(aboutGroupTemplate, universalItems, router, groupChanger,
+        menuToggler, currentPath),
+    work: buildRadialNavItemGroup(workGroupTemplate, universalItems, router, groupChanger,
+        menuToggler, currentPath)
   }
 }
 
@@ -144,11 +147,14 @@ function buildMenuGroups(
  * @param additions pre-hydrated items to prepend to the group
  * @param router the app router (used to generate item actions)
  * @param groupChanger the groupChanger method (used to generate item actions)
+ * @param menuToggler the method to toggle the menu's display
+ * @param currentPath the method to obtain the client's current path
  */
 function buildRadialNavItemGroup(
     rawItems: RadialNavItemData[], additions: HydratedRadialNavItem[], router: AppRouterInstance,
-    groupChanger: (group: string) => void): PositionedRadialNavItem[]
-{
+    groupChanger: (group: string) => void, menuToggler: (show: boolean) => void,
+    currentPath: () => string
+): PositionedRadialNavItem[] {
   // Assign each item the correct onClick action
   let hydratedItems: HydratedRadialNavItem[] = [];
   for (const item of rawItems) {
@@ -156,7 +162,13 @@ function buildRadialNavItemGroup(
     let onClick: () => void = () => {};
     if ("path" in item.target) {
       const path = item.target.path;
-      onClick = () => router.push(path);
+      onClick = () => {
+        console.log(`Current path: "${currentPath()}". Target path: "${path}".`)
+        if (path != currentPath()) {
+          router.push(path);
+        }
+        menuToggler(false);
+      }
     } else if ("group" in item.target) {
       const group = item.target.group;
       onClick = () => groupChanger(group);
