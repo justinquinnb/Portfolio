@@ -20,15 +20,7 @@ import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-
 export default function RadialNav({ className }: { className?: string }) {
   // Ensure the correct group is displayed on menu open
   const currentPath = usePathname();
-  const [menuGroup, setMenuGroup] = useState(() => {
-    if (currentPath.startsWith("/about") || currentPath === "/contact") {
-      return "about";
-    } else if (currentPath.startsWith("/my-work")) {
-      return "work";
-    } else {
-      return "main";
-    }
-  });
+  const [menuGroup, setMenuGroup] = useState(() => determineMenuGroup(currentPath));
 
   // Close when clicking outside
   const menuRef = useRef<HTMLDivElement>(null!);
@@ -41,7 +33,12 @@ export default function RadialNav({ className }: { className?: string }) {
 
   // Handle clicking the menu icon itself
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    if (!isOpen) {
+      setMenuGroup(determineMenuGroup(currentPath));
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
   }
 
   // Hydrate nav items (position and actions)
@@ -163,7 +160,6 @@ function buildRadialNavItemGroup(
     if ("path" in item.target) {
       const path = item.target.path;
       onClick = () => {
-        console.log(`Current path: "${currentPath()}". Target path: "${path}".`)
         if (path != currentPath()) {
           router.push(path);
         }
@@ -255,4 +251,14 @@ function findItemPlacement(
   const scaledY = `calc((${maxY} / ${maxDimension} * 100%) + ${displaceFrom.y})`;
 
   return {x: scaledX, y: scaledY};
+}
+
+function determineMenuGroup(currentPath: string): string {
+  if (currentPath.startsWith("/about") || currentPath === "/contact") {
+    return "about";
+  } else if (currentPath.startsWith("/my-work")) {
+    return "work";
+  } else {
+    return "main";
+  }
 }
