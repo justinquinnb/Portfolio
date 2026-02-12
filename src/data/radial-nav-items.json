@@ -1,0 +1,76 @@
+{
+  "inAllGroups": [
+    {
+      "label": "Categories",
+      "iconName": "arrow_top_left",
+      "target":  {"group":  "main"},
+      "actionDesc": "View all page groups"
+    }
+  ],
+  "main": [
+    {
+      "label": "About",
+      "iconName": "article_person",
+      "target":  {"group":  "about"},
+      "actionDesc": "View personal pages group"
+    },
+    {
+      "label": "Home",
+      "iconName": "house",
+      "target":  {"path":  "/"},
+      "actionDesc": "Go to homepage"
+    },
+    {
+      "label": "My Work",
+      "iconName": "gallery_thumbnail",
+      "target":  {"group":  "work"},
+      "actionDesc": "View my work pages group"
+    }
+  ],
+  "about": [
+    {
+      "label": "Biography",
+      "iconName": "badge",
+      "target":  {"path":  "/about/bio"},
+      "actionDesc": "Go to biography page"
+    },
+    {
+      "label": "Resume",
+      "iconName": "description",
+      "target":  {"path":  "about/resume"},
+      "actionDesc": "Go to resume page"
+    },
+    {
+      "label": "Contact",
+      "iconName": "mail",
+      "target":  {"path":  "/contact"},
+      "actionDesc": "Go to contact page"
+    }
+  ],
+  "work": [
+    {
+      "label": "Photos",
+      "iconName": "photo_camera",
+      "target":  {"path":  "/my-work/photos"},
+      "actionDesc": "Go to my photos page"
+    },
+    {
+      "label": "Software",
+      "iconName": "terminal",
+      "target":  {"path":  "/my-work/software"},
+      "actionDesc": "Go to my software page"
+    },
+    {
+      "label": "Graphics",
+      "iconName": "design_services",
+      "target":  {"path":  "/my-work/graphics"},
+      "actionDesc": "Go to my graphics page"
+    },
+    {
+      "label": "Music",
+      "iconName": "music_note",
+      "target":  {"path":  "/my-work/music"},
+      "actionDesc": "Go to my music page"
+    }
+  ]
+}

@@ -1,9 +1,15 @@
-export interface NavPage {
+/**
+ * A navbar page
+ */
+export interface NavbarPage {
   name: string;
   path: string;
 }
 
-export interface NavGroup extends NavPage {
+/**
+ * A navbar page group
+ */
+export interface NavbarGroup extends NavbarPage {
   visitable: boolean;
   subpages: NavPage[];
 }
