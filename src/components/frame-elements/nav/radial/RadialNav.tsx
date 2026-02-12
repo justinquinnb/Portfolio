@@ -178,13 +178,14 @@ function buildRadialNavItemGroup(
   // Position each item
   const distance = 0.70; // % from centerpoint to circumference along radius
   const maxSpan = 160; // degrees of circumference to consider
-  const origin = {x: "50%", y: "50%"}; // origin of translation
+  const displaceFrom = {x: "50%", y: "50%"}; // origin of translation
+  const centerItemPos = {x: "50%", y: "55%"}; // place center item here
 
   return hydratedItems.map((item, index, list) => {
     const {x, y}: {
       x: string,
       y: string
-    } = findItemPlacement(index, list.length, distance, maxSpan, origin);
+    } = findItemPlacement(index, list.length, distance, maxSpan, displaceFrom, centerItemPos);
     return {
       label: item.label,
       iconName: item.iconName,
@@ -204,15 +205,16 @@ function buildRadialNavItemGroup(
  * @param totalItems the total number of items within its group
  * @param distance the desired distance along the radius towards the circumference (a percent)
  * @param span the angle that defines the portion of the radial menu items can be placed within
- * @param origin the origin of the placement (x,y) in the context of the menu
+ * @param displaceFrom the origin to base displacements off of (x,y) in the context of the menu
+ * @param centerItemPos where to place the bottom center item (if the position is used)
  */
 function findItemPlacement(
     index: number, totalItems: number, distance: number, span: number,
-    origin: {x: string, y: string}): {x: string, y: string}
+    displaceFrom: {x: string, y: string}, centerItemPos: {x: string, y: string}): {x: string, y: string}
 {
   // Place the first element of a 4-element+ group in the very center
   if (index == 0 && (totalItems > 3 || totalItems == 1)) {
-    return origin;
+    return centerItemPos;
   }
 
   // Menu dimensions
@@ -237,8 +239,8 @@ function findItemPlacement(
   const maxY = `${maxRadius} * sin(${angleInRadians})`;
 
   // Scale the cartesian coords against current dimensions, then offset for origin
-  const scaledX = `calc((${maxX} / ${maxDimension} * 100%) + ${origin.x})`;
-  const scaledY = `calc((${maxY} / ${maxDimension} * 100%) + ${origin.y})`;
+  const scaledX = `calc((${maxX} / ${maxDimension} * 100%) + ${displaceFrom.x})`;
+  const scaledY = `calc((${maxY} / ${maxDimension} * 100%) + ${displaceFrom.y})`;
 
   return {x: scaledX, y: scaledY};
 }
