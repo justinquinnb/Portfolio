@@ -44,6 +44,9 @@ export default function RadialNav({ className }: { className?: string }) {
     setIsOpen(!isOpen);
   }
 
+  // TODO: prevent reload when selecting current page
+  // TODO: hide menu when selecting current page
+
   // Hydrate nav items (position and actions)
   const router = useRouter();
   const [menuGroups] = useState(
@@ -170,10 +173,7 @@ function buildRadialNavItemGroup(
   }
 
   // Prepend all the additions
-  hydratedItems = [...hydratedItems, ...additions];
-
-  // Reverse the list to preserve the intended display order
-  hydratedItems.reverse();
+  hydratedItems = [...additions, ...hydratedItems];
 
   // Position each item
   const distance = 0.70; // % from centerpoint to circumference along radius
