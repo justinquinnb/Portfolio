@@ -1,17 +1,13 @@
-.radial { /* temporary until radial nav is made */
+.bar {
     display: none;
 }
 
-/* TODO continue radial nav work
-@media (max-width: 480px) {
+@media (min-width: 481px) {
     .bar {
-        display: none;
+        display: flex;
     }
-}
 
-@media (min-width: 480px) {
     .radial {
         display: none;
     }
 }
-*/
