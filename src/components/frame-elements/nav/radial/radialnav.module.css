@@ -93,7 +93,7 @@
     position: absolute;
     transform: translate(-50%, 50%);
     width: 60px;
-    height: 60px;
+    height: 70px;
 
     display: flex;
     flex-direction: column;
@@ -117,3 +117,14 @@
 .categories .navItemIcon {
     color: var(--accent-text-color);
 }
+
+.navItem.selected:not(.categories) {
+    .navItemIcon, p {
+        color: var(--emphasis-color);
+    }
+
+    p {
+        font-weight: 700;
+    }
+}
+

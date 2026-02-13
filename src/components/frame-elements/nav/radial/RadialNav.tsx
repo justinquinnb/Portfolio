@@ -55,25 +55,37 @@ export default function RadialNav({ className }: { className?: string }) {
         ><span className={`material-symbols-sharp ${styles.menuIcon}`}>menu</span></button>
         <div className={`${styles.menu} ${isOpen ? styles.isOpen : ''}`} ref={menuRef}>
           <div className={`${styles.menuGroup} ${styles.main} ${menuGroup === "main" ? styles.isSelected : ""}`}>
-            {menuGroups.main.map((item: PositionedRadialNavItem) =>
-                <RadialNavItem key={item.label} navItem={item}
-                               className={styles[item.label.toLowerCase().replace(" ", "")]}
-                />
-            )}
+            {menuGroups.main.map((item: PositionedRadialNavItem) => {
+              const selected = isSelected(item, currentPath) ? styles.selected : "";
+              return (
+                  <RadialNavItem key={item.label} navItem={item} className={
+                    `${styles[item.label.toLowerCase().replace(" ", "")]} 
+                    ${selected}`}
+                  />
+              )
+            })}
           </div>
           <div className={`${styles.menuGroup} ${styles.about} ${menuGroup === "about" ? styles.isSelected : ""}`}>
-            {menuGroups.about.map((item: PositionedRadialNavItem) =>
-                <RadialNavItem key={item.label} navItem={item}
-                               className={styles[item.label.toLowerCase().replace(" ", "")]}
-                />
-            )}
+            {menuGroups.about.map((item: PositionedRadialNavItem) => {
+              const selected = isSelected(item, currentPath) ? styles.selected : "";
+              return (
+                  <RadialNavItem key={item.label} navItem={item} className={
+                    `${styles[item.label.toLowerCase().replace(" ", "")]} 
+                    ${selected}`}
+                  />
+              )
+            })}
           </div>
           <div className={`${styles.menuGroup} ${styles.myWork} ${menuGroup === "work" ? styles.isSelected : ""}`}>
-            {menuGroups.work.map((item: PositionedRadialNavItem) =>
-                <RadialNavItem key={item.label} navItem={item}
-                               className={styles[item.label.toLowerCase().replace(" ", "")]}
-                />
-            )}
+            {menuGroups.work.map((item: PositionedRadialNavItem) => {
+              const selected = isSelected(item, currentPath) ? styles.selected : "";
+              return (
+                  <RadialNavItem key={item.label} navItem={item} className={
+                    `${styles[item.label.toLowerCase().replace(" ", "")]} 
+                    ${selected}`}
+                  />
+              )
+            })}
           </div>
         </div>
       </nav>
@@ -253,6 +265,10 @@ function findItemPlacement(
   return {x: scaledX, y: scaledY};
 }
 
+/**
+ * Determines the radial nav menu group given the current pathname.
+ * @param currentPath the pathname whose radial nav group to determine
+ */
 function determineMenuGroup(currentPath: string): string {
   if (currentPath.startsWith("/about") || currentPath === "/contact") {
     return "about";
@@ -261,4 +277,24 @@ function determineMenuGroup(currentPath: string): string {
   } else {
     return "main";
   }
+}
+
+/**
+ * Determines whether the current radial nav item should be rendered as "selected", based on
+ * whether the user is on its current page or on a page in its group.
+ *
+ * @param item the item whose selected status to check
+ * @param currentPath the client's current path
+ */
+function isSelected(item: RadialNavItemData, currentPath: string): boolean {
+  if ("path" in item.target) {
+    const path = item.target.path;
+    return path === currentPath;
+  } else if ("group" in item.target) {
+    const group = item.target.group;
+    const inGroup = determineMenuGroup(currentPath);
+    return inGroup === group;
+  }
+
+  return false;
 }
