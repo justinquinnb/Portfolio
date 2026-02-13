@@ -5,7 +5,7 @@ import pagesJson from "@/data/navbar-pages.json";
 import Image from "next/image";
 import Socials from "@/components/frame-elements/nav/Socials";
 import {usePathname} from "next/navigation";
-import {NavGroup, NavPage} from "@/types/nav-page";
+import {NavbarGroup, NavbarPage} from "@/types/nav-page";
 import styles from "./navbar.module.css";
 import React, {useEffect} from "react";
 
@@ -14,7 +14,7 @@ import React, {useEffect} from "react";
  * @constructor
  */
 export default function Navbar({ className}: { className?: string }) {
-  const topLevelElements: (NavPage | NavGroup)[] = pagesJson;
+  const topLevelElements: (NavbarPage | NavbarGroup)[] = pagesJson;
   const [isAtTop, setIsAtTop] = React.useState(false);
 
   const handleScroll = () => {
@@ -45,8 +45,8 @@ export default function Navbar({ className}: { className?: string }) {
                                                                    page={topLevelElement}></NavbarItem>
                 </li>)
               } else {
-                return (<li key={topLevelElement.name}><NavbarGroup
-                    pageGroup={topLevelElement}></NavbarGroup></li>)
+                return (<li key={topLevelElement.name}><NavbarItemGroup
+                    pageGroup={topLevelElement}></NavbarItemGroup></li>)
               }
             })}
           </ul>
@@ -55,7 +55,7 @@ export default function Navbar({ className}: { className?: string }) {
   );
 }
 
-function NavbarGroup({pageGroup}: {pageGroup: NavGroup}) {
+function NavbarItemGroup({pageGroup}: {pageGroup: NavbarGroup}) {
   const currentPath = usePathname();
   const isGroupSelected = currentPath.startsWith(pageGroup.path);
 
@@ -63,7 +63,7 @@ function NavbarGroup({pageGroup}: {pageGroup: NavGroup}) {
       <div className={styles.pageGroup}>
         <NavbarItem className={`${styles.pageGroupParent} ${isGroupSelected ? styles.childSelected : ""}`} page={pageGroup} />
         <ul className={styles.pageGroupChildren}>
-          {pageGroup.subpages.map((subpage: NavPage) =>
+          {pageGroup.subpages.map((subpage: NavbarPage) =>
               (<li key={subpage.name}><NavbarItem page={subpage} className={styles.childPage}/></li>)
           )}
         </ul>
@@ -71,7 +71,7 @@ function NavbarGroup({pageGroup}: {pageGroup: NavGroup}) {
   )
 }
 
-function NavbarItem({page, className}: {page: NavPage; isSelected?: boolean; className?: string}) {
+function NavbarItem({page, className}: {page: NavbarPage; isSelected?: boolean; className?: string}) {
   const currentPath = usePathname();
   const selectedClass = currentPath === page.path ? styles.selected : "";
 
