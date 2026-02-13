@@ -129,6 +129,27 @@ button {
   padding: 0.2rem 0.4rem 0.2rem 0.4rem;
 }
 
+.link-button {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 1.5rem;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-on-action-color);
+  background-color: var(--action-color);
+  border: none;
+
+  :hover {
+    color: var(--text-on-action-color);
+    background-color: var(--link-hover-color);
+  }
+}
+
 p {
   font-weight: 400;
   color: var(--primary-text-color);
