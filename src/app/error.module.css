@@ -9,14 +9,18 @@
 }
 
 .content {
-    width: 100%;
-    height: 100%;
+    width: max-content;
 
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 1rem;
+}
+
+.notice, .message {
+    width: auto;
 }
 
 .homeButton {
