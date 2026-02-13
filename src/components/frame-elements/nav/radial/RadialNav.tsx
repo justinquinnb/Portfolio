@@ -199,7 +199,7 @@ function buildRadialNavItemGroup(
   const distance = 0.70; // % from centerpoint to circumference along radius
   const maxSpan = 160; // degrees of circumference to consider
   const displaceFrom = {x: "50%", y: "50%"}; // origin of translation
-  const centerItemPos = {x: "50%", y: "55%"}; // place center item here
+  const centerItemPos = {x: "50%", y: "57%"}; // place center item here
 
   return hydratedItems.map((item, index, list) => {
     const {x, y}: {
@@ -224,12 +224,13 @@ function buildRadialNavItemGroup(
  * @param index the index of the item within its group
  * @param totalItems the total number of items within its group
  * @param distance the desired distance along the radius towards the circumference (a percent)
- * @param span the angle that defines the portion of the radial menu items can be placed within
+ * @param maxSpan the maximum angle that defines the portion of the radial menu items can be
+ * placed within
  * @param displaceFrom the origin to base displacements off of (x,y) in the context of the menu
  * @param centerItemPos where to place the bottom center item (if the position is used)
  */
 function findItemPlacement(
-    index: number, totalItems: number, distance: number, span: number,
+    index: number, totalItems: number, distance: number, maxSpan: number,
     displaceFrom: {x: string, y: string}, centerItemPos: {x: string, y: string}): {x: string, y: string}
 {
   // Place the first element of a 4-element+ group in the very center
@@ -241,12 +242,15 @@ function findItemPlacement(
   const dimension = 20;
   const maxDimension = `${dimension}rem`;
 
-  // Determine left and right placement boundaries
+  // Determine the number of items that lie along the radius
+  const numRadialItems: number = totalItems > 3 ? totalItems - 2 : totalItems - 1;
+
+  // Determine left and right placement boundaries based on radial item count
+  const span = ((numRadialItems * 0.06) + 0.70) * maxSpan;
   const largerAngle: number = 90 + (span / 2);
   const smallerAngle: number = 90 - (span / 2);
 
   // Determine the required angle increment based on the arrangement the item count requires
-  const numRadialItems: number = totalItems > 3 ? totalItems - 2 : totalItems - 1;
   const angleIncrements: number = (largerAngle - smallerAngle) / (numRadialItems);
   const indexShift: number = totalItems > 3 ? 1 : 0;
   const angleInRadians = (largerAngle - (angleIncrements * (index - indexShift))) * Math.PI / 180;
