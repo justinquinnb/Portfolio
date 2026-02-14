@@ -83,7 +83,6 @@
         justify-self: start;
         margin: 0 0 -.35cap;
         filter: drop-shadow(0 4px 4px var(--q-black));
-        animation: rise-up 0.2s ease-out;
     }
 
     .extras {

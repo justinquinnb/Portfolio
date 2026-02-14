@@ -1,13 +1,13 @@
 import styles from "./page-header.module.css";
 import Image from 'next/image';
-import {JSX, ReactNode} from "react";
+import {ReactNode} from "react";
 
 /**
  * Page header
  * @constructor
  */
 export default function PageHeader(
-    {imgSrc, imgAlt, backgroundText, foregroundText, children, subtitle, className}:
+    {imgSrc, imgAlt, backgroundText, foregroundText, children, subtitle}:
     {imgSrc: string; imgAlt: string; backgroundText: string; foregroundText: string;
       children?: ReactNode; subtitle?: string; className?: string}
 ) {
@@ -26,7 +26,9 @@ export default function PageHeader(
             <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
           </div>
           <div className={styles.headerContent}>
-            <h1>{foregroundText}</h1>
+            <h1 style={{animation: `${styles['rise-up']} ${weightedTransitionTime}s ease-out`}}>
+              {foregroundText}
+            </h1>
             <div className={styles.extras}>
               {children}
             </div>
