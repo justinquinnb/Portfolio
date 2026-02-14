@@ -1,0 +1,28 @@
+.header {
+    display: block;
+    width: 100%;
+
+    .primary div {
+        min-height: 30vh;
+        max-height: 45vh;
+        width: 100%;
+    }
+}
+
+.heroContainer {
+    width: 100%;
+
+    display: flex;
+    justify-content: end;
+    overflow: hidden;
+
+    background-color: var(--full-bleed-background-color);
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+
+        mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 65%);
+    }
+}

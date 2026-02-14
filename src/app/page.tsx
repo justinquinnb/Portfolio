@@ -1,23 +1,28 @@
-import Link from "next/link";
 import type {Metadata} from "next";
+import PageHeader from "@/components/frame-elements/PageHeader";
+import Image from "next/image";
+import React from "react";
 
 export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
 }
 
 export default function Home() {
+  const logo = <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"}
+                      width={40} height={40}/>;
+
   return (
       <>
-        <h1>Header 1</h1>
-        <h2>Header 2</h2>
-        <h3>Header 3</h3>
-        <h3>Header 3 with <span className="emphasis">Emphasis</span></h3>
-        <h4>Header 4</h4>
-        <h4 className="unselected">Header 4 (unselected)</h4>
-        <h5>Header 5</h5>
-        <h6>Header 6</h6>
-        <p className="display-text"> Display paragraph text.</p><p>Regular paragraph text with <Link href="/">link</Link></p>
-        <p style={{ height: '1000px'}}>Filler text</p>
+        <PageHeader imgSrc={"/images/heroes/leader.png"}
+                    imgAlt={"Justin and team leading a DevDogs club meeting in a full auditorium"}
+                    backgroundText={"Justin Quinn"} foregroundText={"Hey,\nI'm Justin"}
+                    subtitle={"A creator, leader, and innovator in Metro ATL"}
+        >
+          {logo}
+        </PageHeader>
+        <main>
+          <p style={{ height: '1000px'}}>Filler text</p>
+        </main>
       </>
   );
 }
