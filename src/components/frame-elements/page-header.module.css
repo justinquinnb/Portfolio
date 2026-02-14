@@ -2,10 +2,16 @@
     display: block;
     width: 100%;
 
-    .primary div {
-        min-height: 30vh;
-        max-height: 45vh;
-        width: 100%;
+    .primary {
+        display: grid;
+        grid-template-areas: "stack";
+
+        div {
+            grid-area: stack;
+            height: 30vh;
+            max-height: 45vh;
+            width: 100%;
+        }
     }
 }
 
@@ -15,6 +21,7 @@
     display: flex;
     justify-content: end;
     overflow: hidden;
+    z-index: 1;
 
     background-color: var(--full-bleed-background-color);
 
@@ -24,5 +31,31 @@
         object-fit: cover;
 
         mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 65%);
+    }
+}
+
+.repeatedTextContainer {
+    width: 200%;
+    height: 100%;
+
+    display: flex;
+    justify-content: start;
+    align-items: start;
+
+    opacity: 10%;
+    overflow: hidden;
+    z-index: 2;
+
+    p {
+        height: 100%;
+        min-width: 100%;
+
+        display: block;
+        margin: 0;
+
+        word-break: break-all;
+        color: var(--text-on-full-bleed-color);
+        font-weight: 200;
+        line-height: 1.1;
     }
 }

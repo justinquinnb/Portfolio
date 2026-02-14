@@ -21,10 +21,10 @@ export default function PageHeader(
           <div className={styles.heroContainer}>
             <Image src={imgSrc} alt={imgAlt} width={1600} height={900}/>
           </div>
-          {/*<div className={styles.repeatedTextContainer}>*/}
-          {/*  <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>*/}
-          {/*  <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>*/}
-          {/*</div>*/}
+          <div className={styles.repeatedTextContainer}>
+            <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
+            <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
+          </div>
           {/*<div className={styles.headerContent}>*/}
           {/*  <h1 style={{transition: `transform ${weightedTransitionTime}s ease-in-out`}}>*/}
           {/*    {foregroundText}*/}
