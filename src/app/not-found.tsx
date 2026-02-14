@@ -17,7 +17,7 @@ export default function NotFound() {
           <div className={styles.message}>
             <p className="display-text">If you think this is a mistake, please let me know <Link
                 href="/contact" title="Contact Form">here</Link>.<br /><br />Otherwise, return home below.</p>
-            <Link className={`link-button ${styles.homeButton}`} href="/">Return Home</Link>
+            <Link className={`link-button ${styles.actions}`} href="/">Return Home</Link>
           </div>
         </div>
       </div>
