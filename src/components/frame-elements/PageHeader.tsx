@@ -1,6 +1,6 @@
 import styles from "./page-header.module.css";
 import Image from 'next/image';
-import {ReactNode} from "react";
+import {JSX, ReactNode} from "react";
 
 /**
  * Page header
@@ -13,7 +13,7 @@ export default function PageHeader(
 ) {
   const repeatedText = repeatText(backgroundText, 4000);
   const weightedTransitionTime = weighTransitionTime(foregroundText,
-      "\\n", 0.2, 0.1);
+      "\n", 0.2, 0.1);
 
   return (
       <header className={styles.header}>
@@ -25,12 +25,14 @@ export default function PageHeader(
             <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
             <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
           </div>
-          {/*<div className={styles.headerContent}>*/}
-          {/*  <h1 style={{transition: `transform ${weightedTransitionTime}s ease-in-out`}}>*/}
-          {/*    {foregroundText}*/}
-          {/*  </h1>*/}
-          {/*  {children}*/}
-          {/*</div>*/}
+          <div className={styles.headerContent}>
+            <h1 style={{transition: `transform ${weightedTransitionTime}s ease-in-out`}}>
+              {foregroundText}
+            </h1>
+            <div className={styles.extras}>
+              {children}
+            </div>
+          </div>
         </div>
         <p className={styles.subtitle}>Subtitle</p>
       </header>
