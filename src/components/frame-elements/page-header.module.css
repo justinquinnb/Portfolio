@@ -8,8 +8,7 @@
 
         div {
             grid-area: stack;
-            height: 30vh;
-            max-height: 45vh;
+            max-height: 30vh;
             width: 100%;
         }
     }
@@ -17,6 +16,8 @@
 
 .heroContainer {
     width: 100%;
+    height: 100%;
+    min-height: 100%;
 
     display: flex;
     justify-content: center;
@@ -27,7 +28,7 @@
     background-color: var(--full-bleed-background-color);
 
     img {
-        height: 100%; /* TODO Edit around here bc squishing fix was lost */
+        height: 100%;
         width: auto;
         object-fit: cover;
         margin-left: 15%;
@@ -40,6 +41,7 @@
 .repeatedTextContainer {
     width: 200%;
     height: 100%;
+    min-height: 100%;
 
     display: flex;
     justify-content: start;
@@ -67,13 +69,14 @@
 
 .headerContent {
     width: 100%;
+    height: auto;
 
     display: flex;
     align-items: end;
     z-index: 3;
 
     white-space: pre-wrap;
-    padding: 5% 0.5rem 0 0.5rem;
+    padding: 0 0.5rem 0 0.5rem;
     overflow: hidden; /* So shadow doesn't overflow */
 
     h1 {
@@ -120,5 +123,29 @@
 
     100% {
         opacity: 100%;
+    }
+}
+
+@media (min-width: 481px) {
+    .heroContainer img {
+        mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 75%);
+    }
+}
+
+@media (min-width: 769px) {
+    .header .primary div {
+        max-height: 45vh;
+    }
+
+    .heroContainer {
+        img {
+            height: 100%;
+            width: 100%;
+            mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 55%);
+        }
+    }
+
+    .headerContent {
+        margin-top: 5rem;
     }
 }
