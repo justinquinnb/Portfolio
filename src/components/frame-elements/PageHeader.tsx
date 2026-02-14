@@ -32,7 +32,9 @@ export default function PageHeader(
             </div>
           </div>
         </div>
-        <p className={`${styles.subtitle} display-text`}>{subtitle}</p>
+        <div className={styles.subtitle}>
+          <p className={`display-text`}>{subtitle}</p>
+        </div>
       </header>
   );
 }

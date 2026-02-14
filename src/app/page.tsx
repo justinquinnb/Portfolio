@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  const logo = <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"}
-                      width={40} height={40}/>;
+  const logo = <Image src={"/branding/jq-icon-dark.svg"} alt={"Justin Quinn logo"}
+                      width={100} height={100} />;
 
   return (
       <>
