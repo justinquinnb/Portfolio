@@ -27,10 +27,11 @@
 
     img {
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: cover;
 
         mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 65%);
+        animation: fade-in 0.4s linear forwards;
     }
 }
 
@@ -51,12 +52,14 @@
         min-width: 100%;
 
         display: block;
-        margin: 0;
+        margin: 0 0.3ch 0 0;
 
         word-break: break-all;
         color: var(--text-on-full-bleed-color);
         font-weight: 200;
         line-height: 1.1;
+
+        animation: scroll-text 120s linear infinite;
     }
 }
 
@@ -74,7 +77,8 @@
     h1 {
         justify-self: start;
         margin: 0 0 -.35cap;
-        filter: drop-shadow(0 4px 4px var(--q-black))
+        filter: drop-shadow(0 4px 4px var(--q-black));
+        animation: rise-up 0.2s ease-out;
     }
 
     .extras {
@@ -85,4 +89,34 @@
 .subtitle {
     padding: 0.5rem;
     font-weight: 600;
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Moves half the total width (since content is duplicated once) */
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes rise-up {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100%;
+    }
 }

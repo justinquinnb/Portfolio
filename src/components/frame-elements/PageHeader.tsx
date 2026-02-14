@@ -26,9 +26,7 @@ export default function PageHeader(
             <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
           </div>
           <div className={styles.headerContent}>
-            <h1 style={{transition: `transform ${weightedTransitionTime}s ease-in-out`}}>
-              {foregroundText}
-            </h1>
+            <h1>{foregroundText}</h1>
             <div className={styles.extras}>
               {children}
             </div>
