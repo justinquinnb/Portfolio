@@ -86,7 +86,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 h1 {
-  font-size: 8rem;
+  font-size: 4rem;
   color: var(--text-on-full-bleed-color);
 }
 
@@ -181,5 +181,42 @@ h4.unselected {
 @media (prefers-color-scheme: light) {
   html {
     color-scheme: light;
+  }
+}
+
+@media (min-width: 769px) {
+  h1 {
+    font-size: 8rem;
+    color: var(--text-on-full-bleed-color);
+  }
+
+  h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text-on-full-bleed-color);
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--large-text-color)
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--large-text-color)
+  }
+
+  h5 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-text-color)
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary-text-color)
   }
 }
