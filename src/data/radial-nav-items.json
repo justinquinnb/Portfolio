@@ -9,7 +9,7 @@
   ],
   "main": [
     {
-      "label": "About",
+      "label": "Me",
       "iconName": "article_person",
       "target":  {"group":  "about"},
       "actionDesc": "View personal pages group"
