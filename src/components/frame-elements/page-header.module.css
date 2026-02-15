@@ -148,17 +148,15 @@
         }
 
         .extras {
-            height: 100%;
-            width: 100%;
             display: flex;
             justify-content: end;
             align-items: end;
             flex: 1 0 26%;
-            padding: 1rem;
+            margin-bottom: 0.5rem;
 
             img {
                 object-fit: contain;
-                height: 40%;
+                height: 5.5rem;
                 width: auto;
             }
         }
@@ -184,15 +182,13 @@
         margin-top: calc(5rem - 0.35cap);
         max-width: var(--max-interactive-width);
         justify-self: center;
-        height: min-content;
 
-        display: flex;
-        justify-content: start;
+        .extras {
+            margin-bottom: 2rem;
 
-        .extras img {
-            object-fit: contain;
-            height: 65%;
-            width: auto;
+            img {
+                height: 8rem;
+            }
         }
     }
 
