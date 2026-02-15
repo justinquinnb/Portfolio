@@ -1,5 +1,5 @@
 import styles from "./page-header.module.css";
-import Image from 'next/image';
+import Image, {StaticImageData} from 'next/image';
 import {ReactNode} from "react";
 
 /**
@@ -7,8 +7,8 @@ import {ReactNode} from "react";
  * @constructor
  */
 export default function PageHeader(
-    {imgSrc, imgAlt, backgroundText, foregroundText, children, subtitle}:
-    {imgSrc: string; imgAlt: string; backgroundText: string; foregroundText: string;
+    {img, imgAlt, backgroundText, foregroundText, children, subtitle}:
+    {img: StaticImageData; imgAlt: string; backgroundText: string; foregroundText: string;
       children?: ReactNode; subtitle?: string; className?: string}
 ) {
   const repeatedText = repeatText(backgroundText, 4000);
@@ -19,7 +19,7 @@ export default function PageHeader(
       <header className={styles.header}>
         <div className={styles.primary}>
           <div className={styles.heroContainer}>
-            <Image src={imgSrc} alt={imgAlt} width={1600} height={900}/>
+            <Image src={img} alt={imgAlt}/>
           </div>
           <div className={styles.repeatedTextContainer}>
             <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
