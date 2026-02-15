@@ -1,0 +1,219 @@
+:root {
+  /* Min breakpoint sizes */
+  --xs: 0px;
+  --sm: 321px;
+  --md: 481px;
+  --lg: 769px;
+  --xl: 1025px;
+  --xxl: 1201px;
+
+  /* Accessibility Constraints */
+  --max-interactive-width: 64rem;
+  --max-reading-width: 50ch;
+
+  /* Color palette */
+  --q-black: #1E1E1E;
+  --q-dark-gray: #302525;
+  --q-orange: #F1432F;
+  --q-gray: #8B6E6E;
+  --q-light-gray: #F1DAD4;
+  --q-white: #FFE4DD;
+  --box-shadow: 0 4px 4px rgba(var(--shadow-color), 0.25);
+
+  /* Theme */
+  --page-background-color: var(--q-white);
+  --full-bleed-background-color: var(--q-dark-gray);
+  --primary-background-color: var(--q-white);
+  --section-background-color: var(--q-light-gray);
+  --container-on-section-color: var(--q-white);
+  --text-on-full-bleed-color: var(--q-white);
+  --emphasis-color: var(--q-orange);
+  --action-color: var(--q-orange);
+  --text-on-action-color: var(--q-white);
+  --primary-text-color: var(--q-black);
+  --large-text-color: var(--q-dark-gray);
+  --brand-text-color: var(--q-dark-gray);
+  --shadow-color: var(--q-black);
+  --link-hover-color: var(--q-gray);
+  --accent-text-color: var(--q-gray);
+
+  --default-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  --default-top-box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --page-background-color: var(--q-white);
+    --full-bleed-background-color: var(--q-dark-gray);
+    --primary-background-color: var(--q-white);
+    --section-background-color: var(--q-light-gray);
+    --container-on-section-color: var(--q-white);
+    --text-on-full-bleed-color: var(--q-white);
+    --emphasis-color: var(--q-orange);
+    --action-color: var(--q-orange);
+    --text-on-action-color: var(--q-white);
+    --primary-text-color: var(--q-black);
+    --large-text-color: var(--q-dark-gray);
+    --shadow-color: var(--q-black);
+    --link-hover-color: var(--q-gray);
+    --accent-text-color: var(--q-gray);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--page-background-color);
+  /* background: darkolivegreen; solely for testing */
+  font-family: var(--font-league-spartan), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 4rem;
+  color: var(--text-on-full-bleed-color);
+}
+
+h2 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--text-on-full-bleed-color);
+}
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--large-text-color)
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--large-text-color)
+}
+
+h5 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-text-color)
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary-text-color)
+}
+
+button {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-on-action-color);
+  background-color: var(--action-color);
+  border: none;
+  padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+}
+
+.link-button {
+  text-decoration: none;
+  width: fit-content;
+  min-height: 1.5rem;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-on-action-color);
+  background-color: var(--action-color);
+  border: none;
+
+  :hover {
+    color: var(--text-on-action-color);
+    background-color: var(--link-hover-color);
+  }
+}
+
+p {
+  font-weight: 400;
+  color: var(--primary-text-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+h4.unselected {
+  font-weight: 300;
+}
+
+.display-text {
+  font-size: 1.2rem;
+  color: var(--large-text-color)
+}
+
+.emphasis {
+  color: var(--emphasis-color);
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
+  }
+}
+
+@media (min-width: 769px) {
+  h1 {
+    font-size: 8rem;
+    color: var(--text-on-full-bleed-color);
+  }
+
+  h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text-on-full-bleed-color);
+  }
+
+  h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--large-text-color)
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--large-text-color)
+  }
+
+  h5 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-text-color)
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--primary-text-color)
+  }
+}

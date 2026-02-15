@@ -1,0 +1,13 @@
+.bar {
+    display: none;
+}
+
+@media (min-width: 481px) {
+    .bar {
+        display: flex;
+    }
+
+    .radial {
+        display: none;
+    }
+}

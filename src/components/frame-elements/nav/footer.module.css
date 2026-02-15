@@ -1,0 +1,91 @@
+.footer {
+    background: var(--section-background-color);
+    width: 100vw;
+    padding: 1.2rem 1.2rem calc(1.2rem + 5.25rem) 1.2rem; /* To account for radial nav menu button */
+    display: flex;
+    justify-content: center;
+
+    .centerIsland {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+.info {
+    width: 70%;
+    margin: 0 auto;
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+
+        ul {
+            list-style: none;
+            color: var(--primary-text-color);
+        }
+    }
+
+    & > p {
+        margin-top: 1rem;
+        color: var(--accent-text-color);
+        justify-self: center;
+        text-align: center;
+    }
+}
+
+.branding {
+    display: none;
+}
+
+@media (min-width: 481px) {
+    .footer {
+        padding: 1.2rem 1.2rem;
+
+        .centerIsland {
+            justify-content: space-between;
+            width: 80%;
+        }
+    }
+
+    .info {
+        width: auto;
+        margin: 0 0;
+        justify-content: end;
+
+        & > p {
+            justify-self: start;
+            text-align: start;
+        }
+    }
+
+    .branding {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        .slogan {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .branding {
+        .slogan {
+            display: inline;
+
+            padding: 1rem;
+            color: var(--accent-text-color);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+    }
+}
+
+@media (min-width: 1025px) {
+    .footer .centerIsland {
+        max-width: calc(var(--max-interactive-width) * 0.75);
+    }
+}

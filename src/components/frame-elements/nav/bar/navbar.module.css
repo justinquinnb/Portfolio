@@ -1,0 +1,199 @@
+.navbar {
+    z-index: 100;
+    position: fixed;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    padding: 0.2rem 0.6rem;
+
+    --tli-color: var(--large-text-color);
+    background-color: var(--page-background-color);
+    box-shadow: var(--default-box-shadow);
+
+    transition:
+        background-color 0.2s ease-in-out,
+        box-shadow 0.2s ease-in-out,
+        --tli-color 0.2s ease-in-out;
+
+    /* Scrolled State */
+    &.scrolledToTop:not(:hover) {
+        background-color: transparent;
+        box-shadow: none;
+        --tli-color: var(--text-on-full-bleed-color);
+
+        .wordmark, .socials {
+            opacity: 0;
+        }
+    }
+
+    .centerIsland {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+.wordmark {
+    display: none;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+
+    /* Grouped Link Styles */
+    li {
+        .childlessPage,
+        .pageGroupParent {
+            color: var(--tli-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+            white-space: nowrap;
+        }
+
+        .pageGroupParent {
+            pointer-events: none;
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        .selected,
+        .childSelected {
+            color: var(--emphasis-color);
+        }
+    }
+
+    /* Dropdowns */
+    .pageGroup {
+        position: relative;
+
+        &:hover {
+            color: var(--large-text-color);
+            text-decoration: underline 2px;
+
+            .childSelected {
+                color: var(--large-text-color);
+            }
+
+            .pageGroupChildren {
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    .pageGroupChildren {
+        position: absolute;
+        left: -1rem;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10%);
+        padding: 0.2rem 0.8rem 0.8rem;
+        list-style: none;
+        transition:
+            background-color 0.2s ease-in-out,
+            opacity 0.2s ease-in-out,
+            transform 0.2s ease-in-out,
+            visibility 0.15s ease-in-out;
+
+        li { margin-top: 0.4rem; }
+        a { text-decoration: none; }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0.9rem 0 0 0;
+            height: calc(100% - 1rem);
+            z-index: -1;
+            background-color: var(--page-background-color);
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 0 0 0.2rem 0.2rem;
+        }
+    }
+}
+
+.socials {
+    display: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+@media (min-width: 321px) {
+    .navbar .centerIsland {
+        justify-content: space-between;
+    }
+
+    .navigation {
+        gap: 0.8rem;
+    }
+
+    .wordmark {
+        display: flex;
+        align-items: center;
+        transition: opacity 0.2s ease-in-out;
+
+        img {
+            padding: 0.2rem 0;
+        }
+
+        .word {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 481px) {
+    .navbar {
+        padding: 0.2rem 1rem;
+    }
+
+    .navigation {
+        gap: 1.2rem;
+    }
+
+    .wordmark {
+        .word {
+            padding-left: 0.5rem;
+            display: inline;
+            text-decoration: none;
+
+            color: var(--large-text-color);
+            font-weight: 700;
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .navbar {
+        padding: 0.2rem 6%;
+        justify-content: center;
+    }
+
+    .navigation {
+        gap: 1.5rem;
+    }
+
+    .socials {
+        display: flex;
+        justify-content: end;
+        gap: 0.3rem;
+        color: var(--large-text-color);
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .navbar .centerIsland {
+        max-width: var(--max-interactive-width);
+    }
+}
