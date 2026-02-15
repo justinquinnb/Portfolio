@@ -29,5 +29,15 @@
     align-items: center;
     white-space: nowrap;
     margin-top: 1rem;
-    gap: 2rem;
+    gap: 1rem;
+}
+
+.homeButton {
+    :hover {
+        color: var(--text-on-action-color);
+    }
+}
+
+.button {
+    background-color: var(--accent-text-color);
 }

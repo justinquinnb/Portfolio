@@ -29,7 +29,7 @@ export default function Error({error, reset,}: {
             <p className="display-text">If you think this is a mistake, please let me know <Link
                 href="/contact" title="Contact Form">here</Link>.<br /><br />Otherwise, you may try again or return home below.</p>
             <div className={styles.actions}>
-              <button onClick={() => reset()}>Try Again</button>
+              <button className={styles.button} onClick={() => reset()}>Try Again</button>
               <Link className={`link-button ${styles.homeButton}`} href="/">Return Home</Link>
             </div>
           </div>
