@@ -1,4 +1,7 @@
 import type {Metadata} from "next";
+import PageHeader from "@/components/frame-elements/PageHeader";
+import heroImage from "@public/images/heroes/photos.png";
+import React from "react";
 
 export const metadata: Metadata = {
   title: 'Photos | JQB Portfolio'
@@ -7,7 +10,13 @@ export const metadata: Metadata = {
 export default function Photos() {
   return (
       <>
-        <h3>Photos page</h3>
+        <PageHeader img={heroImage}
+                    imgAlt={"A photo of Icelandic mountains beside a stream"}
+                    backgroundText={"Photography"} foregroundText={"Photos"}
+        />
+        <main>
+          <p style={{ height: '1000px'}}>Filler text</p>
+        </main>
       </>
   );
 }
