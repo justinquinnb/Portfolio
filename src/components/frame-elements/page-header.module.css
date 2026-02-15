@@ -85,6 +85,7 @@
 
     white-space: pre-wrap;
     padding: 0 0.5rem 0 0.5rem;
+    margin-top: calc(6rem - 0.35cap);
     overflow: hidden; /* So shadow doesn't overflow */
 
     h1 {
