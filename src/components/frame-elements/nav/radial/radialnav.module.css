@@ -47,7 +47,7 @@
 
     position: absolute;
     justify-self: center;
-    --current-height: min(100%, 20rem);
+    --current-height: min(100vh, 20rem);
     bottom: calc(-.5 * var(--current-height) + 1.5rem);
     z-index: 99;
 
