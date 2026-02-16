@@ -68,7 +68,7 @@
         line-height: 1.1;
         user-select: none;
 
-        animation: scroll-text 120s linear infinite;
+        animation: scroll-text 60s linear infinite;
     }
 }
 
@@ -138,19 +138,23 @@
         mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 75%);
     }
 
+    .repeatedTextContainer p {
+        animation: scroll-text 120s linear infinite;
+    }
+
     .headerContent {
         justify-content: space-between;
         width: 100%;
 
         h1 {
-            flex-basis: 74%;
+            flex-basis: 80%;
         }
 
         .extras {
             display: flex;
             justify-content: end;
             align-items: end;
-            flex-basis: 26%;
+            flex-basis: 20%;
             margin-bottom: 0.5rem;
 
             img {
