@@ -4,7 +4,6 @@
     grid-template-rows: min-content;
     grid-template-areas: "stack";
     align-items: start;
-    overflow: hidden;
     position: relative; /* Ensure absolute items stay inside here */
 
     & > div {
@@ -69,7 +68,7 @@
         line-height: 1.1;
         user-select: none;
 
-        animation: scroll-text 120s linear infinite;
+        animation: scroll-text 60s linear infinite;
     }
 }
 
@@ -86,7 +85,7 @@
     white-space: pre-wrap;
     padding: 0 0.5rem 0 0.5rem;
     margin-top: calc(6rem - 0.35cap);
-    overflow: hidden; /* So shadow doesn't overflow */
+    overflow-y: hidden; /* So shadow doesn't overflow */
 
     h1 {
         justify-self: start;
@@ -139,19 +138,23 @@
         mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 75%);
     }
 
+    .repeatedTextContainer p {
+        animation: scroll-text 120s linear infinite;
+    }
+
     .headerContent {
         justify-content: space-between;
         width: 100%;
 
         h1 {
-            flex: 0 0 74%;
+            flex-basis: 80%;
         }
 
         .extras {
             display: flex;
             justify-content: end;
             align-items: end;
-            flex: 1 0 26%;
+            flex-basis: 20%;
             margin-bottom: 0.5rem;
 
             img {
@@ -184,7 +187,7 @@
         justify-self: center;
 
         .extras {
-            margin-bottom: 2rem;
+            margin: 0 1.5rem 2rem 0;
 
             img {
                 height: 8rem;
