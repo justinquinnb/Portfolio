@@ -15,6 +15,7 @@
   --q-black: #1E1E1E;
   --q-dark-gray: #302525;
   --q-orange: #F1432F;
+  --q-light-orange: #FF4F38;
   --q-gray: #8B6E6E;
   --q-light-gray: #F1DAD4;
   --q-white: #FFE4DD;
@@ -28,6 +29,7 @@
   --container-on-section-color: var(--q-white);
   --text-on-full-bleed-color: var(--q-white);
   --emphasis-color: var(--q-orange);
+  --emphasis-hover-color: var(--q-light-orange);
   --action-color: var(--q-orange);
   --text-on-action-color: var(--q-white);
   --primary-text-color: var(--q-black);
@@ -50,6 +52,7 @@
     --container-on-section-color: var(--q-white);
     --text-on-full-bleed-color: var(--q-white);
     --emphasis-color: var(--q-orange);
+    --emphasis-hover-color: var(--q-light-orange);
     --action-color: var(--q-orange);
     --text-on-action-color: var(--q-white);
     --primary-text-color: var(--q-black);
@@ -140,9 +143,10 @@ a.link-button {
   background-color: var(--action-color);
   border: none;
 
-  :hover {
-    color: var(--text-on-action-color);
-    background-color: var(--link-hover-color);
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--emphasis-hover-color);
   }
 }
 
@@ -187,9 +191,8 @@ h4.unselected {
   }
 
   h2 {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 800;
-    color: var(--text-on-full-bleed-color);
   }
 
   h3 {
