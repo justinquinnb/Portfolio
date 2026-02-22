@@ -49,6 +49,8 @@
         width: 100%;
 
         .introDecor {
+            margin-right: 0;
+
             img {
                 max-width: 16rem;
             }
