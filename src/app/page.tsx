@@ -3,7 +3,7 @@ import PageHeader from "@/components/frame-elements/PageHeader";
 import Image from "next/image";
 import React from "react";
 import darkIcon from "@public/branding/jq-icon-dark.svg";
-import heroImage from "@public/images/heroes/leader.png";
+import heroImage from "@public/images/heroes/devdogs-meeting.png";
 import styles from "./homepage.module.css";
 import meImage from "@public/images/me.png";
 import Link from "next/link";
