@@ -1,16 +1,19 @@
 .intro {
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
 
     gap: 1rem;
+    margin-bottom: 1rem;
 
     .introDecor {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-right: 0.5rem;
 
         img {
             height: auto;
@@ -20,6 +23,8 @@
         }
 
         .introDecorText {
+            max-width: min-content;
+
             display: flex;
             flex-direction: column;
             justify-content: start;
@@ -27,10 +32,42 @@
 
             flex: 1 0 50%;
             gap: 0.5rem;
+
+            p {
+                display: none;
+            }
         }
     }
 
-    p {
+    &>p {
         margin: 0 1.5rem 0 1.5rem;
+    }
+}
+
+@media (min-width: 481px) {
+    .intro {
+        width: 100%;
+
+        .introDecor {
+            img {
+                max-width: 16rem;
+            }
+
+            .introDecorText {
+                max-width: 24rem;
+
+                p {
+                    display: block;
+                }
+
+                a {
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+
+        &>p {
+            display: none;
+        }
     }
 }

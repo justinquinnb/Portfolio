@@ -30,12 +30,13 @@ export default function Home() {
               <Image src={meImage} alt={"A stylized photo of Justin"}/>
               <div className={styles.introDecorText}>
                 <h2>I seek <span className={"emphasis"}>impact</span>...</h2>
+                <p className={"display-text"}>I’m a full-stack developer by day and a full-on creative
+                  by night. From an early age, I’ve had one main goal: to innovate and inspire in all that I do.</p>
                 <Link className={"link-button"} href={"/about/bio"}>More About Me</Link>
               </div>
             </div>
             <p className={"display-text"}>I’m a full-stack developer by day and a full-on creative
-              by night. From an early
-              age, I’ve had one main goal: to innovate and inspire in all that I do.</p>
+              by night. From an early age, I’ve had one main goal: to innovate and inspire in all that I do.</p>
           </section>
         </main>
       </>
