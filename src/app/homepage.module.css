@@ -3,19 +3,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
     gap: 1rem;
 
-    div {
+    .introDecor {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0 1rem 0 1rem;
 
         img {
             height: auto;
-            width: 60%;
+            max-width: 50%;
+            flex: 0 1 50%;
             border-radius: 50%;
+        }
+
+        .introDecorText {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+
+            flex: 1 0 50%;
+            gap: 0.5rem;
         }
     }
 

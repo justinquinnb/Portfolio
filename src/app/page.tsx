@@ -6,6 +6,7 @@ import darkIcon from "@public/branding/jq-icon-dark.svg";
 import heroImage from "@public/images/heroes/leader.png";
 import styles from "./homepage.module.css";
 import meImage from "@public/images/me.png";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
@@ -25,9 +26,12 @@ export default function Home() {
         </PageHeader>
         <main>
           <section className={styles.intro}>
-            <div>
+            <div className={styles.introDecor}>
               <Image src={meImage} alt={"A stylized photo of Justin"}/>
-              <h2>I seek <span className={"emphasis"}>impact</span>...</h2>
+              <div className={styles.introDecorText}>
+                <h2>I seek <span className={"emphasis"}>impact</span>...</h2>
+                <Link className={"link-button"} href={"/about/bio"}>More About Me</Link>
+              </div>
             </div>
             <p className={"display-text"}>I’m a full-stack developer by day and a full-on creative
               by night. From an early

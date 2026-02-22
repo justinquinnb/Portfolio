@@ -128,7 +128,7 @@ button {
   padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
 
-.link-button {
+a.link-button {
   text-decoration: none;
   width: fit-content;
   min-height: 1.5rem;
@@ -155,10 +155,10 @@ a {
   color: inherit;
   text-decoration: underline;
   transition: color 0.2s ease-in-out;
-}
 
-a:hover {
-  color: var(--link-hover-color);
+  :hover {
+    color: var(--link-hover-color);
+  }
 }
 
 h4.unselected {
