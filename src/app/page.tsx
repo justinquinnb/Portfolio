@@ -4,6 +4,8 @@ import Image from "next/image";
 import React from "react";
 import darkIcon from "@public/branding/jq-icon-dark.svg";
 import heroImage from "@public/images/heroes/leader.png";
+import styles from "./homepage.module.css";
+import meImage from "@public/images/me.png";
 
 export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
@@ -22,7 +24,15 @@ export default function Home() {
           {logo}
         </PageHeader>
         <main>
-          <p style={{ height: '1000px'}}>Filler text</p>
+          <section className={styles.intro}>
+            <div>
+              <Image src={meImage} alt={"A stylized photo of Justin"}/>
+              <h2>I seek <span className={"emphasis"}>impact</span>...</h2>
+            </div>
+            <p className={"display-text"}>I’m a full-stack developer by day and a full-on creative
+              by night. From an early
+              age, I’ve had one main goal: to innovate and inspire in all that I do.</p>
+          </section>
         </main>
       </>
   );
