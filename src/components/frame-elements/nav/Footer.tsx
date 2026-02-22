@@ -12,19 +12,19 @@ export default function Footer() {
               <div>
                 <h6>Me</h6>
                 <ul>
-                  <li><Link href="/my-work/software">Software</Link></li>
-                  <li><Link href="/my-work/graphics">Graphics</Link></li>
-                  <li><Link href="/my-work/photos">Photos</Link></li>
-                  <li><Link href="/my-work/music">Music</Link></li>
+                  <li><Link href="/">Home</Link></li>
+                  <li><Link href="/about/bio">Biography</Link></li>
+                  <li><Link href="/about/resume">Resume</Link></li>
+                  <li><Link href="/contact">Contact</Link></li>
                 </ul>
               </div>
               <div>
                 <h6>Work</h6>
                 <ul>
-                  <li><Link href="/">Home</Link></li>
-                  <li><Link href="/about/bio">Biography</Link></li>
-                  <li><Link href="/about/resume">Resume</Link></li>
-                  <li><Link href="/contact">Contact</Link></li>
+                  <li><Link href="/my-work/software">Software</Link></li>
+                  <li><Link href="/my-work/graphics">Graphics</Link></li>
+                  <li><Link href="/my-work/photos">Photos</Link></li>
+                  <li><Link href="/my-work/music">Music</Link></li>
                 </ul>
               </div>
             </div>
