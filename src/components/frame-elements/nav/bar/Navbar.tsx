@@ -15,7 +15,7 @@ import React, {useEffect} from "react";
  */
 export default function Navbar({ className}: { className?: string }) {
   const topLevelElements: (NavbarPage | NavbarGroup)[] = pagesJson;
-  const [isAtTop, setIsAtTop] = React.useState(false);
+  const [isAtTop, setIsAtTop] = React.useState(true);
 
   const handleScroll = () => {
     setIsAtTop(window.scrollY == 0);
