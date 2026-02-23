@@ -7,6 +7,7 @@ import heroImage from "@public/images/heroes/devdogs-meeting.png";
 import styles from "./homepage.module.css";
 import meImage from "@public/images/me.png";
 import Link from "next/link";
+import Carousel from "@/components/carousel/Carousel";
 
 export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
@@ -36,6 +37,9 @@ export default function Home() {
               </div>
             </div>
             <p className={"display-text"}>{displayText}</p>
+          </section>
+          <section className={styles.disciplines}>
+            <Carousel items={[]}/>
           </section>
         </main>
       </>
