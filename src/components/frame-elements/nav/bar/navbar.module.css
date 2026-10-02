@@ -126,7 +126,7 @@
     transition: opacity 0.2s ease-in-out;
 }
 
-@media (min-width: 321px) {
+@media (min-width: var(--sm)px) {
     .navbar .centerIsland {
         justify-content: space-between;
     }
@@ -150,7 +150,7 @@
     }
 }
 
-@media (min-width: 481px) {
+@media (min-width: var(--md)) {
     .navbar {
         padding: 0.2rem 1rem;
     }
@@ -173,7 +173,7 @@
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: var(--lg)px) {
     .navbar {
         padding: 0.2rem 6%;
         justify-content: center;
@@ -192,7 +192,7 @@
     }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: var(--xl)px) {
     .navbar .centerIsland {
         max-width: var(--max-interactive-width);
     }

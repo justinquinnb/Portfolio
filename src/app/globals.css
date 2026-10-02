@@ -76,8 +76,6 @@ body {
 
 body {
   background: var(--page-background-color);
-  /* background: darkolivegreen; solely for testing */
-  font-family: var(--font-league-spartan), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -184,7 +182,7 @@ h4.unselected {
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: var(--lg)px) {
   h1 {
     font-size: 8rem;
     color: var(--text-on-full-bleed-color);

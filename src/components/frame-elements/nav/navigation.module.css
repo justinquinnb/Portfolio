@@ -2,7 +2,7 @@
     display: none;
 }
 
-@media (min-width: 481px) {
+@media (min-width: var(--md)) {
     .bar {
         display: flex;
     }
