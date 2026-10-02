@@ -133,7 +133,7 @@
     }
 }
 
-@media (min-width: var(--md)) {
+@media (min-width: 481px) {
     .heroContainer img {
         mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 75%);
     }
@@ -166,7 +166,7 @@
     }
 }
 
-@media (min-width: var(--lg)px) {
+@media (min-width: 769px) {
     .heroContainer {
         img {
             height: 100%;

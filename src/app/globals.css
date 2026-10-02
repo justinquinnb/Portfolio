@@ -182,7 +182,7 @@ h4.unselected {
   }
 }
 
-@media (min-width: var(--lg)px) {
+@media (min-width: 769px) {
   h1 {
     font-size: 8rem;
     color: var(--text-on-full-bleed-color);

@@ -39,7 +39,7 @@
     display: none;
 }
 
-@media (min-width: var(--md)) {
+@media (min-width: 481px) {
     .footer {
         padding: 1.2rem 1.2rem;
 
@@ -71,7 +71,7 @@
     }
 }
 
-@media (min-width: var(--lg)px) {
+@media (min-width: 769px) {
     .branding {
         .slogan {
             display: inline;
@@ -84,7 +84,7 @@
     }
 }
 
-@media (min-width: var(--xl)px) {
+@media (min-width: 1025px) {
     .footer .centerIsland {
         max-width: calc(var(--max-interactive-width) * 0.75);
     }

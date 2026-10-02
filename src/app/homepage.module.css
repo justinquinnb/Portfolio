@@ -44,7 +44,7 @@
     }
 }
 
-@media (min-width: var(--md)) {
+@media (min-width: 481px) {
     .intro {
         width: 100%;
 
