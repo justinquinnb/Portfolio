@@ -1,11 +1,13 @@
+'use client'
+
 import {CarouselItem} from "@/types/carousel-item";
 import {JSX} from "react";
 import styles from "./carousel.module.css";
 import CarouselDotsSelector from "@/components/carousel/CarouselDotsSelector";
 import ImageItemSelector from "@/components/carousel/ImageItemSelector";
-import SelectorsType from "../../types/selectors-types";
+import {SelectorsType} from "../../types/selectors-type";
 import Image from "next/image";
-import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 
 /**
@@ -25,6 +27,13 @@ export default function Carousel(
     {items: CarouselItem[]; initialSelection?: number; staticContent?: JSX.Element; selectorsType?: SelectorsType;
       showNavArrows?: boolean; autoPlay?: boolean; delay?: number})
 {
+  const router = useRouter();
+
+  // TODO add "extra static content" field that only renders when the component is large
+  // this would contain the static caption text, for example, from the Figma
+
+  // TODO add the dot selector and auto-play functionalities
+
   // Prep the correct dot selectors (if this instance calls for their display)
   const useDotSelectors = selectorsType == SelectorsType.Dots ||
       selectorsType == SelectorsType.Both;
@@ -37,39 +46,57 @@ export default function Carousel(
       selectorsType == SelectorsType.Both) ? <ImageItemSelector /> : null;
 
   let currentItem = items[initialSelection];
-  const currentItemDisplayContent = (
-      <>
-        <p className={styles.itemDisplayTitle}>{currentItem.display.title}</p>
-        <p className={styles.itemDisplayCaption}>{currentItem.display.caption}</p>
-        {(currentItem.display.link != null) ?
-          <Link href={currentItem.display.link.href} className={"display-text"}>
-            {currentItem.display.link.title}
-          </Link> : null
-        }
-      </>
-  )
+  
+  const currentItemContent = (
+      (currentItem.display.link != null) ? (
+          <button onClick={() => {
+            const href = currentItem.display.link?.href;
+
+            if (href) {
+              router.push(href);
+            }
+          }} className={`invisible ${styles.itemContent}`}>
+            <div className={styles.primaryItemContent}>
+              <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
+              <p className={styles.itemCaption}>{currentItem.display.caption}</p>
+            </div>
+            <p className={"display-text"} style={{textDecoration: "underline"}}>
+              {currentItem.display.link.title}
+            </p>
+          </button>
+          ) :
+          (
+        <div className={styles.itemContent}>
+          <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
+          <p className={styles.itemCaption}>{currentItem.display.caption}</p>
+        </div>
+          )
+)
 
   return (
       <div className={styles.carousel}>
         <div className={styles.displayBox}>
-          <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt}/>
+          <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt} className={styles.displayImage} />
           <div className={styles.overlay}>
-            <button className={styles.navButton}></button>
-            <div className={styles.primaryContent}>
-              <div className={styles.info}>
-                <div className={styles.staticContent}>
-                  {staticContent}
-                </div>
+            <div className={styles.content}>
+              <div className={styles.staticContent}>
+                {staticContent}
+              </div>
+              <div className={styles.verticalDotSelectors}>
                 {verticalDotSelectors}
-                <div className={styles.itemDisplayContent}>
-                  {currentItemDisplayContent}
+              </div>
+              <div className={styles.primaryContent}>
+                {currentItemContent}
+                <div className={styles.horizontalDotSelectors}>
+                  {horizontalDotSelectors}
                 </div>
               </div>
-              {horizontalDotSelectors}
             </div>
           </div>
         </div>
-        {buttonSelectors}
+        <div className={styles.buttonSelectors}>
+          {buttonSelectors}
+        </div>
       </div>
   )
 }

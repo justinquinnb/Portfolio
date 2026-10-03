@@ -167,6 +167,11 @@ h4.unselected {
   font-weight: 300;
 }
 
+.feature-text {
+  font-size: 2.4rem;
+  font-weight: 1000;
+}
+
 .display-text {
   font-size: 1.2rem;
   color: var(--large-text-color)
@@ -176,9 +181,22 @@ h4.unselected {
   color: var(--emphasis-color);
 }
 
+button.invisible {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 @media (prefers-color-scheme: light) {
   html {
     color-scheme: light;
+  }
+}
+
+@media (min-width: 321px) {
+  .feature-text {
+    font-size: 3.2rem;
   }
 }
 

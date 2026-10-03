@@ -1,10 +1,12 @@
+import {StaticImageData} from "next/image";
+
 /**
   A carousel item
  */
 export interface CarouselItem {
   display: {
     img: {
-      src: string; alt: string
+      src: StaticImageData; alt: string
     };
     title: string;
     caption?: string;
@@ -14,7 +16,7 @@ export interface CarouselItem {
   }
   thumbnail?: {
     img?: {
-      src: string; alt: string
+      src: StaticImageData; alt: string
     };
     title?: string
   }
