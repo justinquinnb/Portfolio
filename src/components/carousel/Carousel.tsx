@@ -37,10 +37,17 @@ export default function Carousel(
   // Prep the correct dot selectors (if this instance calls for their display)
   const useDotSelectors = selectorsType == SelectorsType.Dots ||
       selectorsType == SelectorsType.Both;
-  const verticalDotSelectors: JSX.Element | null = (useDotSelectors) ?
-      <CarouselDotsSelector vertical={true} showNavArrows={showNavArrows}/> : null;
+  const verticalNav: JSX.Element | null = (useDotSelectors) ? (
+      <>
+        <p>Up</p>
+        <CarouselDotsSelector vertical={true} showNavArrows={showNavArrows}/>
+        <p>Down</p>
+      </>
+  ) : null;
   const horizontalDotSelectors: JSX.Element | null = (useDotSelectors) ?
       <CarouselDotsSelector vertical={false} showNavArrows={showNavArrows}/> : null;
+  const leftArrow: JSX.Element | null = (useDotSelectors) ? <p>LEFT</p> : null;
+  const rightArrow: JSX.Element | null = (useDotSelectors) ? <p>RIGHT</p> : null;
 
   const buttonSelectors: JSX.Element | null = (selectorsType == SelectorsType.Images ||
       selectorsType == SelectorsType.Both) ? <ImageItemSelector /> : null;
@@ -48,7 +55,7 @@ export default function Carousel(
   let currentItem = items[initialSelection];
   
   const currentItemContent = (
-      (currentItem.display.link != null) ? (
+      (currentItem.display.link) ? (
           <button onClick={() => {
             const href = currentItem.display.link?.href;
 
@@ -58,7 +65,7 @@ export default function Carousel(
           }} className={`invisible ${styles.itemContent}`}>
             <div className={styles.primaryItemContent}>
               <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-              <p className={styles.itemCaption}>{currentItem.display.caption}</p>
+              {(currentItem.display.caption) ? <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
             </div>
             <p className={"display-text"} style={{textDecoration: "underline"}}>
               {currentItem.display.link.title}
@@ -68,7 +75,7 @@ export default function Carousel(
           (
         <div className={styles.itemContent}>
           <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-          <p className={styles.itemCaption}>{currentItem.display.caption}</p>
+          {(currentItem.display.caption) ? <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
         </div>
           )
 )
@@ -78,18 +85,24 @@ export default function Carousel(
         <div className={styles.displayBox}>
           <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt} className={styles.displayImage} />
           <div className={styles.overlay}>
-            <div className={styles.content}>
-              <div className={styles.staticContent}>
-                {staticContent}
-              </div>
-              <div className={styles.verticalDotSelectors}>
-                {verticalDotSelectors}
-              </div>
-              <div className={styles.primaryContent}>
-                {currentItemContent}
-                <div className={styles.horizontalDotSelectors}>
-                  {horizontalDotSelectors}
+            <div className={styles.staticContent}>
+              {staticContent}
+            </div>
+            <div className={styles.dynamicContent}>
+              <div className={styles.primaryDisplayBoxContent}>
+                <div className={styles.verticalNav}>
+                  {verticalNav}
                 </div>
+                <div className={styles.leftArrow}>
+                  {leftArrow}
+                </div>
+                {currentItemContent}
+                <div className={styles.rightArrow}>
+                  {rightArrow}
+                </div>
+              </div>
+              <div className={styles.horizontalDotSelectors}>
+                {horizontalDotSelectors}
               </div>
             </div>
           </div>

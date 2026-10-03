@@ -97,7 +97,7 @@ export default function Home() {
             <Carousel
               staticContent={
                 <h2>...and <span className={"emphasis"}>make a lot</span> of stuff.</h2>
-              } items={featureItems}/>
+              } items={featureItems} initialSelection={0}/>
           </section>
         </main>
       </>
