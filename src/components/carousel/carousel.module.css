@@ -88,7 +88,7 @@
 
         .itemTitle {
             text-align: center;
-            mix-blend-mode: difference;
+            mix-blend-mode: hard-light;
         }
     }
 }
@@ -96,6 +96,7 @@
 .navArrowButton {
     background-color: transparent;
     height: 100%;
+    padding: 0;
 
     .navArrowIcon {
         font-size: 2.5rem;

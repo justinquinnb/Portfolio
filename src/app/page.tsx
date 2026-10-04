@@ -6,10 +6,10 @@ import darkIcon from "@public/branding/jq-icon-dark.svg";
 import heroImage from "@public/images/heroes/devdogs-meeting.png";
 import styles from "./homepage.module.css";
 import meImage from "@public/images/me.png";
-import onefeedDisplay from "@public/images/features/display/software.png";
-// import brandAssetsDisplay from "@public/images/features/display/graphics.png";
-import nycPhotoDisplay from "@public/images/features/display/photography.png";
-import garageBandDisplay from "@public/images/features/display/music.png";
+import softwareDisplay from "@public/images/features/display/software.png";
+import graphicsDisplay from "@public/images/features/display/graphics.png";
+import photographyDisplay from "@public/images/features/display/photography.png";
+import musicDisplay from "@public/images/features/display/music.png";
 import Link from "next/link";
 import Carousel from "@/components/carousel/Carousel";
 import {CarouselItem} from "@/types/carousel-item";
@@ -24,48 +24,48 @@ const featureItems: CarouselItem[] = [
   {
     display: {
       img: {
-        src: onefeedDisplay,
+        src: softwareDisplay,
         alt: "A screenshot of OneFeed's code in an IDE"
       },
-      title: "OneFeed",
+      title: "Software",
       link: {
-        href: "/my-work/software/onefeed", title: "View Project"
+        href: "/my-work/software", title: "View Projects"
       }
     }
   },
-  // {
-  //   display: {
-  //     img: {
-  //       src: brandAssetsDisplay,
-  //       alt: "A grid of various brand assets"
-  //     },
-  //     title: "Brand Assets",
-  //     link: {
-  //       href: "/my-work/graphics/collection/brand-assets", title: "View Collection"
-  //     }
-  //   }
-  // },
   {
     display: {
       img: {
-        src: nycPhotoDisplay,
+        src: graphicsDisplay,
+        alt: "A grid of various brand assets"
+      },
+      title: "Graphics",
+      link: {
+        href: "/my-work/graphics", title: "View Collections"
+      }
+    }
+  },
+  {
+    display: {
+      img: {
+        src: photographyDisplay,
         alt: "Aerial view of Manhattan in black and white"
       },
-      title: "New York Photos",
+      title: "Photos",
       link: {
-        href: "/my-work/photos/album/new-york", title: "View Album"
+        href: "/my-work/photos", title: "View Albums"
       }
     }
   },
   {
     display: {
       img: {
-        src: garageBandDisplay,
+        src: musicDisplay,
         alt: "A screenshot of a track open in GarageBand"
       },
-      title: "Fragmented EP",
+      title: "Music",
       link: {
-        href: "/my-work/music/album/fragmented", title: "View EP"
+        href: "/my-work/music", title: "View Albums"
       }
     }
   }

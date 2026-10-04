@@ -73,10 +73,10 @@ export default function Carousel(
   // TODO add "expanded static content" field that only renders when the component is large
   // this would contain the static caption text, for example, from the Figma
 
-  // TODO add back graphics page
   // TODO finish dot selectors and carousel styling for vertical (large), including max width constraints
   // TODO scale dot gaps to reflect width of carousel (constrained to some max)
   // TODO add item change transitions
+  // TODO change item text and links to generic categories on small screens (or just conditionally render different component instances)
 
   // Prep the correct dot selectors (if this instance calls for their display)
   const showDotSelectors = selectorsType === "dots" || selectorsType === "both";

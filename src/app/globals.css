@@ -28,6 +28,7 @@
   --section-background-color: var(--q-light-gray);
   --container-on-section-color: var(--q-white);
   --text-on-full-bleed-color: var(--q-white);
+  --secondary-text-on-full-bleed-color: var(--q-light-gray);
   --emphasis-color: var(--q-orange);
   --emphasis-hover-color: var(--q-light-orange);
   --action-color: var(--q-orange);
@@ -51,6 +52,7 @@
     --section-background-color: var(--q-light-gray);
     --container-on-section-color: var(--q-white);
     --text-on-full-bleed-color: var(--q-white);
+    --secondary-text-on-full-bleed-color: var(--q-light-gray);
     --emphasis-color: var(--q-orange);
     --emphasis-hover-color: var(--q-light-orange);
     --action-color: var(--q-orange);
