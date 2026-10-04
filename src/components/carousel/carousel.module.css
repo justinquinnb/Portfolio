@@ -99,7 +99,7 @@
     padding: 0;
 
     .navArrowIcon {
-        font-size: 2.5rem;
+        font-size: 44px;
     }
 }
 
@@ -119,10 +119,10 @@
     opacity: 0.8;
     width: 0.5rem;
     height: 0.5rem;
+}
 
-    &:hover {
-        opacity: 1;
-    }
+.verticalDotSelectors.selectorDot:hover {
+    opacity: 1;
 }
 
 .dotSelected {
