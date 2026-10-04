@@ -84,9 +84,10 @@ export default function Home() {
         <main>
           <section className={styles.intro}>
             <div className={styles.introDecor}>
-              <Image src={meImage} alt={"A stylized photo of Justin"}/>
+              <Image src={meImage} alt={"A stylized photo of Justin"} className={styles.horizImg}/>
               <div className={styles.introDecorText}>
                 <h2>I seek <span className={"emphasis"}>impact</span>...</h2>
+                <Image src={meImage} className={styles.vertImg} alt={"A stylized photo of Justin"}/>
                 <p className={"display-text"}>{displayText}</p>
                 <Link className={"link-button"} href={"/about/bio"}>More About Me</Link>
               </div>

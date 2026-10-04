@@ -13,34 +13,90 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 0.5rem;
 
-        img {
-            height: auto;
-            max-width: 50%;
-            flex: 0 1 50%;
-            border-radius: 50%;
+        img.horizImg {
+            display: none;
         }
 
         .introDecorText {
-            max-width: min-content;
-
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: start;
-            align-items: start;
+            align-items: center;
+            position: relative;
 
-            flex: 1 0 50%;
             gap: 0.5rem;
+
+            h2 {
+                text-align: center;
+                margin: 0 1.2rem;
+            }
 
             p {
                 display: none;
+            }
+
+            img.vertImg {
+                flex: 0 1 50%;
+                border-radius: 50%;
+                max-height: 12rem;
+                width: auto;
+                height: auto;
+            }
+
+            a {
+                position: absolute;
+                bottom: 1.4rem;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 2;
+                width: max-content;
             }
         }
     }
 
     &>p {
         margin: 0 1.5rem 0 1.5rem;
+    }
+}
+
+@media (min-width: 321px) {
+    .intro {
+        margin-right: 0.5rem;
+
+        .introDecor {
+            img.horizImg {
+                display: block;
+                height: auto;
+                max-width: 50%;
+                flex: 0 1 50%;
+                border-radius: 50%;
+            }
+
+            .introDecorText {
+                max-width: min-content;
+                align-items: start;
+                flex: 1 0 50%;
+
+                h2 {
+                    text-align: start;
+                    margin: 0;
+                }
+
+                img.vertImg {
+                    display: none;
+                }
+
+                a {
+                    position: static;
+                    bottom: auto;
+                    left: auto;
+                    transform: none;
+                    z-index: auto;
+                }
+            }
+        }
     }
 }
 
@@ -51,7 +107,7 @@
         .introDecor {
             margin-right: 0;
 
-            img {
+            img.horizImg {
                 max-width: 16rem;
             }
 
