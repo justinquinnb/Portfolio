@@ -3,13 +3,17 @@ import React from "react";
 
 /**
  * A navigation arrow for a carousel.
+ * @param className the class name to apply to the component
  * @param direction the direction of the arrow
  * @param onClick the function to call when the arrow is clicked
  * @constructor
  */
 export default function CarouselNavArrow(
-    {direction, onClick}: {direction: "left" | "right" | "up" | "down", onClick: () => void})
-{
+    {className, direction, onClick}: {
+      className?: string;
+      direction: "left" | "right" | "up" | "down",
+      onClick: () => void
+    }) {
   let iconName: string;
 
   switch (direction) {
@@ -28,8 +32,8 @@ export default function CarouselNavArrow(
   }
 
   return (
-      <button className={styles.navArrowButton} onClick={onClick}
-          aria-label={(direction === "left" || direction === "up" ? "Previous" : "Next") + " item"}
+      <button className={`${styles.navArrowButton} ${className}`} onClick={onClick}
+              aria-label={(direction === "left" || direction === "up" ? "Previous" : "Next") + " item"}
       >
         <span className={`material-symbols-sharp ${styles.navArrowIcon}`}>{iconName}</span>
       </button>

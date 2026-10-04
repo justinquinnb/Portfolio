@@ -108,9 +108,10 @@
 }
 
 .carouselDotsSelector {
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.8rem;
+    gap: clamp(0.2rem, 3cqi, 0.8rem);
 }
 
 .selectorDot {
@@ -118,6 +119,10 @@
     opacity: 0.8;
     width: 0.5rem;
     height: 0.5rem;
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .dotSelected {
@@ -137,11 +142,28 @@
 }
 
 @media (min-width: 769px) {
-    .verticalNav {
-        display: block;
+    .overlay {
+        .dynamicContent .horizontalDotSelectors {
+            display: none;
+        }
+
+        .primaryDisplayBoxContent {
+            .leftArrow, .rightArrow {
+                display: none;
+            }
+        }
     }
 
-    .horizontalDotSelectors, .leftArrow, .rightArrow {
-        display: none;
+    .verticalNav {
+        display: block;
+
+        .carouselDotsSelector {
+            gap: clamp(0.2rem, 3cqi, 0.2rem);
+
+            button {
+                padding: 0;
+                background-color: transparent;
+            }
+        }
     }
 }

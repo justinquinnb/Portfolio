@@ -38,7 +38,7 @@ export default function Carousel(
   const router = useRouter();
 
   const [currentItemNum, setSelectedItemNum] = useState(initialSelection);
-  const currentItem = items[currentItemNum % items.length];
+  const currentItem = items[currentItemNum];
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const clearAutoPlayTimer = useCallback(() => {
@@ -74,7 +74,6 @@ export default function Carousel(
   // this would contain the static caption text, for example, from the Figma
 
   // TODO finish dot selectors and carousel styling for vertical (large), including max width constraints
-  // TODO scale dot gaps to reflect width of carousel (constrained to some max)
   // TODO add item change transitions
   // TODO change item text and links to generic categories on small screens (or just conditionally render different component instances)
 
@@ -85,17 +84,20 @@ export default function Carousel(
       <>
         <p>Up</p>
         <CarouselDotsSelector vertical={true} onSelect={(index) => {
-          setSelectedItemNum(index)
+          setSelectedItemNum(index);
+          resetAutoPlayTimer();
         }} itemCount={items.length} selectedIndex={currentItemNum}/>
         <p>Down</p>
       </>
   ) : null;
   const horizontalDotSelectors: JSX.Element | null = (showDotSelectors) ?
-      (<CarouselDotsSelector itemCount={items.length} selectedIndex={currentItemNum}/>)
+      (<CarouselDotsSelector className={styles.horizontalDotSelectors} itemCount={items.length}
+                             selectedIndex={currentItemNum}/>)
       : null;
 
   const leftArrow: JSX.Element | null = (showNavArrows) ?
       <CarouselNavArrow
+          className={styles.leftArrow}
           direction="left"
           onClick={() => {
             setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
@@ -104,6 +106,7 @@ export default function Carousel(
       /> : null;
   const rightArrow: JSX.Element | null = (showNavArrows) ?
       <CarouselNavArrow
+          className={styles.rightArrow}
           direction="right"
           onClick={() => {
             setSelectedItemNum((prevSelection) => ((prevSelection + 1) % items.length))
@@ -112,7 +115,7 @@ export default function Carousel(
       /> : null;
 
   const buttonSelectors: JSX.Element | null = (selectorsType === "images" ||
-      selectorsType === "both") ? <ImageItemSelector/> : null;
+      selectorsType === "both") ? <ImageItemSelector className={styles.buttonSelectors}/> : null;
 
   const currentItemContent = (
       (currentItem.display.link) ? (
@@ -156,23 +159,15 @@ export default function Carousel(
                 <div className={styles.verticalNav}>
                   {verticalNav}
                 </div>
-                <div className={styles.leftArrow}>
-                  {leftArrow}
-                </div>
+                {leftArrow}
                 {currentItemContent}
-                <div className={styles.rightArrow}>
-                  {rightArrow}
-                </div>
+                {rightArrow}
               </div>
-              <div className={styles.horizontalDotSelectors}>
-                {horizontalDotSelectors}
-              </div>
+              {horizontalDotSelectors}
             </div>
           </div>
         </div>
-        <div className={styles.buttonSelectors}>
-          {buttonSelectors}
-        </div>
+        {buttonSelectors}
       </div>
   )
 }
