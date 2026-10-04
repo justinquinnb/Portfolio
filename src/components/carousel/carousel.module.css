@@ -103,6 +103,10 @@
     }
 }
 
+:global([dir="rtl"]) .navArrowIcon {
+    transform: scaleX(-1);
+}
+
 .buttonSelectors {
     height: 25%;
 }
