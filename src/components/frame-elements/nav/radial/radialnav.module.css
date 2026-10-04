@@ -119,7 +119,7 @@
     }
 }
 
-.categories .navItemIcon {
+.categories .navItemIcon, .close .navItemIcon {
     color: var(--accent-text-color);
 }
 
