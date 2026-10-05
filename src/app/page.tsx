@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
 }
 
-const logo = <Image src={darkIcon} alt={"Justin Quinn logo"} />;
+const logo = <Image src={darkIcon} alt={"Justin Quinn logo"}/>;
 const displayText = "I’m a product manager by trade and a creator at heart. No matter the medium, I strive to work with purpose, lifting standards, people, and what's possible every day."
 const featureItems: CarouselItem[] = [
   {
@@ -96,9 +96,12 @@ export default function Home() {
           </section>
           <section className={styles.disciplines}>
             <Carousel
-              staticContent={
-                <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
-              } items={featureItems} initialSelection={0}/>
+                staticContent={
+                  <div className={styles.staticCarouselContent}>
+                    <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
+                    <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
+                  </div>
+                } items={featureItems} initialSelection={0}/>
           </section>
         </main>
       </>

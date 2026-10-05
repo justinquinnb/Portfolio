@@ -28,7 +28,7 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <p>Copyright &copy; 2026 Justin Quinn</p>
+            <p>Copyright &copy; {new Date().getFullYear()} Justin Quinn</p>
           </div>
           <div className={`${styles.branding}`}>
             <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={75}
