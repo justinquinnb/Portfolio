@@ -82,12 +82,26 @@ export default function Carousel(
 
   const verticalNav: JSX.Element | null = (showDotSelectors) ? (
       <>
-        <p>Up</p>
+        <CarouselNavArrow
+            className={styles.upArrow}
+            direction="up"
+            onClick={() => {
+              setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
+              resetAutoPlayTimer();
+            }}
+        />
         <CarouselDotsSelector vertical={true} onSelect={(index) => {
           setSelectedItemNum(index);
           resetAutoPlayTimer();
         }} itemCount={items.length} selectedIndex={currentItemNum}/>
-        <p>Down</p>
+        <CarouselNavArrow
+            className={styles.downArrow}
+            direction="down"
+            onClick={() => {
+              setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
+              resetAutoPlayTimer();
+            }}
+        />
       </>
   ) : null;
   const horizontalDotSelectors: JSX.Element | null = (showDotSelectors) ?
@@ -131,9 +145,12 @@ export default function Carousel(
                   {(currentItem.display.caption) ?
                       <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
                 </div>
-                <p className={"display-text"} style={{textDecoration: "underline"}}>
+                <p className={`${styles.itemLink}`} style={{textDecoration: "underline"}}>
                   {currentItem.display.link.title}
                 </p>
+                <a className={`${styles.itemLink}`} href={currentItem.display.link.href}>
+                  {currentItem.display.link.title}
+                </a>
               </button>
           ) :
           (

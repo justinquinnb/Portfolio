@@ -90,6 +90,15 @@
             text-align: center;
             mix-blend-mode: hard-light;
         }
+
+        a.itemLink {
+            display: none;
+        }
+
+        .itemLink {
+            font-size: 1.2rem;
+            color: var(--text-on-full-bleed-color);
+        }
     }
 }
 
@@ -145,7 +154,7 @@
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
     .overlay {
         .dynamicContent .horizontalDotSelectors {
             display: none;
@@ -154,6 +163,25 @@
         .primaryDisplayBoxContent {
             .leftArrow, .rightArrow {
                 display: none;
+            }
+        }
+
+        .itemContent {
+            align-items: start;
+
+            .itemTitle, .itemLink {
+                text-align: start;
+            }
+
+            p.itemLink {
+                display: none;
+            }
+
+            a.itemLink {
+                display: block;
+
+                /*because the surrounding button tries to make it bold*/
+                font-weight: normal;
             }
         }
     }
