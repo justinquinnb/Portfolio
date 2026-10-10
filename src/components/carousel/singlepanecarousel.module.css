@@ -1,6 +1,6 @@
 .carousel {
     width: 100%;
-    height: 60vw;
+    height: min(56vh, 40vw);
     min-height: 18rem;
 
     h1, h2, p, a {
@@ -28,6 +28,7 @@
 
     object-fit: cover;
     mask-image: linear-gradient(to top, black 0, transparent 100%);
+    filter: blur(0.5)
 }
 
 .overlay {
@@ -38,10 +39,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
+    justify-content: center;
+
+    .content {
+        max-width: var(--max-content-width);
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     .staticContent {
         padding: 1.2rem 1.2rem 0 1.2rem;
+        text-wrap: balance;
     }
 
     .dynamicContent {
@@ -54,6 +66,7 @@
         .horizontalDotSelectors {
             height: min-content;
             padding: 0 1.2rem 1.2rem 1.2rem;
+            filter: drop-shadow(var(--default-box-shadow));
         }
     }
 
@@ -111,7 +124,8 @@
     padding: 0;
 
     .navArrowIcon {
-        font-size: 44px;
+        font-size: var(--min-touch-target-size);
+        filter: drop-shadow(var(--default-box-shadow));
     }
 }
 
@@ -121,12 +135,6 @@
 
 .buttonSelectors {
     height: 25%;
-}
-
-@media (min-width: 321px) {
-    .carousel {
-        height: 40vw;
-    }
 }
 
 @media (min-width: 481px) {

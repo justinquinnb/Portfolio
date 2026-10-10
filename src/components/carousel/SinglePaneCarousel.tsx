@@ -5,7 +5,6 @@ import {JSX, useCallback, useEffect, useRef, useState} from "react";
 import styles from "./singlepanecarousel.module.css";
 import CarouselDotsSelector from "@/components/carousel/CarouselDotsSelector";
 import Image from "next/image";
-import {useRouter} from "next/navigation";
 import CarouselNavArrow from "@/components/carousel/CarouselNavArrow";
 import Link from "next/link";
 import ImageItemSelector from "@/components/carousel/ImageItemSelector";
@@ -38,7 +37,6 @@ export default function SinglePaneCarousel(
       delay?: number;
       className?: string;
     }) {
-  const router = useRouter();
 
   const [currentItemNum, setSelectedItemNum] = useState(initialSelection);
   const currentItem = items[currentItemNum];
@@ -150,16 +148,18 @@ export default function SinglePaneCarousel(
           <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt}
                  className={styles.displayImage}/>
           <div className={styles.overlay}>
-            <div className={styles.staticContent}>
-              {staticContent}
-            </div>
-            <div className={styles.dynamicContent}>
-              <div className={styles.primaryDisplayBoxContent}>
-                {leftArrow}
-                {currentItemContent}
-                {rightArrow}
+            <div className={styles.content}>
+              <div className={styles.staticContent}>
+                {staticContent}
               </div>
-              {horizontalDotSelectors}
+              <div className={styles.dynamicContent}>
+                <div className={styles.primaryDisplayBoxContent}>
+                  {leftArrow}
+                  {currentItemContent}
+                  {rightArrow}
+                </div>
+                {horizontalDotSelectors}
+              </div>
             </div>
           </div>
         </div>

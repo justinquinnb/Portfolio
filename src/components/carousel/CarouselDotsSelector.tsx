@@ -26,8 +26,9 @@ export default function CarouselDotsSelector({
                                                onSelect?: (index: number) => void
                                              }) {
   const flexDirectionValue: "column" | "row" = vertical ? "column" : "row";
-  const directionStyles: CSSProperties = {flexDirection: flexDirectionValue}
-  let items: ReactElement[];
+  const flexDirectionStyle: CSSProperties = {flexDirection: flexDirectionValue};
+  const directionStyle = vertical ? styles.isVertical : styles.isHorizontal;
+  let selectorDots: ReactElement[];
 
   if (onSelect) {
     const onSelectFunctions = new Array(itemCount);
@@ -35,7 +36,7 @@ export default function CarouselDotsSelector({
       onSelectFunctions[i] = () => onSelect(i);
     }
 
-    items = onSelectFunctions.map((onSelectFunction, i) => {
+    selectorDots = onSelectFunctions.map((onSelectFunction, i) => {
       const selectionClass = i === selectedIndex ? styles.dotSelected : "";
       return (
           <button key={i} onClick={onSelectFunction} aria-label={`View item ${i + 1}`}>
@@ -48,7 +49,7 @@ export default function CarouselDotsSelector({
       )
     })
   } else {
-    items = Array.from({length: itemCount}).map((_, i) => {
+    selectorDots = Array.from({length: itemCount}).map((_, i) => {
       const selectionClass = i === selectedIndex ? styles.dotSelected : "";
       return (
           <svg key={i} className={`${styles.selectorDot} ${selectionClass}`} viewBox="0 0 100 100"
@@ -61,8 +62,8 @@ export default function CarouselDotsSelector({
   }
 
   return (
-      <div className={`${styles.carouselDotsSelector} ${className}`} style={directionStyles}>
-        {items}
+      <div className={`${styles.carouselDotsSelector} ${className} ${directionStyle}`} style={flexDirectionStyle}>
+        {selectorDots}
       </div>
   )
 }

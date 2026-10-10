@@ -8,7 +8,7 @@
   --xxl: 1201px;
 
   /* Accessibility Constraints */
-  --max-interactive-width: 64rem;
+  --max-content-width: 64rem;
   --max-reading-width: 50ch;
   --min-touch-target-size: 44px;
 
@@ -41,7 +41,7 @@
   --link-hover-color: var(--q-gray);
   --accent-text-color: var(--q-gray);
 
-  --default-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  --default-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
   --default-top-box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -226,5 +226,9 @@ button.invisible {
     font-size: 1rem;
     font-weight: 800;
     color: var(--primary-text-color)
+  }
+
+  .feature-text {
+    font-size: 3.6rem;
   }
 }

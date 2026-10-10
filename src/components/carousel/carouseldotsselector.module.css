@@ -2,7 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(0.2rem, 3cqi, 0.8rem);
+
+    button {
+        background-color: transparent;
+    }
 }
 
 .selectorDot {
@@ -20,23 +23,26 @@
     height: 0.6rem;
 }
 
+.carouselDotsSelector {
+    &.isHorizontal {
+        gap: clamp(0.2rem, 3cqi, 0.8rem);
+    }
+
+    &.isVertical {
+        gap: 0.2rem;
+        button {
+            min-height: min-content;
+            min-width: min-content;
+        }
+    }
+}
+
 @media (min-width: 769px) {
     .selectorDot {
         pointer-events: all;
 
         &:hover {
             opacity: 1;
-        }
-    }
-}
-
-@media (min-width: 1025px) {
-    .carouselDotsSelector {
-        gap: clamp(0.2rem, 3cqi, 0.2rem);
-
-        button {
-            padding: 0;
-            background-color: transparent;
         }
     }
 }

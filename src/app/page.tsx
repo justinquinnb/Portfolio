@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const logo = <Image src={darkIcon} alt={"Justin Quinn logo"}/>;
 const displayText = "I’m a product manager by trade and a creator at heart. No matter the medium, I strive to work with purpose, lifting standards, people, and what's possible every day."
-const featureItems: CarouselItem[] = [
+const featureItemsBrief: CarouselItem[] = [
   {
     display: {
       img: {
@@ -38,7 +38,7 @@ const featureItems: CarouselItem[] = [
     display: {
       img: {
         src: graphicsDisplay,
-        alt: "A grid of various brand assets"
+        alt: "A floating island composited into a pine forest with a mountain backdrop"
       },
       title: "Graphics",
       link: {
@@ -67,6 +67,57 @@ const featureItems: CarouselItem[] = [
       title: "Music",
       link: {
         href: "/my-work/music", title: "View Albums"
+      }
+    }
+  }
+]
+
+const featureItemsFull: CarouselItem[] = [
+  {
+    display: {
+      img: {
+        src: softwareDisplay,
+        alt: "A screenshot of OneFeed's code in an IDE"
+      },
+      title: "Social Feed Aggregator",
+      link: {
+        href: "/my-work/software/project/onefeed", title: "View Project"
+      }
+    }
+  },
+  {
+    display: {
+      img: {
+        src: graphicsDisplay,
+        alt: "A floating island composited into a pine forest with a mountain backdrop"
+      },
+      title: "Graphic Composites",
+      link: {
+        href: "/my-work/graphics/collection/composites", title: "View Collection"
+      }
+    }
+  },
+  {
+    display: {
+      img: {
+        src: photographyDisplay,
+        alt: "Aerial view of Manhattan in black and white"
+      },
+      title: "Iceland Photos",
+      link: {
+        href: "/my-work/photos/album/iceland", title: "View Album"
+      }
+    }
+  },
+  {
+    display: {
+      img: {
+        src: musicDisplay,
+        alt: "A screenshot of a track open in GarageBand"
+      },
+      title: "Chillhop Tracks",
+      link: {
+        href: "/my-work/music/album/fragmented", title: "View Album"
       }
     }
   }
@@ -103,7 +154,7 @@ export default function Home() {
                     <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
                     <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
                   </div>
-                } items={featureItems} initialSelection={0}/>
+                } items={featureItemsBrief} initialSelection={0}/>
             <DualPaneCarousel
                 className={styles.dualPaneCarousel}
                 staticContent={
@@ -111,7 +162,7 @@ export default function Home() {
                     <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
                     <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
                   </div>
-                } items={featureItems} initialSelection={0}/>
+                } items={featureItemsFull} initialSelection={0}/>
           </section>
         </main>
       </>

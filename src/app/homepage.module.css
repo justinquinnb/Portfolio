@@ -154,18 +154,12 @@
 
     .disciplines {
         .staticCarouselContent {
-
             display: inline-flex;
-            width: max-content;
+            width: 100%;
 
-            h2 {
-                width: auto;
-            }
 
             p {
-                display: block;
-                width: 0;
-                min-width: 100%;
+                display: inline;
             }
         }
     }

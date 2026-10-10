@@ -6,7 +6,6 @@ import styles from "./dualpanecarousel.module.css";
 import CarouselDotsSelector from "@/components/carousel/CarouselDotsSelector";
 import ImageItemSelector from "@/components/carousel/ImageItemSelector";
 import Image from "next/image";
-import {useRouter} from "next/navigation";
 import CarouselNavArrow from "@/components/carousel/CarouselNavArrow";
 import Link from "next/link";
 
@@ -26,7 +25,7 @@ import Link from "next/link";
 export default function DualPaneCarousel(
     {
       items, initialSelection = 0, staticContent, selectorsType = "dots", showNavArrows = true,
-      autoPlay = true, delay = 4000, className = ""
+      autoPlay = false, delay = 4000, className = ""
     }:
     {
       items: CarouselItem[];
@@ -38,7 +37,6 @@ export default function DualPaneCarousel(
       delay?: number;
       className?: string;
     }) {
-  const router = useRouter();
 
   const [currentItemNum, setSelectedItemNum] = useState(initialSelection);
   const currentItem = items[currentItemNum];
@@ -84,7 +82,7 @@ export default function DualPaneCarousel(
   const showDotSelectors = selectorsType === "dots" || selectorsType === "both";
 
   const verticalNav: JSX.Element | null = (showDotSelectors) ? (
-      <>
+      <div className={styles.verticalNav}>
         <CarouselNavArrow
             className={styles.upArrow}
             direction="up"
@@ -101,11 +99,11 @@ export default function DualPaneCarousel(
             className={styles.downArrow}
             direction="down"
             onClick={() => {
-              setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
+              setSelectedItemNum((prevSelection) => (prevSelection + 1) % items.length);
               resetAutoPlayTimer();
             }}
         />
-      </>
+      </div>
   ) : null;
 
   const buttonSelectors: JSX.Element | null = (selectorsType === "images" ||
@@ -139,12 +137,14 @@ export default function DualPaneCarousel(
           <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt}
                  className={styles.displayImage}/>
           <div className={styles.overlay}>
-            <div className={styles.staticContent}>
-              {staticContent}
-            </div>
-            <div className={styles.dynamicContent}>
-              {verticalNav}
-              {currentItemContent}
+            <div className={styles.content}>
+              <div className={styles.staticContent}>
+                {staticContent}
+              </div>
+              <div className={styles.dynamicContent}>
+                {verticalNav}
+                {currentItemContent}
+              </div>
             </div>
           </div>
         </div>

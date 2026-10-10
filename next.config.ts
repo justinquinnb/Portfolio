@@ -39,6 +39,11 @@ module.exports = {
         source: '/photos',
         destination: '/my-work/photos',
         permanent: true,
+      },
+      {
+        source: '/my-work/software/project/onefeed',
+        destination: 'https://github.com/justinquinnb/OneFeed',
+        permanent: true,
       }
     ]
   },
