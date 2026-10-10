@@ -2,12 +2,13 @@
 
 import {CarouselItem} from "@/types/carousel-item";
 import {JSX, useCallback, useEffect, useRef, useState} from "react";
-import styles from "./carousel.module.css";
+import styles from "./singlepanecarousel.module.css";
 import CarouselDotsSelector from "@/components/carousel/CarouselDotsSelector";
-import ImageItemSelector from "@/components/carousel/ImageItemSelector";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
 import CarouselNavArrow from "@/components/carousel/CarouselNavArrow";
+import Link from "next/link";
+import ImageItemSelector from "@/components/carousel/ImageItemSelector";
 
 
 /**
@@ -19,12 +20,13 @@ import CarouselNavArrow from "@/components/carousel/CarouselNavArrow";
  * @param showNavArrows whether to display the navigation arrows
  * @param autoPlay whether to automatically cycle through the items
  * @param delay the delay between each item change, in milliseconds
+ * @param className any classes to apply to the component
  * @constructor
  */
-export default function Carousel(
+export default function SinglePaneCarousel(
     {
       items, initialSelection = 0, staticContent, selectorsType = "dots", showNavArrows = true,
-      autoPlay = true, delay = 4000
+      autoPlay = true, delay = 4000, className = ""
     }:
     {
       items: CarouselItem[];
@@ -33,7 +35,8 @@ export default function Carousel(
       selectorsType?: "dots" | "images" | "both" | "none";
       showNavArrows?: boolean;
       autoPlay?: boolean;
-      delay?: number
+      delay?: number;
+      className?: string;
     }) {
   const router = useRouter();
 
@@ -80,30 +83,6 @@ export default function Carousel(
   // Prep the correct dot selectors (if this instance calls for their display)
   const showDotSelectors = selectorsType === "dots" || selectorsType === "both";
 
-  const verticalNav: JSX.Element | null = (showDotSelectors) ? (
-      <>
-        <CarouselNavArrow
-            className={styles.upArrow}
-            direction="up"
-            onClick={() => {
-              setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
-              resetAutoPlayTimer();
-            }}
-        />
-        <CarouselDotsSelector vertical={true} onSelect={(index) => {
-          setSelectedItemNum(index);
-          resetAutoPlayTimer();
-        }} itemCount={items.length} selectedIndex={currentItemNum}/>
-        <CarouselNavArrow
-            className={styles.downArrow}
-            direction="down"
-            onClick={() => {
-              setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
-              resetAutoPlayTimer();
-            }}
-        />
-      </>
-  ) : null;
   const horizontalDotSelectors: JSX.Element | null = (showDotSelectors) ?
       (<CarouselDotsSelector className={styles.horizontalDotSelectors} itemCount={items.length}
                              selectedIndex={currentItemNum}/>)
@@ -133,25 +112,28 @@ export default function Carousel(
 
   const currentItemContent = (
       (currentItem.display.link) ? (
-              <button onClick={() => {
-                const href = currentItem.display.link?.href;
-
-                if (href) {
-                  router.push(href);
-                }
-              }} className={`invisible ${styles.itemContent}`}>
-                <div className={styles.primaryItemContent}>
-                  <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-                  {(currentItem.display.caption) ?
-                      <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
+              <>
+                <Link href={currentItem.display.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`}>
+                  <div className={styles.primaryItemContent}>
+                    <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
+                    {(currentItem.display.caption) ?
+                        <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
+                  </div>
+                  <p className={`${styles.itemLink}`} style={{textDecoration: "underline"}}>
+                    {currentItem.display.link.title}
+                  </p>
+                </Link>
+                <div className={`${styles.itemContent} ${styles.onlyLink}`}>
+                  <div className={styles.primaryItemContent}>
+                    <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
+                    {(currentItem.display.caption) ?
+                        <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
+                  </div>
+                  <Link className={`${styles.itemLink}`} href={currentItem.display.link.href}>
+                    {currentItem.display.link.title}
+                  </Link>
                 </div>
-                <p className={`${styles.itemLink}`} style={{textDecoration: "underline"}}>
-                  {currentItem.display.link.title}
-                </p>
-                <a className={`${styles.itemLink}`} href={currentItem.display.link.href}>
-                  {currentItem.display.link.title}
-                </a>
-              </button>
+              </>
           ) :
           (
               <div className={styles.itemContent}>
@@ -163,7 +145,7 @@ export default function Carousel(
   )
 
   return (
-      <div className={styles.carousel}>
+      <div className={`${styles.carousel} ${className}`}>
         <div className={styles.displayBox}>
           <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt}
                  className={styles.displayImage}/>
@@ -173,9 +155,6 @@ export default function Carousel(
             </div>
             <div className={styles.dynamicContent}>
               <div className={styles.primaryDisplayBoxContent}>
-                <div className={styles.verticalNav}>
-                  {verticalNav}
-                </div>
                 {leftArrow}
                 {currentItemContent}
                 {rightArrow}

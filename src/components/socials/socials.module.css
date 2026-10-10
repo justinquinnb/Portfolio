@@ -4,4 +4,8 @@
     svg {
         transition: color 0.2s ease-in-out;
     }
+
+    .faIcon {
+        font-size: 1.2rem;
+    }
 }

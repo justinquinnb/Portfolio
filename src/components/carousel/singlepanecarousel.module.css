@@ -74,6 +74,10 @@
             line-height: 1;
         }
 
+        .onlyLink {
+            display: none;
+        }
+
         .itemContent {
             flex: 1;
         }
@@ -86,16 +90,15 @@
         align-items: center;
         gap: 0.4rem;
 
+        text-decoration: none;
+
         .itemTitle {
             text-align: center;
             mix-blend-mode: hard-light;
         }
 
-        a.itemLink {
-            display: none;
-        }
-
         .itemLink {
+            text-align: center;
             font-size: 1.2rem;
             color: var(--text-on-full-bleed-color);
         }
@@ -120,82 +123,20 @@
     height: 25%;
 }
 
-.carouselDotsSelector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(0.2rem, 3cqi, 0.8rem);
-}
-
-.selectorDot {
-    color: var(--text-on-full-bleed-color);
-    opacity: 0.8;
-    width: 0.5rem;
-    height: 0.5rem;
-}
-
-.verticalDotSelectors.selectorDot:hover {
-    opacity: 1;
-}
-
-.dotSelected {
-    opacity: 1;
-    width: 0.6rem;
-    height: 0.6rem;
-}
-
-.verticalNav {
-    display: none;
-}
-
 @media (min-width: 321px) {
     .carousel {
         height: 40vw;
     }
 }
 
-@media (min-width: 1025px) {
-    .overlay {
-        .dynamicContent .horizontalDotSelectors {
+@media (min-width: 481px) {
+    .overlay .primaryDisplayBoxContent {
+        .onlyLink {
+            display: flex;
+        }
+
+        .fullSurfaceClickable {
             display: none;
-        }
-
-        .primaryDisplayBoxContent {
-            .leftArrow, .rightArrow {
-                display: none;
-            }
-        }
-
-        .itemContent {
-            align-items: start;
-
-            .itemTitle, .itemLink {
-                text-align: start;
-            }
-
-            p.itemLink {
-                display: none;
-            }
-
-            a.itemLink {
-                display: block;
-
-                /*because the surrounding button tries to make it bold*/
-                font-weight: normal;
-            }
-        }
-    }
-
-    .verticalNav {
-        display: block;
-
-        .carouselDotsSelector {
-            gap: clamp(0.2rem, 3cqi, 0.2rem);
-
-            button {
-                padding: 0;
-                background-color: transparent;
-            }
         }
     }
 }

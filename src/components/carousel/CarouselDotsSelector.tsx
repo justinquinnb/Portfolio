@@ -1,4 +1,4 @@
-import styles from "./carousel.module.css";
+import styles from "./carouseldotsselector.module.css"
 import {CSSProperties, ReactElement} from "react";
 
 /**
@@ -27,18 +27,18 @@ export default function CarouselDotsSelector({
                                              }) {
   const flexDirectionValue: "column" | "row" = vertical ? "column" : "row";
   const directionStyles: CSSProperties = {flexDirection: flexDirectionValue}
-  let items: ReactElement[] = new Array(itemCount);
+  let items: ReactElement[];
 
   if (onSelect) {
-    const selectFuncs = new Array(itemCount);
+    const onSelectFunctions = new Array(itemCount);
     for (let i = 0; i < itemCount; i++) {
-      selectFuncs[i] = () => onSelect(i);
+      onSelectFunctions[i] = () => onSelect(i);
     }
 
-    items = selectFuncs.map((selectFunc, i) => {
+    items = onSelectFunctions.map((onSelectFunction, i) => {
       const selectionClass = i === selectedIndex ? styles.dotSelected : "";
       return (
-          <button key={i} onClick={selectFunc}>
+          <button key={i} onClick={onSelectFunction} aria-label={`View item ${i + 1}`}>
             <svg className={`${styles.selectorDot} ${selectionClass}`} viewBox="0 0 100 100"
                  fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">

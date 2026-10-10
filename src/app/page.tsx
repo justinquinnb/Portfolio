@@ -11,8 +11,9 @@ import graphicsDisplay from "@public/images/features/display/graphics.png";
 import photographyDisplay from "@public/images/features/display/photography.png";
 import musicDisplay from "@public/images/features/display/music.png";
 import Link from "next/link";
-import Carousel from "@/components/carousel/Carousel";
 import {CarouselItem} from "@/types/carousel-item";
+import SinglePaneCarousel from "@/components/carousel/SinglePaneCarousel";
+import DualPaneCarousel from "@/components/carousel/DualPaneCarousel";
 
 export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
@@ -95,7 +96,16 @@ export default function Home() {
             <p className={"display-text"}>{displayText}</p>
           </section>
           <section className={styles.disciplines}>
-            <Carousel
+            <SinglePaneCarousel
+                className={styles.singlePaneCarousel}
+                staticContent={
+                  <div className={styles.staticCarouselContent}>
+                    <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
+                    <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
+                  </div>
+                } items={featureItems} initialSelection={0}/>
+            <DualPaneCarousel
+                className={styles.dualPaneCarousel}
                 staticContent={
                   <div className={styles.staticCarouselContent}>
                     <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>

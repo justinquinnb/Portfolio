@@ -105,7 +105,9 @@
             transform 0.2s ease-in-out,
             visibility 0.15s ease-in-out;
 
-        li { margin-top: 0.4rem; }
+        li {
+            margin-top: 0.3rem; /* 1.2 rem display text font size + .3rem margin = 1.5rem (24px min touch target) */
+        }
         a { text-decoration: none; }
 
         &::after {
@@ -188,7 +190,6 @@
         justify-content: end;
         gap: 0.3rem;
         color: var(--large-text-color);
-        font-size: 1.3rem;
     }
 }
 

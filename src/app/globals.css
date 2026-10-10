@@ -10,6 +10,7 @@
   /* Accessibility Constraints */
   --max-interactive-width: 64rem;
   --max-reading-width: 50ch;
+  --min-touch-target-size: 44px;
 
   /* Color palette */
   --q-black: #1E1E1E;
@@ -42,27 +43,6 @@
 
   --default-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   --default-top-box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --page-background-color: var(--q-white);
-    --full-bleed-background-color: var(--q-dark-gray);
-    --primary-background-color: var(--q-white);
-    --section-background-color: var(--q-light-gray);
-    --container-on-section-color: var(--q-white);
-    --text-on-full-bleed-color: var(--q-white);
-    --secondary-text-on-full-bleed-color: var(--q-light-gray);
-    --emphasis-color: var(--q-orange);
-    --emphasis-hover-color: var(--q-light-orange);
-    --action-color: var(--q-orange);
-    --text-on-action-color: var(--q-white);
-    --primary-text-color: var(--q-black);
-    --large-text-color: var(--q-dark-gray);
-    --shadow-color: var(--q-black);
-    --link-hover-color: var(--q-gray);
-    --accent-text-color: var(--q-gray);
-  }
 }
 
 * {
@@ -130,8 +110,8 @@ button {
   border: none;
   padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 
-  min-height: 44px;
-  min-width: 44px;
+  min-height: var(--min-touch-target-size);
+  min-width: var(--min-touch-target-size);
 }
 
 a.link-button {
@@ -142,8 +122,8 @@ a.link-button {
 
   text-decoration: none;
   width: fit-content;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: var(--min-touch-target-size);
+  min-height: var(--min-touch-target-size);
   padding: 0.4rem 0.6rem 0.4rem 0.6rem;
 
   font-size: 1.2rem;
@@ -160,11 +140,13 @@ a.link-button {
 }
 
 p {
+  font-size: 1.1rem;
   font-weight: 400;
   color: var(--primary-text-color);
 }
 
 a {
+  font-size: 1.1rem;
   color: inherit;
   text-decoration: underline;
   transition: color 0.2s ease-in-out;
