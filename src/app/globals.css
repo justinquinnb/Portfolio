@@ -15,30 +15,35 @@
   /* Color palette */
   --q-black: #1E1E1E;
   --q-dark-gray: #302525;
-  --q-orange: #F1432F;
-  --q-light-orange: #FF4F38;
   --q-gray: #8B6E6E;
   --q-light-gray: #F1DAD4;
-  --q-white: #FFE4DD;
+  --q-mid-white: #FFE4DD;
+  --q-white: #FFF3F0;
+  --q-orange: #F1432F;
+  --q-light-orange: #FF4F38;
   --box-shadow: 0 4px 4px rgba(var(--shadow-color), 0.25);
 
+  /* Transition */
+  --default-transition: 0.2s ease-in-out;
+
   /* Theme */
-  --page-background-color: var(--q-white);
+  --page-background-color: var(--q-mid-white);
   --full-bleed-background-color: var(--q-dark-gray);
-  --primary-background-color: var(--q-white);
+  --primary-background-color: var(--q-mid-white);
   --section-background-color: var(--q-light-gray);
-  --container-on-section-color: var(--q-white);
-  --text-on-full-bleed-color: var(--q-white);
+  --container-on-section-color: var(--q-mid-white);
+  --text-on-full-bleed-color: var(--q-mid-white);
   --secondary-text-on-full-bleed-color: var(--q-light-gray);
   --emphasis-color: var(--q-orange);
   --emphasis-hover-color: var(--q-light-orange);
   --action-color: var(--q-orange);
-  --text-on-action-color: var(--q-white);
+  --text-on-action-color: var(--q-mid-white);
   --primary-text-color: var(--q-black);
   --large-text-color: var(--q-dark-gray);
   --brand-text-color: var(--q-dark-gray);
   --shadow-color: var(--q-black);
-  --link-hover-color: var(--q-gray);
+  --light-link-hover-color: var(--q-white);
+  --dark-link-hover-color: var(--q-gray);
   --accent-text-color: var(--q-gray);
 
   --default-box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
@@ -132,10 +137,11 @@ a.link-button {
   background-color: var(--action-color);
   border: none;
 
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color var(--default-transition);
 
   &:hover {
     background-color: var(--emphasis-hover-color);
+    color: var(--text-on-action-color);
   }
 }
 
@@ -149,10 +155,10 @@ a {
   font-size: 1.1rem;
   color: inherit;
   text-decoration: underline;
-  transition: color 0.2s ease-in-out;
+  transition: color var(--default-transition);
 
-  :hover {
-    color: var(--link-hover-color);
+  &:hover {
+    color: var(--dark-link-hover-color);
   }
 }
 

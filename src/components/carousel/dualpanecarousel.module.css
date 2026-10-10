@@ -96,6 +96,10 @@
                 font-size: 1.2rem;
                 color: var(--text-on-full-bleed-color);
                 text-align: start;
+
+                &:hover {
+                    color: var(--light-link-hover-color);
+                }
             }
         }
     }

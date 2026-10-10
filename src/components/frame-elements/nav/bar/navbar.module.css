@@ -14,9 +14,9 @@
     box-shadow: var(--default-box-shadow);
 
     transition:
-        background-color 0.2s ease-in-out,
-        box-shadow 0.2s ease-in-out,
-        --tli-color 0.2s ease-in-out;
+        background-color var(--default-transition),
+        box-shadow var(--default-transition),
+        --tli-color var(--default-transition);
 
     /* Scrolled State */
     &.scrolledToTop:not(:hover) {
@@ -53,7 +53,7 @@
         .pageGroupParent {
             color: var(--tli-color);
             text-decoration: none;
-            transition: color 0.2s ease-in-out;
+            transition: color var(--default-transition);
             white-space: nowrap;
         }
 
@@ -62,7 +62,7 @@
         }
 
         a:hover {
-            color: var(--link-hover-color);
+            color: var(--dark-link-hover-color);
         }
 
         .selected,
@@ -100,9 +100,9 @@
         padding: 0.2rem 0.8rem 0.8rem;
         list-style: none;
         transition:
-            background-color 0.2s ease-in-out,
-            opacity 0.2s ease-in-out,
-            transform 0.2s ease-in-out,
+            background-color var(--default-transition),
+            opacity var(--default-transition),
+            transform var(--default-transition),
             visibility 0.15s ease-in-out;
 
         li {
@@ -125,7 +125,7 @@
 
 .socials {
     display: none;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity var(--default-transition);
 }
 
 @media (min-width: 321px) {
@@ -140,7 +140,7 @@
     .wordmark {
         display: flex;
         align-items: center;
-        transition: opacity 0.2s ease-in-out;
+        transition: opacity var(--default-transition);
 
         img {
             padding: 0.2rem 0;

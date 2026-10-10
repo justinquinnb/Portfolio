@@ -2,7 +2,7 @@
     list-style: none;
 
     svg {
-        transition: color 0.2s ease-in-out;
+        transition: color var(--default-transition);
     }
 
     .faIcon {

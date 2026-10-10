@@ -14,6 +14,7 @@ import Link from "next/link";
 import {CarouselItem} from "@/types/carousel-item";
 import SinglePaneCarousel from "@/components/carousel/SinglePaneCarousel";
 import DualPaneCarousel from "@/components/carousel/DualPaneCarousel";
+import CollapsibleDualPaneCarousel from "@/components/carousel/CollapsibleDualPaneCarousel";
 
 export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
@@ -147,22 +148,12 @@ export default function Home() {
             <p className={"display-text"}>{displayText}</p>
           </section>
           <section className={styles.disciplines}>
-            <SinglePaneCarousel
-                className={styles.singlePaneCarousel}
-                staticContent={
-                  <div className={styles.staticCarouselContent}>
-                    <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
-                    <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
-                  </div>
-                } items={featureItemsBrief} initialSelection={0}/>
-            <DualPaneCarousel
-                className={styles.dualPaneCarousel}
-                staticContent={
-                  <div className={styles.staticCarouselContent}>
-                    <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
-                    <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
-                  </div>
-                } items={featureItemsFull} initialSelection={0}/>
+            <CollapsibleDualPaneCarousel items={featureItemsBrief} expandedItems={featureItemsFull} initialSelection={0} staticContent={
+              <div className={styles.staticCarouselContent}>
+                <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
+                <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
+              </div>
+            } />
           </section>
         </main>
       </>

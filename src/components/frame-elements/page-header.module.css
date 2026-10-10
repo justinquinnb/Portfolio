@@ -171,7 +171,7 @@
         img {
             height: 100%;
             width: 100%;
-            max-width: var(--max-interactive-width);
+            max-width: var(--max-content-width);
 
             mask-image: radial-gradient(circle at 55% 50%, white 0%, transparent 55%);
         }
@@ -183,7 +183,7 @@
 
     .headerContent {
         margin-top: calc(5rem - 0.35cap);
-        max-width: var(--max-interactive-width);
+        max-width: var(--max-content-width);
         justify-self: center;
 
         .extras {
@@ -197,7 +197,7 @@
 
     .subtitle {
         width: 100%;
-        max-width: var(--max-interactive-width);
+        max-width: var(--max-content-width);
         justify-self: center;
 
         p {

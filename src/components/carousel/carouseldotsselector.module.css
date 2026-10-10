@@ -15,6 +15,8 @@
     height: 0.5rem;
 
     pointer-events: none;
+
+    transition: width var(--default-transition), height var(--default-transition);
 }
 
 .dotSelected {
@@ -40,9 +42,11 @@
 @media (min-width: 769px) {
     .selectorDot {
         pointer-events: all;
+        transition: color var(--default-transition), opacity var(--default-transition);
 
         &:hover {
             opacity: 1;
+            color: var(--light-link-hover-color);
         }
     }
 }

@@ -29,7 +29,7 @@
                 margin: 14px 0;
 
                 a:hover {
-                    color: var(--link-hover-color);
+                    color: var(--dark-link-hover-color);
                 }
             }
         }

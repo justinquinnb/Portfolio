@@ -1,4 +1,4 @@
-import styles from "./singlepanecarousel.module.css";
+import styles from "./carouselnavarrow.module.css";
 import React from "react";
 
 /**

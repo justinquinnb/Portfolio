@@ -164,15 +164,3 @@
         }
     }
 }
-
-@media (min-width: 769px) {
-    .disciplines {
-        .singlePaneCarousel {
-            display: none;
-        }
-
-        .dualPaneCarousel {
-            display: block;
-        }
-    }
-}
