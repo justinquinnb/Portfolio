@@ -17,7 +17,7 @@ import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-
  * Radial navigation menu for small (mobile) screens.
  * @constructor
  */
-export default function RadialNav({ className }: { className?: string }) {
+export default function RadialNav({className}: { className?: string }) {
   // Ensure the correct group is displayed on menu open
   const currentPath = usePathname();
   const [menuGroup, setMenuGroup] = useState(() => determineMenuGroup(currentPath));
@@ -44,7 +44,7 @@ export default function RadialNav({ className }: { className?: string }) {
   // Hydrate nav items (position and actions)
   const router = useRouter();
   const [menuGroups] = useState(
-      () => buildMenuGroups(setMenuGroup));
+      () => buildMenuGroups(setMenuGroup, setIsOpen));
 
   return (
       <nav className={`${styles.radialNav} ${className}`}>
@@ -54,7 +54,8 @@ export default function RadialNav({ className }: { className?: string }) {
             aria-label={"Show Navigation Menu"}
         ><span className={`material-symbols-sharp ${styles.menuIcon}`}>menu</span></button>
         <div className={`${styles.menu} ${isOpen ? styles.isOpen : ''}`} ref={menuRef}>
-          <div className={`${styles.menuGroup} ${styles.main} ${menuGroup === "main" ? styles.isSelected : ""}`}>
+          <div
+              className={`${styles.menuGroup} ${styles.main} ${menuGroup === "main" ? styles.isSelected : ""}`}>
             {menuGroups.main.map((item: PositionedRadialNavItem) => {
               const selected = isSelected(item, currentPath) ? styles.selected : "";
               return (
@@ -66,7 +67,8 @@ export default function RadialNav({ className }: { className?: string }) {
               )
             })}
           </div>
-          <div className={`${styles.menuGroup} ${styles.about} ${menuGroup === "about" ? styles.isSelected : ""}`}>
+          <div
+              className={`${styles.menuGroup} ${styles.about} ${menuGroup === "about" ? styles.isSelected : ""}`}>
             {menuGroups.about.map((item: PositionedRadialNavItem) => {
               const selected = isSelected(item, currentPath) ? styles.selected : "";
               return (
@@ -78,7 +80,8 @@ export default function RadialNav({ className }: { className?: string }) {
               )
             })}
           </div>
-          <div className={`${styles.menuGroup} ${styles.myWork} ${menuGroup === "work" ? styles.isSelected : ""}`}>
+          <div
+              className={`${styles.menuGroup} ${styles.myWork} ${menuGroup === "work" ? styles.isSelected : ""}`}>
             {menuGroups.work.map((item: PositionedRadialNavItem) => {
               const selected = isSelected(item, currentPath) ? styles.selected : "";
               return (
@@ -97,24 +100,23 @@ export default function RadialNav({ className }: { className?: string }) {
 
 function RadialNavItem(
     {navItem, currentPath, router, menuToggler, groupChanger, className}:
-    {navItem: PositionedRadialNavItem; currentPath: string, router: AppRouterInstance,
+    {
+      navItem: PositionedRadialNavItem; currentPath: string, router: AppRouterInstance,
       menuToggler: (show: boolean) => void; groupChanger: (group: string) => void;
-      className?: string; inlineStyles?: CSSProperties})
-{
+      className?: string; inlineStyles?: CSSProperties
+    }) {
   const inlineStyles = {
     left: navItem.x,
     bottom: navItem.y
   }
 
   const handleItemClick = () => {
-    // Handle the group switching that'd already be defined
-    if ("group" in navItem.target) {
+    if (navItem.target === "none") {
+      navItem.onClick?.();
+    } else if ("group" in navItem.target) { // Handle the group switching that'd already be defined
       const group = navItem.target.group;
       groupChanger(group);
-    }
-
-    // Handle navigation
-    if ("path" in navItem.target) {
+    } else if ("path" in navItem.target) { // Handle navigation
       const targetPath = navItem.target.path;
 
       if (targetPath !== currentPath) {
@@ -140,10 +142,14 @@ function RadialNavItem(
  * this file.
  *
  * @param groupChanger the groupChanger method (used to generate item actions)
+ * @param menuToggler the menuToggler method (used to close the menu)
  */
-function buildMenuGroups(groupChanger: (group: string) => void):
-    {main: PositionedRadialNavItem[], about: PositionedRadialNavItem[], work: PositionedRadialNavItem[]}
-{
+function buildMenuGroups(groupChanger: (group: string) => void, menuToggler: (show: boolean) => void,):
+    {
+      main: PositionedRadialNavItem[],
+      about: PositionedRadialNavItem[],
+      work: PositionedRadialNavItem[]
+    } {
   const mainGroupTemplate: RadialNavItemData[] = radialNavItemsJson.main;
   const aboutGroupTemplate: RadialNavItemData[] = radialNavItemsJson.about;
   const workGroupTemplate: RadialNavItemData[] = radialNavItemsJson.work;
@@ -157,7 +163,13 @@ function buildMenuGroups(groupChanger: (group: string) => void):
   );
 
   return {
-    main: buildRadialNavItemGroup(mainGroupTemplate, [], groupChanger),
+    main: buildRadialNavItemGroup(mainGroupTemplate, [{
+      label: "Close",
+      iconName: "close",
+      target: "none",
+      onClick: () => menuToggler(false),
+      actionDesc: "View my work"
+    }], groupChanger),
     about: buildRadialNavItemGroup(aboutGroupTemplate, universalItems, groupChanger),
     work: buildRadialNavItemGroup(workGroupTemplate, universalItems, groupChanger)
   }
@@ -178,7 +190,7 @@ function buildRadialNavItemGroup(
   // Assign each item the correct onClick action
   let hydratedItems: HydratedRadialNavItem[] = [];
   for (const item of rawItems) {
-    if ("group" in item.target) {
+    if (item.target != "none" && "group" in item.target) {
       const group = item.target.group;
       hydratedItems.push({
         ...item,
@@ -231,8 +243,10 @@ function buildRadialNavItemGroup(
  */
 function findItemPlacement(
     index: number, totalItems: number, distance: number, maxSpan: number,
-    displaceFrom: {x: string, y: string}, centerItemPos: {x: string, y: string}): {x: string, y: string}
-{
+    displaceFrom: { x: string, y: string }, centerItemPos: { x: string, y: string }): {
+  x: string,
+  y: string
+} {
   // Place the first element of a 4-element+ group in the very center
   if (index == 0 && (totalItems > 3 || totalItems == 1)) {
     return centerItemPos;
@@ -291,7 +305,9 @@ function determineMenuGroup(currentPath: string): string {
  * @param currentPath the client's current path
  */
 function isSelected(item: RadialNavItemData, currentPath: string): boolean {
-  if ("path" in item.target) {
+  if (item.target === "none") {
+    return false;
+  } else if ("path" in item.target) {
     const path = item.target.path;
     return path === currentPath;
   } else if ("group" in item.target) {

@@ -16,7 +16,7 @@ export default function Socials({className}: {className?: string}) {
         {socials.map((social) => (
             <li key={social.label}>
               <Link href={social.url} target={"_blank"} rel={"noopener noreferrer"} aria-label={social.label}>
-                <FontAwesomeIcon icon={social.icon} />
+                <FontAwesomeIcon icon={social.icon} className={styles.faIcon} />
               </Link>
             </li>
         ))}

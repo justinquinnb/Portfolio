@@ -3,7 +3,7 @@
 import Link from "next/link";
 import pagesJson from "@/data/navbar-pages.json";
 import Image from "next/image";
-import Socials from "@/components/frame-elements/nav/Socials";
+import Socials from "../../../socials/Socials";
 import {usePathname} from "next/navigation";
 import {NavbarGroup, NavbarPage} from "@/types/nav-page";
 import styles from "./navbar.module.css";
@@ -15,7 +15,7 @@ import React, {useEffect} from "react";
  */
 export default function Navbar({ className}: { className?: string }) {
   const topLevelElements: (NavbarPage | NavbarGroup)[] = pagesJson;
-  const [isAtTop, setIsAtTop] = React.useState(false);
+  const [isAtTop, setIsAtTop] = React.useState(true);
 
   const handleScroll = () => {
     setIsAtTop(window.scrollY == 0);

@@ -12,7 +12,7 @@ export default function Resume() {
       <>
         <PageHeader img={heroImage}
                     imgAlt={"Justin and team leading a DevDogs club meeting in a full auditorium"}
-                    backgroundText={"Developer, Innovator, Leader,"} foregroundText={"Resume"}
+                    backgroundText={"Product Manager, Developer, Leader"} foregroundText={"Resume"}
         />
         <main>
           <p style={{ height: '1000px'}}>Filler text</p>

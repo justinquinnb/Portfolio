@@ -1,7 +1,7 @@
 .footer {
     background: var(--section-background-color);
     width: 100%;
-    padding: 1.2rem 1.2rem calc(1.2rem + 5.25rem) 1.2rem; /* To account for radial nav menu button */
+    padding: 1.2rem 1.2rem 6.45rem 1.2rem; /* To account for radial nav menu button */
     display: flex;
     justify-content: center;
 
@@ -24,6 +24,14 @@
         ul {
             list-style: none;
             color: var(--primary-text-color);
+
+            li {
+                margin: 14px 0;
+
+                a:hover {
+                    color: var(--dark-link-hover-color);
+                }
+            }
         }
     }
 
@@ -58,6 +66,10 @@
             justify-self: start;
             text-align: start;
         }
+
+        .nav ul li {
+            margin: 10px 0;
+        }
     }
 
     .branding {
@@ -86,6 +98,6 @@
 
 @media (min-width: 1025px) {
     .footer .centerIsland {
-        max-width: calc(var(--max-interactive-width) * 0.75);
+        max-width: calc(var(--max-content-width) * 0.75);
     }
 }

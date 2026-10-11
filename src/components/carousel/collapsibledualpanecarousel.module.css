@@ -1,0 +1,13 @@
+.dualPaneCarousel {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .singlePaneCarousel {
+        display: none;
+    }
+
+    .dualPaneCarousel {
+        display: block;
+    }
+}

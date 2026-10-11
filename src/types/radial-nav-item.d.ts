@@ -4,7 +4,7 @@
 export interface RadialNavItemData {
   label: string;
   iconName: string;
-  target: {path: string} | {group: string};
+  target: {path: string} | {group: string} | "none";
   actionDesc: string;
 }
 

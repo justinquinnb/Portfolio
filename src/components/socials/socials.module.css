@@ -1,0 +1,11 @@
+.socials {
+    list-style: none;
+
+    svg {
+        transition: color var(--default-transition);
+    }
+
+    .faIcon {
+        font-size: 1.2rem;
+    }
+}

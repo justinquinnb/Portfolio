@@ -1,0 +1,55 @@
+.carouselDotsSelector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        background-color: transparent;
+        pointer-events: none;
+    }
+}
+
+.selectorDot {
+    color: var(--text-on-full-bleed-color);
+    opacity: 0.8;
+    width: 0.5rem;
+    height: 0.5rem;
+
+    transition:
+        color var(--default-transition), opacity var(--default-transition),
+        width var(--default-transition), height var(--default-transition);
+}
+
+.dotSelected {
+    opacity: 1;
+    width: 0.6rem;
+    height: 0.6rem;
+}
+
+.carouselDotsSelector {
+    button {
+        min-height: min-content;
+        min-width: min-content;
+    }
+
+    &.isHorizontal {
+        gap: clamp(0.2rem, 3cqi, 0.8rem);
+    }
+
+    &.isVertical {
+        gap: 0.2rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .carouselDotsSelector button {
+        pointer-events: all;
+    }
+
+    .selectorDot {
+        &:hover {
+            opacity: 1;
+            color: var(--light-link-hover-color);
+        }
+    }
+}

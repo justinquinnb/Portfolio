@@ -1,0 +1,19 @@
+.navArrowButton {
+    background-color: transparent;
+    height: 100%;
+    padding: 0;
+
+    .navArrowIcon {
+        font-size: var(--min-touch-target-size);
+        filter: drop-shadow(var(--default-box-shadow));
+        transition: color var(--default-transition);
+
+        &:hover {
+            color: var(--light-link-hover-color);
+        }
+    }
+}
+
+:global([dir="rtl"]) .navArrowIcon {
+    transform: scaleX(-1);
+}
