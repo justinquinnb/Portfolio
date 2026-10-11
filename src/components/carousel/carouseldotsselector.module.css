@@ -15,7 +15,9 @@
     width: 0.5rem;
     height: 0.5rem;
 
-    transition: width var(--default-transition), height var(--default-transition);
+    transition:
+        color var(--default-transition), opacity var(--default-transition),
+        width var(--default-transition), height var(--default-transition);
 }
 
 .dotSelected {
@@ -45,8 +47,6 @@
     }
 
     .selectorDot {
-        transition: color var(--default-transition), opacity var(--default-transition);
-
         &:hover {
             opacity: 1;
             color: var(--light-link-hover-color);
