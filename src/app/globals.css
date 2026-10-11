@@ -152,7 +152,6 @@ p {
 }
 
 a {
-  font-size: 1.1rem;
   color: inherit;
   text-decoration: underline;
   transition: color var(--default-transition);
