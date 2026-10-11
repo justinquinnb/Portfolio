@@ -75,38 +75,6 @@
                 align-items: start;
             }
         }
-
-        .itemContent {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: start;
-            gap: 0.4rem;
-
-            .itemTitle {
-                mix-blend-mode: hard-light;
-                text-align: start;
-            }
-
-            .itemLink {
-                font-size: 1.2rem;
-                color: var(--text-on-full-bleed-color);
-                text-align: start;
-
-                &:hover {
-                    color: var(--light-link-hover-color);
-                }
-            }
-        }
-    }
-
-    .primaryDisplayBoxContent {
-        display: flex;
-        flex: 1;
-
-        button {
-            line-height: 1;
-        }
     }
 }
 

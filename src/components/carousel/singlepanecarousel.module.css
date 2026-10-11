@@ -82,56 +82,11 @@
         button {
             line-height: 1;
         }
-
-        .onlyLink {
-            display: none;
-        }
-
-        .itemContent {
-            flex: 1;
-        }
-    }
-
-    .itemContent {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 0.4rem;
-
-        text-decoration: none;
-
-        .itemTitle {
-            text-align: center;
-            mix-blend-mode: hard-light;
-        }
-
-        .itemLink {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-on-full-bleed-color);
-
-            &:hover {
-                color: var(--light-link-hover-color);
-            }
-        }
     }
 }
 
 .buttonSelectors {
     height: 25%;
-}
-
-@media (min-width: 481px) {
-    .overlay .primaryDisplayBoxContent {
-        .onlyLink {
-            display: flex;
-        }
-
-        .fullSurfaceClickable {
-            display: none;
-        }
-    }
 }
 
 .imageTrack {

@@ -98,13 +98,6 @@ export default function SinglePaneCarousel(
     return clearAutoPlayTimer;
   }, [startAutoPlayTimer, clearAutoPlayTimer]);
 
-  // TODO add "expanded static content" field that only renders when the component is large
-  // this would contain the static caption text, for example, from the Figma
-
-  // TODO finish dot selectors and carousel styling for vertical (large), including max width constraints
-  // TODO add item change transitions
-  // TODO change item text and links to generic categories on small screens (or just conditionally render different component instances)
-
   const horizontalDotSelectors: JSX.Element | null = (showSelectors) ?
       (<CarouselDotsSelector className={styles.horizontalDotSelectors} itemCount={items.length}
                              selectedIndex={currentItemNum}
@@ -133,48 +126,14 @@ export default function SinglePaneCarousel(
           }}
       /> : null;
 
-  const currentItemContent = (
-      (currentItem.display.link) ? (
-              <>
-                <Link href={currentItem.display.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`}>
-                  <div className={styles.primaryItemContent}>
-                    <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-                    {(currentItem.display.caption) ?
-                        <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
-                  </div>
-                  <p className={`${styles.itemLink}`} style={{textDecoration: "underline"}}>
-                    {currentItem.display.link.title}
-                  </p>
-                </Link>
-                <div className={`${styles.itemContent} ${styles.onlyLink}`}>
-                  <div className={styles.primaryItemContent}>
-                    <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-                    {(currentItem.display.caption) ?
-                        <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
-                  </div>
-                  <Link className={`${styles.itemLink}`} href={currentItem.display.link.href}>
-                    {currentItem.display.link.title}
-                  </Link>
-                </div>
-              </>
-          ) :
-          (
-              <div className={styles.itemContent}>
-                <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-                {(currentItem.display.caption) ?
-                    <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
-              </div>
-          )
-  )
-
   return (
       <div className={`${styles.carousel} ${className}`}>
         <div className={styles.imageTrack}>
           {previousItem ? (
               <Image
                   key={`previous-${previousItemNum}`}
-                  src={previousItem.display.img.src}
-                  alt={previousItem.display.img.alt}
+                  src={previousItem.backgroundImg.src}
+                  alt={previousItem.backgroundImg.alt}
                   className={`${styles.displayImage} ${
                       slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
                   }`}
@@ -182,8 +141,8 @@ export default function SinglePaneCarousel(
           ) : null}
           <Image
               key={`current-${currentItemNum}`}
-              src={currentItem.display.img.src}
-              alt={currentItem.display.img.alt}
+              src={currentItem.backgroundImg.src}
+              alt={currentItem.backgroundImg.alt}
               className={`${styles.displayImage} ${
                   previousItem
                       ? slideDirection === "forward"
@@ -202,7 +161,7 @@ export default function SinglePaneCarousel(
             <div className={styles.dynamicContent}>
               <div className={styles.primaryDisplayBoxContent}>
                 {leftArrow}
-                {currentItemContent}
+                {currentItem.overlayContent}
                 {rightArrow}
               </div>
               {horizontalDotSelectors}

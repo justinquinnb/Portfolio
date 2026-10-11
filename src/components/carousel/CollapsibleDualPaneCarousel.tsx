@@ -11,10 +11,10 @@ import {CarouselItem} from "@/types/carousel-item";
  * single-pane items
  * @param initialSelection the index of the item to initially display
  * @param staticContent the static content to display adjacent to the cycling items
- * @param selectorsType the type of item selectors to display, if any
+ * @param showSelectors whether to display the dot selectors
  * @param showNavArrows whether to display the navigation arrows
  * @param autoPlay whether to automatically cycle through the items
- * @param delay the delay between each item change, in milliseconds
+ * @param delay the delay between each item change, in milliseconds (automatically lengthened when in dual-pane mode)
  * @param className any classes to apply to the component
  * @constructor
  */
@@ -24,7 +24,7 @@ export default function CollapsibleDualPaneCarousel(
       expandedItems = items,
       initialSelection = 0,
       staticContent,
-      selectorsType = "dots",
+      showSelectors = true,
       showNavArrows = true,
       autoPlay = true,
       delay = 4000,
@@ -35,7 +35,7 @@ export default function CollapsibleDualPaneCarousel(
       expandedItems?: CarouselItem[];
       initialSelection?: number;
       staticContent?: JSX.Element;
-      selectorsType?: "dots" | "images" | "both" | "none";
+      showSelectors?: boolean;
       showNavArrows?: boolean;
       autoPlay?: boolean;
       delay?: number;
@@ -48,14 +48,14 @@ export default function CollapsibleDualPaneCarousel(
       <>
         <SinglePaneCarousel
             className={`${styles.singlePaneCarousel} ${className}`} items={items} initialSelection={initialSelection}
-            staticContent={staticContent} selectorsType={selectorsType}
+            staticContent={staticContent} showSelectors={showSelectors}
             showNavArrows={showNavArrows}
             autoPlay={autoPlay} delay={delay}
         />
         <DualPaneCarousel
             className={`${styles.dualPaneCarousel} ${className}`} items={expandedItems}
             initialSelection={initialSelection}
-            staticContent={staticContent} selectorsType={selectorsType}
+            staticContent={staticContent} showSelectors={showSelectors}
             showNavArrows={showNavArrows}
             autoPlay={autoPlay} delay={delay * 1.2} // Because it's wider and "heavier"
         />

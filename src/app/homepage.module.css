@@ -65,8 +65,38 @@
 }
 
 .disciplines {
-    .dualPaneCarousel {
+    .itemContent {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.4rem;
+
+        text-decoration: none;
+
+        .itemTitle {
+            text-align: center;
+            mix-blend-mode: hard-light;
+        }
+
+        .itemLink {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-on-full-bleed-color);
+
+            &:hover {
+                color: var(--light-link-hover-color);
+            }
+        }
+
+        flex: 1;
+    }
+
+    .itemContent.onlyLink {
         display: none;
+    }
+
+    .itemContent.fullSurfaceClickable {
+        display: flex;
     }
 
     .staticCarouselContent {
@@ -166,6 +196,14 @@
     }
 
     .disciplines {
+        .itemContent.onlyLink {
+            display: flex;
+        }
+
+        .itemContent.fullSurfaceClickable {
+            display: none;
+        }
+
         .staticCarouselContent {
             display: inline-flex;
             width: 100%;
@@ -173,6 +211,33 @@
 
             p {
                 display: inline;
+            }
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .disciplines {
+        .itemContent.onlyLink {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: start;
+            gap: 0.4rem;
+
+            .itemTitle {
+                mix-blend-mode: hard-light;
+                text-align: start;
+            }
+
+            .itemLink {
+                font-size: 1.2rem;
+                color: var(--text-on-full-bleed-color);
+                text-align: start;
+
+                &:hover {
+                    color: var(--light-link-hover-color);
+                }
             }
         }
     }

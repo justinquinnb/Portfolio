@@ -100,14 +100,6 @@ export default function DualPaneCarousel(
     return clearAutoPlayTimer;
   }, [startAutoPlayTimer, clearAutoPlayTimer]);
 
-  // TODO add "expanded static content" field that only renders when the component is large
-  // this would contain the static caption text, for example, from the Figma
-
-  // TODO finish dot selectors and carousel styling for vertical (large), including max width constraints
-  // TODO add item change transitions
-  // TODO change item text and links to generic categories on small screens (or just conditionally render different component instances)
-
-
   const verticalNav: JSX.Element | null = (showNavArrows) ? (
       <div className={styles.verticalNav}>
         <CarouselNavArrow
@@ -136,36 +128,14 @@ export default function DualPaneCarousel(
       </div>
   ) : null;
 
-  const currentItemContent = (
-      (currentItem.display.link) ? (
-              <div className={styles.itemContent}>
-                <div className={styles.primaryItemContent}>
-                  <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-                  {(currentItem.display.caption) ?
-                      <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
-                </div>
-                <Link className={`${styles.itemLink}`} href={currentItem.display.link.href}>
-                  {currentItem.display.link.title}
-                </Link>
-              </div>
-          ) :
-          (
-              <div className={styles.itemContent}>
-                <p className={`feature-text ${styles.itemTitle}`}>{currentItem.display.title}</p>
-                {(currentItem.display.caption) ?
-                    <p className={styles.itemCaption}>{currentItem.display.caption}</p> : null}
-              </div>
-          )
-  )
-
   return (
       <div className={`${styles.carousel} ${className}`}>
         <div className={styles.imageTrack}>
           {previousItem ? (
               <Image
                   key={`previous-${previousItemNum}`}
-                  src={previousItem.display.img.src}
-                  alt={previousItem.display.img.alt}
+                  src={previousItem.backgroundImg.src}
+                  alt={previousItem.backgroundImg.alt}
                   className={`${styles.displayImage} ${
                       slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
                   }`}
@@ -173,8 +143,8 @@ export default function DualPaneCarousel(
           ) : null}
           <Image
               key={`current-${currentItemNum}`}
-              src={currentItem.display.img.src}
-              alt={currentItem.display.img.alt}
+              src={currentItem.backgroundImg.src}
+              alt={currentItem.backgroundImg.alt}
               className={`${styles.displayImage} ${
                   previousItem
                       ? slideDirection === "forward"
@@ -192,7 +162,7 @@ export default function DualPaneCarousel(
             </div>
             <div className={styles.dynamicContent}>
               {verticalNav}
-              {currentItemContent}
+              {currentItem.overlayContent}
             </div>
           </div>
         </div>
