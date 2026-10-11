@@ -39,8 +39,34 @@ export default function DualPaneCarousel(
     }) {
 
   const [currentItemNum, setSelectedItemNum] = useState(initialSelection);
+  const [previousItemNum, setPreviousItemNum] = useState<number | null>(null);
+  const [slideDirection, setSlideDirection] = useState<"forward" | "backward">("forward");
   const currentItem = items[currentItemNum];
+  const previousItem = previousItemNum === null ? null : items[previousItemNum];
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const selectItem = useCallback((nextItemNum: number, direction: "forward" | "backward") => {
+    if (nextItemNum === currentItemNum) {
+      return;
+    }
+
+    setPreviousItemNum(currentItemNum);
+    setSlideDirection(direction);
+    setSelectedItemNum(nextItemNum);
+  }, [currentItemNum]);
+
+  const selectNextItem = useCallback(() => {
+    selectItem((currentItemNum + 1) % items.length, "forward");
+  }, [currentItemNum, items.length, selectItem]);
+
+  const selectPreviousItem = useCallback(() => {
+    selectItem((currentItemNum - 1 + items.length) % items.length, "backward");
+  }, [currentItemNum, items.length, selectItem]);
+
+  const selectItemByIndex = useCallback((index: number) => {
+    selectItem(index, index > currentItemNum ? "forward" : "backward");
+  }, [currentItemNum, selectItem]);
+
 
   const clearAutoPlayTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -57,7 +83,11 @@ export default function DualPaneCarousel(
     }
 
     intervalRef.current = setInterval(() => {
-      setSelectedItemNum((prevSelection) => (prevSelection + 1) % items.length);
+      setSelectedItemNum((prevSelection) => {
+        setPreviousItemNum(prevSelection);
+        setSlideDirection("forward");
+        return (prevSelection + 1) % items.length;
+      });
     }, delay);
   }, [autoPlay, clearAutoPlayTimer, delay, items.length]);
 
@@ -87,19 +117,19 @@ export default function DualPaneCarousel(
             className={styles.upArrow}
             direction="up"
             onClick={() => {
-              setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
+              selectPreviousItem();
               resetAutoPlayTimer();
             }}
         />
         <CarouselDotsSelector vertical={true} onSelect={(index) => {
-          setSelectedItemNum(index);
+          selectItemByIndex(index);
           resetAutoPlayTimer();
         }} itemCount={items.length} selectedIndex={currentItemNum}/>
         <CarouselNavArrow
             className={styles.downArrow}
             direction="down"
             onClick={() => {
-              setSelectedItemNum((prevSelection) => (prevSelection + 1) % items.length);
+              selectNextItem();
               resetAutoPlayTimer();
             }}
         />
@@ -134,8 +164,31 @@ export default function DualPaneCarousel(
   return (
       <div className={`${styles.carousel} ${className}`}>
         <div className={styles.displayBox}>
-          <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt}
-                 className={styles.displayImage}/>
+          <div className={styles.imageTrack}>
+            {previousItem ? (
+                <Image
+                    key={`previous-${previousItemNum}`}
+                    src={previousItem.display.img.src}
+                    alt={previousItem.display.img.alt}
+                    className={`${styles.displayImage} ${
+                        slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
+                    }`}
+                />
+            ) : null}
+            <Image
+                key={`current-${currentItemNum}`}
+                src={currentItem.display.img.src}
+                alt={currentItem.display.img.alt}
+                className={`${styles.displayImage} ${
+                    previousItem
+                        ? slideDirection === "forward"
+                            ? styles.slideInForward
+                            : styles.slideInBackward
+                        : ""
+                }`}
+                onAnimationEnd={() => setPreviousItemNum(null)}
+            />
+          </div>
           <div className={styles.overlay}>
             <div className={styles.content}>
               <div className={styles.staticContent}>

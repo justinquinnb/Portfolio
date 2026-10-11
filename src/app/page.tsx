@@ -104,7 +104,7 @@ const featureItemsFull: CarouselItem[] = [
         src: photographyDisplay,
         alt: "Aerial view of Manhattan in black and white"
       },
-      title: "Iceland Photos",
+      title: "NYC Photos",
       link: {
         href: "/my-work/photos/album/iceland", title: "View Album"
       }

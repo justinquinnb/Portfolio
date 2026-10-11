@@ -5,6 +5,7 @@
 
     button {
         background-color: transparent;
+        pointer-events: none;
     }
 }
 
@@ -13,8 +14,6 @@
     opacity: 0.8;
     width: 0.5rem;
     height: 0.5rem;
-
-    pointer-events: none;
 
     transition: width var(--default-transition), height var(--default-transition);
 }
@@ -26,22 +25,26 @@
 }
 
 .carouselDotsSelector {
+    button {
+        min-height: min-content;
+        min-width: min-content;
+    }
+
     &.isHorizontal {
         gap: clamp(0.2rem, 3cqi, 0.8rem);
     }
 
     &.isVertical {
         gap: 0.2rem;
-        button {
-            min-height: min-content;
-            min-width: min-content;
-        }
     }
 }
 
 @media (min-width: 769px) {
-    .selectorDot {
+    .carouselDotsSelector button {
         pointer-events: all;
+    }
+
+    .selectorDot {
         transition: color var(--default-transition), opacity var(--default-transition);
 
         &:hover {

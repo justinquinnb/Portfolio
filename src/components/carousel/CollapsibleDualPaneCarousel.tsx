@@ -57,7 +57,7 @@ export default function CollapsibleDualPaneCarousel(
             initialSelection={initialSelection}
             staticContent={staticContent} selectorsType={selectorsType}
             showNavArrows={showNavArrows}
-            autoPlay={autoPlay} delay={delay}
+            autoPlay={autoPlay} delay={delay * 1.2} // Because it's wider and "heavier"
         />
       </>
   )

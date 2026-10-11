@@ -21,6 +21,8 @@
 .displayImage {
     width: 100%;
     height: 100%;
+    inset: 0;
+    position: absolute;
 
     object-fit: cover;
     mask-image: linear-gradient(to top, black 0, transparent 100%);
@@ -126,4 +128,67 @@
 
 .buttonSelectors {
     height: 25%;
+}
+
+.imageTrack {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.slideInForward {
+    /* Different from single pane because it's wider and "heavier" */
+    animation: slideInFromBottom 1000ms ease both;
+}
+
+.slideOutForward {
+    animation: slideOutToTop 1000ms ease both;
+}
+
+.slideInBackward {
+    animation: slideInFromTop 1000ms ease both;
+}
+
+.slideOutBackward {
+    animation: slideOutToBottom 1000ms ease both;
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToTop {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
 }

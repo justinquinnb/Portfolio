@@ -39,8 +39,33 @@ export default function SinglePaneCarousel(
     }) {
 
   const [currentItemNum, setSelectedItemNum] = useState(initialSelection);
+  const [previousItemNum, setPreviousItemNum] = useState<number | null>(null);
+  const [slideDirection, setSlideDirection] = useState<"forward" | "backward">("forward");
   const currentItem = items[currentItemNum];
+  const previousItem = previousItemNum === null ? null : items[previousItemNum];
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const selectItem = useCallback((nextItemNum: number, direction: "forward" | "backward") => {
+    if (nextItemNum === currentItemNum) {
+      return;
+    }
+
+    setPreviousItemNum(currentItemNum);
+    setSlideDirection(direction);
+    setSelectedItemNum(nextItemNum);
+  }, [currentItemNum]);
+
+  const selectNextItem = useCallback(() => {
+    selectItem((currentItemNum + 1) % items.length, "forward");
+  }, [currentItemNum, items.length, selectItem]);
+
+  const selectPreviousItem = useCallback(() => {
+    selectItem((currentItemNum - 1 + items.length) % items.length, "backward");
+  }, [currentItemNum, items.length, selectItem]);
+
+  const selectItemByIndex = useCallback((index: number) => {
+    selectItem(index, index > currentItemNum ? "forward" : "backward");
+  }, [currentItemNum, selectItem]);
 
   const clearAutoPlayTimer = useCallback(() => {
     if (intervalRef.current) {
@@ -57,7 +82,11 @@ export default function SinglePaneCarousel(
     }
 
     intervalRef.current = setInterval(() => {
-      setSelectedItemNum((prevSelection) => (prevSelection + 1) % items.length);
+      setSelectedItemNum((prevSelection) => {
+        setPreviousItemNum(prevSelection);
+        setSlideDirection("forward");
+        return (prevSelection + 1) % items.length;
+      });
     }, delay);
   }, [autoPlay, clearAutoPlayTimer, delay, items.length]);
 
@@ -83,7 +112,11 @@ export default function SinglePaneCarousel(
 
   const horizontalDotSelectors: JSX.Element | null = (showDotSelectors) ?
       (<CarouselDotsSelector className={styles.horizontalDotSelectors} itemCount={items.length}
-                             selectedIndex={currentItemNum}/>)
+                             selectedIndex={currentItemNum}
+                             onSelect={(index) => {
+                               selectItemByIndex(index);
+                               resetAutoPlayTimer();
+                             }}/>)
       : null;
 
   const leftArrow: JSX.Element | null = (showNavArrows) ?
@@ -91,7 +124,7 @@ export default function SinglePaneCarousel(
           className={styles.leftArrow}
           direction="left"
           onClick={() => {
-            setSelectedItemNum((prevSelection) => (prevSelection - 1 + items.length) % items.length);
+            selectPreviousItem();
             resetAutoPlayTimer();
           }}
       /> : null;
@@ -100,7 +133,7 @@ export default function SinglePaneCarousel(
           className={styles.rightArrow}
           direction="right"
           onClick={() => {
-            setSelectedItemNum((prevSelection) => ((prevSelection + 1) % items.length))
+            selectNextItem();
             resetAutoPlayTimer();
           }}
       /> : null;
@@ -145,8 +178,31 @@ export default function SinglePaneCarousel(
   return (
       <div className={`${styles.carousel} ${className}`}>
         <div className={styles.displayBox}>
-          <Image src={currentItem.display.img.src} alt={currentItem.display.img.alt}
-                 className={styles.displayImage}/>
+          <div className={styles.imageTrack}>
+            {previousItem ? (
+                <Image
+                    key={`previous-${previousItemNum}`}
+                    src={previousItem.display.img.src}
+                    alt={previousItem.display.img.alt}
+                    className={`${styles.displayImage} ${
+                        slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
+                    }`}
+                />
+            ) : null}
+            <Image
+                key={`current-${currentItemNum}`}
+                src={currentItem.display.img.src}
+                alt={currentItem.display.img.alt}
+                className={`${styles.displayImage} ${
+                    previousItem
+                        ? slideDirection === "forward"
+                            ? styles.slideInForward
+                            : styles.slideInBackward
+                        : ""
+                }`}
+                onAnimationEnd={() => setPreviousItemNum(null)}
+            />
+          </div>
           <div className={styles.overlay}>
             <div className={styles.content}>
               <div className={styles.staticContent}>
