@@ -12,8 +12,6 @@ import photographyDisplay from "@public/images/features/display/photography.png"
 import musicDisplay from "@public/images/features/display/music.png";
 import Link from "next/link";
 import {CarouselItem} from "@/types/carousel-item";
-import SinglePaneCarousel from "@/components/carousel/SinglePaneCarousel";
-import DualPaneCarousel from "@/components/carousel/DualPaneCarousel";
 import CollapsibleDualPaneCarousel from "@/components/carousel/CollapsibleDualPaneCarousel";
 
 export const metadata: Metadata = {

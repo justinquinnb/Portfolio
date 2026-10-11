@@ -59,6 +59,11 @@
 html,
 body {
   width: 100%;
+  font-family: var(--font-league-spartan);
+}
+
+.signature {
+  font-family: var(--font-dynalight);
 }
 
 body {
