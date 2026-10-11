@@ -3,10 +3,9 @@
 import {CarouselItem} from "@/types/carousel-item";
 import {JSX, useCallback, useEffect, useRef, useState} from "react";
 import styles from "./dualpanecarousel.module.css";
-import CarouselDotsSelector from "@/components/carousel/CarouselDotsSelector";
-import ImageItemSelector from "@/components/carousel/ImageItemSelector";
+import CarouselDotsSelector from "./fragments/CarouselDotsSelector";
 import Image from "next/image";
-import CarouselNavArrow from "@/components/carousel/CarouselNavArrow";
+import CarouselNavArrow from "./fragments/CarouselNavArrow";
 import Link from "next/link";
 
 
@@ -15,7 +14,7 @@ import Link from "next/link";
  * @param items the items to display in the carousel
  * @param initialSelection the index of the item to initially display
  * @param staticContent the static content to display adjacent to the cycling items
- * @param selectorsType the type of item selectors to display, if any
+ * @param showSelectors whether to show the dot selectors
  * @param showNavArrows whether to display the navigation arrows
  * @param autoPlay whether to automatically cycle through the items
  * @param delay the delay between each item change, in milliseconds
@@ -24,14 +23,14 @@ import Link from "next/link";
  */
 export default function DualPaneCarousel(
     {
-      items, initialSelection = 0, staticContent, selectorsType = "dots", showNavArrows = true,
+      items, initialSelection = 0, staticContent, showSelectors = true, showNavArrows = true,
       autoPlay = false, delay = 4000, className = ""
     }:
     {
       items: CarouselItem[];
       initialSelection?: number;
       staticContent?: JSX.Element;
-      selectorsType?: "dots" | "images" | "both" | "none";
+      showSelectors?: boolean;
       showNavArrows?: boolean;
       autoPlay?: boolean;
       delay?: number;
@@ -108,10 +107,8 @@ export default function DualPaneCarousel(
   // TODO add item change transitions
   // TODO change item text and links to generic categories on small screens (or just conditionally render different component instances)
 
-  // Prep the correct dot selectors (if this instance calls for their display)
-  const showDotSelectors = selectorsType === "dots" || selectorsType === "both";
 
-  const verticalNav: JSX.Element | null = (showDotSelectors) ? (
+  const verticalNav: JSX.Element | null = (showNavArrows) ? (
       <div className={styles.verticalNav}>
         <CarouselNavArrow
             className={styles.upArrow}
@@ -121,10 +118,13 @@ export default function DualPaneCarousel(
               resetAutoPlayTimer();
             }}
         />
-        <CarouselDotsSelector vertical={true} onSelect={(index) => {
-          selectItemByIndex(index);
-          resetAutoPlayTimer();
-        }} itemCount={items.length} selectedIndex={currentItemNum}/>
+        {(showSelectors) ? (
+            <CarouselDotsSelector vertical={true} onSelect={(index) => {
+              selectItemByIndex(index);
+              resetAutoPlayTimer();
+            }} itemCount={items.length} selectedIndex={currentItemNum}/>
+        ) : null
+        }
         <CarouselNavArrow
             className={styles.downArrow}
             direction="down"
@@ -135,9 +135,6 @@ export default function DualPaneCarousel(
         />
       </div>
   ) : null;
-
-  const buttonSelectors: JSX.Element | null = (selectorsType === "images" ||
-      selectorsType === "both") ? <ImageItemSelector className={styles.buttonSelectors}/> : null;
 
   const currentItemContent = (
       (currentItem.display.link) ? (
@@ -163,45 +160,42 @@ export default function DualPaneCarousel(
 
   return (
       <div className={`${styles.carousel} ${className}`}>
-        <div className={styles.displayBox}>
-          <div className={styles.imageTrack}>
-            {previousItem ? (
-                <Image
-                    key={`previous-${previousItemNum}`}
-                    src={previousItem.display.img.src}
-                    alt={previousItem.display.img.alt}
-                    className={`${styles.displayImage} ${
-                        slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
-                    }`}
-                />
-            ) : null}
-            <Image
-                key={`current-${currentItemNum}`}
-                src={currentItem.display.img.src}
-                alt={currentItem.display.img.alt}
-                className={`${styles.displayImage} ${
-                    previousItem
-                        ? slideDirection === "forward"
-                            ? styles.slideInForward
-                            : styles.slideInBackward
-                        : ""
-                }`}
-                onAnimationEnd={() => setPreviousItemNum(null)}
-            />
-          </div>
-          <div className={styles.overlay}>
-            <div className={styles.content}>
-              <div className={styles.staticContent}>
-                {staticContent}
-              </div>
-              <div className={styles.dynamicContent}>
-                {verticalNav}
-                {currentItemContent}
-              </div>
+        <div className={styles.imageTrack}>
+          {previousItem ? (
+              <Image
+                  key={`previous-${previousItemNum}`}
+                  src={previousItem.display.img.src}
+                  alt={previousItem.display.img.alt}
+                  className={`${styles.displayImage} ${
+                      slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
+                  }`}
+              />
+          ) : null}
+          <Image
+              key={`current-${currentItemNum}`}
+              src={currentItem.display.img.src}
+              alt={currentItem.display.img.alt}
+              className={`${styles.displayImage} ${
+                  previousItem
+                      ? slideDirection === "forward"
+                          ? styles.slideInForward
+                          : styles.slideInBackward
+                      : ""
+              }`}
+              onAnimationEnd={() => setPreviousItemNum(null)}
+          />
+        </div>
+        <div className={styles.overlay}>
+          <div className={styles.content}>
+            <div className={styles.staticContent}>
+              {staticContent}
+            </div>
+            <div className={styles.dynamicContent}>
+              {verticalNav}
+              {currentItemContent}
             </div>
           </div>
         </div>
-        {buttonSelectors}
       </div>
   )
 }

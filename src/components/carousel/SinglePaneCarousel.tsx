@@ -3,19 +3,17 @@
 import {CarouselItem} from "@/types/carousel-item";
 import {JSX, useCallback, useEffect, useRef, useState} from "react";
 import styles from "./singlepanecarousel.module.css";
-import CarouselDotsSelector from "@/components/carousel/CarouselDotsSelector";
+import CarouselDotsSelector from "./fragments/CarouselDotsSelector";
 import Image from "next/image";
-import CarouselNavArrow from "@/components/carousel/CarouselNavArrow";
+import CarouselNavArrow from "./fragments/CarouselNavArrow";
 import Link from "next/link";
-import ImageItemSelector from "@/components/carousel/ImageItemSelector";
-
 
 /**
  * A carousel of images with per-image content adjacent to static content.
  * @param items the items to display in the carousel
  * @param initialSelection the index of the item to initially display
  * @param staticContent the static content to display adjacent to the cycling items
- * @param selectorsType the type of item selectors to display, if any
+ * @param showSelectors whether to display the dot selectors
  * @param showNavArrows whether to display the navigation arrows
  * @param autoPlay whether to automatically cycle through the items
  * @param delay the delay between each item change, in milliseconds
@@ -24,14 +22,14 @@ import ImageItemSelector from "@/components/carousel/ImageItemSelector";
  */
 export default function SinglePaneCarousel(
     {
-      items, initialSelection = 0, staticContent, selectorsType = "dots", showNavArrows = true,
+      items, initialSelection = 0, staticContent, showSelectors = true, showNavArrows = true,
       autoPlay = true, delay = 4000, className = ""
     }:
     {
       items: CarouselItem[];
       initialSelection?: number;
       staticContent?: JSX.Element;
-      selectorsType?: "dots" | "images" | "both" | "none";
+      showSelectors?: boolean;
       showNavArrows?: boolean;
       autoPlay?: boolean;
       delay?: number;
@@ -107,10 +105,7 @@ export default function SinglePaneCarousel(
   // TODO add item change transitions
   // TODO change item text and links to generic categories on small screens (or just conditionally render different component instances)
 
-  // Prep the correct dot selectors (if this instance calls for their display)
-  const showDotSelectors = selectorsType === "dots" || selectorsType === "both";
-
-  const horizontalDotSelectors: JSX.Element | null = (showDotSelectors) ?
+  const horizontalDotSelectors: JSX.Element | null = (showSelectors) ?
       (<CarouselDotsSelector className={styles.horizontalDotSelectors} itemCount={items.length}
                              selectedIndex={currentItemNum}
                              onSelect={(index) => {
@@ -137,9 +132,6 @@ export default function SinglePaneCarousel(
             resetAutoPlayTimer();
           }}
       /> : null;
-
-  const buttonSelectors: JSX.Element | null = (selectorsType === "images" ||
-      selectorsType === "both") ? <ImageItemSelector className={styles.buttonSelectors}/> : null;
 
   const currentItemContent = (
       (currentItem.display.link) ? (
@@ -177,49 +169,46 @@ export default function SinglePaneCarousel(
 
   return (
       <div className={`${styles.carousel} ${className}`}>
-        <div className={styles.displayBox}>
-          <div className={styles.imageTrack}>
-            {previousItem ? (
-                <Image
-                    key={`previous-${previousItemNum}`}
-                    src={previousItem.display.img.src}
-                    alt={previousItem.display.img.alt}
-                    className={`${styles.displayImage} ${
-                        slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
-                    }`}
-                />
-            ) : null}
-            <Image
-                key={`current-${currentItemNum}`}
-                src={currentItem.display.img.src}
-                alt={currentItem.display.img.alt}
-                className={`${styles.displayImage} ${
-                    previousItem
-                        ? slideDirection === "forward"
-                            ? styles.slideInForward
-                            : styles.slideInBackward
-                        : ""
-                }`}
-                onAnimationEnd={() => setPreviousItemNum(null)}
-            />
-          </div>
-          <div className={styles.overlay}>
-            <div className={styles.content}>
-              <div className={styles.staticContent}>
-                {staticContent}
+        <div className={styles.imageTrack}>
+          {previousItem ? (
+              <Image
+                  key={`previous-${previousItemNum}`}
+                  src={previousItem.display.img.src}
+                  alt={previousItem.display.img.alt}
+                  className={`${styles.displayImage} ${
+                      slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
+                  }`}
+              />
+          ) : null}
+          <Image
+              key={`current-${currentItemNum}`}
+              src={currentItem.display.img.src}
+              alt={currentItem.display.img.alt}
+              className={`${styles.displayImage} ${
+                  previousItem
+                      ? slideDirection === "forward"
+                          ? styles.slideInForward
+                          : styles.slideInBackward
+                      : ""
+              }`}
+              onAnimationEnd={() => setPreviousItemNum(null)}
+          />
+        </div>
+        <div className={styles.overlay}>
+          <div className={styles.content}>
+            <div className={styles.staticContent}>
+              {staticContent}
+            </div>
+            <div className={styles.dynamicContent}>
+              <div className={styles.primaryDisplayBoxContent}>
+                {leftArrow}
+                {currentItemContent}
+                {rightArrow}
               </div>
-              <div className={styles.dynamicContent}>
-                <div className={styles.primaryDisplayBoxContent}>
-                  {leftArrow}
-                  {currentItemContent}
-                  {rightArrow}
-                </div>
-                {horizontalDotSelectors}
-              </div>
+              {horizontalDotSelectors}
             </div>
           </div>
         </div>
-        {buttonSelectors}
       </div>
   )
 }
