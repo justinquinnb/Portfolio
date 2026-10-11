@@ -84,6 +84,19 @@
     }
 }
 
+.contact {
+   padding: 2rem;
+
+    h2 {
+        width: 100%;
+        text-align: center;
+    }
+
+    a {
+        text-decoration-style: wavy;
+    }
+}
+
 @media (min-width: 321px) {
     .intro {
         margin-right: 0.5rem;

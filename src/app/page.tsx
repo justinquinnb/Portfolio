@@ -155,6 +155,12 @@ export default function Home() {
               </div>
             } />
           </section>
+          {/*<section className={styles.onefeed}>*/}
+          {/*  */}
+          {/*</section>*/}
+          <section className={styles.contact}>
+            <h2>Interested? <span style={{fontWeight: "400"}}>Let's <Link href={"/contact"} className={"emphasis"}>get in touch</Link>.</span></h2>
+          </section>
         </main>
       </>
   );
