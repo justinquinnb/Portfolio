@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Bio | JQB Portfolio'
 }
 
-const displayText = "An passionate techie and creative based in Metro Atlanta. I lead software products by day and create digital media by night."
+const displayText = "A passionate techie and creative based in Metro Atlanta. I lead software products by day and create digital media by night."
 
 export default function Bio() {
   return (

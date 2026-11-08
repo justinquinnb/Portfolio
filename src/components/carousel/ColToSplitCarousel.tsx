@@ -1,7 +1,5 @@
 "use client"
 
-import SingleColCarousel from "./SingleColCarousel";
-import SplitPaneCarousel from "./SplitPaneCarousel";
 import React, {JSX} from "react";
 import styles from "./coltosplitcarousel.module.css";
 import {CarouselItem} from "./fragments/carousel-item";
@@ -133,6 +131,7 @@ export default function ColToSplitCarousel(
   })
 
   return (
-      <CarouselFrame items={completeItems} carouselControls={carouselControls}/>
+      <CarouselFrame items={completeItems} carouselControls={carouselControls}
+                     imageFilterClassName={styles.bgImageFilter}/>
   )
 }
