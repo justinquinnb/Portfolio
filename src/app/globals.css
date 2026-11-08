@@ -25,6 +25,7 @@
 
   /* Transition */
   --default-transition: 0.2s ease-in-out;
+  --carousel-transition-speed: 450ms;
 
   /* Theme */
   --page-background-color: var(--q-mid-white);

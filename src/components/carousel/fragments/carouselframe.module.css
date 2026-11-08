@@ -47,19 +47,37 @@
 }
 
 .slideInForward {
-    animation: slideInFromRight 450ms ease both;
+    animation: slideInFromRight var(--carousel-transition-speed) ease both;
 }
 
 .slideOutForward {
-    animation: slideOutToLeft 450ms ease both;
+    animation: slideOutToLeft var(--carousel-transition-speed) ease both;
 }
 
 .slideInBackward {
-    animation: slideInFromLeft 450ms ease both;
+    animation: slideInFromLeft var(--carousel-transition-speed) ease both;
 }
 
 .slideOutBackward {
-    animation: slideOutToRight 450ms ease both;
+    animation: slideOutToRight var(--carousel-transition-speed) ease both;
+}
+
+@media (min-width: 769px) {
+    .slideInForward {
+        animation: slideInFromBottom var(--carousel-transition-speed) ease both;
+    }
+
+    .slideOutForward {
+        animation: slideOutToTop var(--carousel-transition-speed) ease both;
+    }
+
+    .slideInBackward {
+        animation: slideInFromTop var(--carousel-transition-speed) ease both;
+    }
+
+    .slideOutBackward {
+        animation: slideOutToBottom var(--carousel-transition-speed) ease both;
+    }
 }
 
 @keyframes slideInFromRight {
@@ -99,5 +117,45 @@
 
     to {
         transform: translateX(100%);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToTop {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
     }
 }
