@@ -2,7 +2,7 @@
 /**
  * Controls for a carousel component
  */
-export interface CarouselControls {
+export type CarouselControls = {
   /**
    * The index of the currently selected item
    */

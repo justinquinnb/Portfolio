@@ -1,8 +1,11 @@
+"use client"
+
 import SinglePaneCarousel from "@/components/carousel/SinglePaneCarousel";
 import styles from "@/components/carousel/collapsibledualpanecarousel.module.css";
 import DualPaneCarousel from "@/components/carousel/DualPaneCarousel";
 import React, {JSX} from "react";
 import {CarouselItem} from "@/types/carousel-item";
+import {useCarousel} from "@/components/carousel/fragments/useCarousel";
 
 /**
  * A carousel of images with per-image content adjacent to static content.
@@ -42,22 +45,21 @@ export default function CollapsibleDualPaneCarousel(
       className?: string;
     }
 ) {
-
+  const carouselControls = useCarousel(initialSelection, items.length, autoPlay, delay);
 
   return (
       <>
         <SinglePaneCarousel
-            className={`${styles.singlePaneCarousel} ${className}`} items={items} initialSelection={initialSelection}
+            className={`${styles.singlePaneCarousel} ${className}`} items={items}
             staticContent={staticContent} showSelectors={showSelectors}
             showNavArrows={showNavArrows}
-            autoPlay={autoPlay} delay={delay}
+            carouselControls={carouselControls}
         />
         <DualPaneCarousel
             className={`${styles.dualPaneCarousel} ${className}`} items={expandedItems}
-            initialSelection={initialSelection}
             staticContent={staticContent} showSelectors={showSelectors}
             showNavArrows={showNavArrows}
-            autoPlay={autoPlay} delay={delay * 1.2} // Because it's wider and "heavier"
+            carouselControls={carouselControls} // Because it's wider and "heavier"
         />
       </>
   )

@@ -4,7 +4,7 @@ import {JSX} from "react";
 /**
  A carousel item
  */
-export interface CarouselItem {
+export type CarouselItem = {
   backgroundImg: {
     src: StaticImageData;
     alt: string;
