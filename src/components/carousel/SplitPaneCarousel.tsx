@@ -40,10 +40,7 @@ export default function SplitPaneCarousel(
     currentIndex,
     selectNextItem,
     selectPreviousItem,
-    selectItem,
-    transitionOrigin,
-    transitionDirection,
-    transitionComplete
+    selectItem
   } = carouselControls;
 
   const verticalNav: JSX.Element | null = (showNavArrows) ? (
