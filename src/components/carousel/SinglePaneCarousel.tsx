@@ -1,12 +1,12 @@
 'use client'
 
 import {CarouselItem} from "@/types/carousel-item";
-import {JSX, useCallback, useEffect, useRef, useState} from "react";
+import {JSX} from "react";
 import styles from "./singlepanecarousel.module.css";
 import CarouselDotsSelector from "./fragments/CarouselDotsSelector";
 import Image from "next/image";
 import CarouselNavArrow from "./fragments/CarouselNavArrow";
-import Link from "next/link";
+import {useCarousel} from "@/components/carousel/fragments/useCarousel";
 
 /**
  * A carousel of images with per-image content adjacent to static content.
@@ -36,74 +36,21 @@ export default function SinglePaneCarousel(
       className?: string;
     }) {
 
-  const [currentItemNum, setSelectedItemNum] = useState(initialSelection);
-  const [previousItemNum, setPreviousItemNum] = useState<number | null>(null);
-  const [slideDirection, setSlideDirection] = useState<"forward" | "backward">("forward");
-  const currentItem = items[currentItemNum];
-  const previousItem = previousItemNum === null ? null : items[previousItemNum];
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const selectItem = useCallback((nextItemNum: number, direction: "forward" | "backward") => {
-    if (nextItemNum === currentItemNum) {
-      return;
-    }
-
-    setPreviousItemNum(currentItemNum);
-    setSlideDirection(direction);
-    setSelectedItemNum(nextItemNum);
-  }, [currentItemNum]);
-
-  const selectNextItem = useCallback(() => {
-    selectItem((currentItemNum + 1) % items.length, "forward");
-  }, [currentItemNum, items.length, selectItem]);
-
-  const selectPreviousItem = useCallback(() => {
-    selectItem((currentItemNum - 1 + items.length) % items.length, "backward");
-  }, [currentItemNum, items.length, selectItem]);
-
-  const selectItemByIndex = useCallback((index: number) => {
-    selectItem(index, index > currentItemNum ? "forward" : "backward");
-  }, [currentItemNum, selectItem]);
-
-  const clearAutoPlayTimer = useCallback(() => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  }, []);
-
-  const startAutoPlayTimer = useCallback(() => {
-    clearAutoPlayTimer();
-
-    if (!autoPlay || items.length <= 1) {
-      return;
-    }
-
-    intervalRef.current = setInterval(() => {
-      setSelectedItemNum((prevSelection) => {
-        setPreviousItemNum(prevSelection);
-        setSlideDirection("forward");
-        return (prevSelection + 1) % items.length;
-      });
-    }, delay);
-  }, [autoPlay, clearAutoPlayTimer, delay, items.length]);
-
-  const resetAutoPlayTimer = useCallback(() => {
-    startAutoPlayTimer();
-  }, [startAutoPlayTimer]);
-
-  useEffect(() => {
-    startAutoPlayTimer();
-
-    return clearAutoPlayTimer;
-  }, [startAutoPlayTimer, clearAutoPlayTimer]);
+  const {
+    currentIndex,
+    selectNextItem,
+    selectPreviousItem,
+    selectItem,
+    transitionOrigin,
+    transitionDirection,
+    transitionComplete
+  } = useCarousel(initialSelection, items.length, autoPlay, delay);
 
   const horizontalDotSelectors: JSX.Element | null = (showSelectors) ?
       (<CarouselDotsSelector className={styles.horizontalDotSelectors} itemCount={items.length}
-                             selectedIndex={currentItemNum}
+                             selectedIndex={currentIndex}
                              onSelect={(index) => {
-                               selectItemByIndex(index);
-                               resetAutoPlayTimer();
+                               selectItem(index);
                              }}/>)
       : null;
 
@@ -112,8 +59,7 @@ export default function SinglePaneCarousel(
           className={styles.leftArrow}
           direction="left"
           onClick={() => {
-            selectPreviousItem();
-            resetAutoPlayTimer();
+            selectPreviousItem()
           }}
       /> : null;
   const rightArrow: JSX.Element | null = (showNavArrows) ?
@@ -121,36 +67,35 @@ export default function SinglePaneCarousel(
           className={styles.rightArrow}
           direction="right"
           onClick={() => {
-            selectNextItem();
-            resetAutoPlayTimer();
+            selectNextItem()
           }}
       /> : null;
 
   return (
       <div className={`${styles.carousel} ${className}`}>
         <div className={styles.imageTrack}>
-          {previousItem ? (
+          {transitionOrigin != null ? (
               <Image
-                  key={`previous-${previousItemNum}`}
-                  src={previousItem.backgroundImg.src}
-                  alt={previousItem.backgroundImg.alt}
+                  key={`previous-${transitionOrigin}`}
+                  src={items[transitionOrigin].backgroundImg.src}
+                  alt={items[transitionOrigin].backgroundImg.alt}
                   className={`${styles.displayImage} ${
-                      slideDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
+                      transitionDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
                   }`}
               />
           ) : null}
           <Image
-              key={`current-${currentItemNum}`}
-              src={currentItem.backgroundImg.src}
-              alt={currentItem.backgroundImg.alt}
+              key={`current-${currentIndex}`}
+              src={items[currentIndex].backgroundImg.src}
+              alt={items[currentIndex].backgroundImg.alt}
               className={`${styles.displayImage} ${
-                  previousItem
-                      ? slideDirection === "forward"
+                  items[currentIndex]
+                      ? transitionDirection === "forward"
                           ? styles.slideInForward
                           : styles.slideInBackward
                       : ""
               }`}
-              onAnimationEnd={() => setPreviousItemNum(null)}
+              onAnimationEnd={transitionComplete}
           />
         </div>
         <div className={styles.overlay}>
@@ -161,7 +106,7 @@ export default function SinglePaneCarousel(
             <div className={styles.dynamicContent}>
               <div className={styles.primaryDisplayBoxContent}>
                 {leftArrow}
-                {currentItem.overlayContent}
+                {items[currentIndex].overlayContent}
                 {rightArrow}
               </div>
               {horizontalDotSelectors}
