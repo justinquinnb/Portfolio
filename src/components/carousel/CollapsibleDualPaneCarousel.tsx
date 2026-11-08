@@ -59,7 +59,7 @@ export default function CollapsibleDualPaneCarousel(
             className={`${styles.dualPaneCarousel} ${className}`} items={expandedItems}
             staticContent={staticContent} showSelectors={showSelectors}
             showNavArrows={showNavArrows}
-            carouselControls={carouselControls} // Because it's wider and "heavier"
+            carouselControls={carouselControls}
         />
       </>
   )

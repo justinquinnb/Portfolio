@@ -1,13 +1,10 @@
-import {StaticImageData} from "next/image";
 import {JSX} from "react";
+import {ImageProps} from "next/image";
 
 /**
  A carousel item
  */
 export type CarouselItem = {
-  backgroundImg: {
-    src: StaticImageData;
-    alt: string;
-  },
+  backgroundImg: ImageProps,
   overlayContent: JSX.Element;
 }
