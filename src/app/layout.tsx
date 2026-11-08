@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {League_Spartan} from "next/font/google";
+import {League_Spartan, Dynalight} from "next/font/google";
 import "./globals.css";
 import {config} from "@fortawesome/fontawesome-svg-core"
 import "@fortawesome/fontawesome-svg-core/styles.css"
@@ -13,6 +13,11 @@ const leagueSpartan = League_Spartan({
   subsets: ["latin"],
   variable: "--font-league-spartan"
 })
+const dynaLight = Dynalight({
+  subsets: ["latin"],
+  variable: "--font-dynalight",
+  weight: "400"
+})
 
 export const metadata: Metadata = {
   title: "JQB Portfolio",
@@ -25,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={leagueSpartan.className}>
+    <html lang="en" className={`${leagueSpartan.variable} ${dynaLight.variable}`}>
       <head>
         <meta name="apple-mobile-web-app-title" content="Justin Quinn" />
       </head>

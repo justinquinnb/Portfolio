@@ -1,0 +1,75 @@
+.carousel {
+    width: 100%;
+    height: min(56vh, 40vw);
+    min-height: 18rem;
+
+    h1, h2, p, a {
+        color: var(--text-on-full-bleed-color);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    position: relative;
+
+    overflow: hidden;
+    background-color: var(--full-bleed-background-color);
+}
+
+.content {
+    max-width: var(--max-content-width);
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .staticContent {
+        padding: 1.2rem 1.2rem 0 1.2rem;
+        text-wrap: balance;
+    }
+
+    .dynamicContent {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .primaryDisplayBoxContent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            .itemContent {
+                flex-grow: 1;
+            }
+
+            .leftArrow, .rightArrow {
+                width: min-content;
+                height: 100%;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            button {
+                line-height: 1;
+            }
+        }
+
+        .horizontalDotSelectors {
+            height: min-content;
+            padding: 0 1.2rem 1.2rem 1.2rem;
+            filter: drop-shadow(var(--default-box-shadow));
+        }
+    }
+}
+
+.buttonSelectors {
+    height: 25%;
+}

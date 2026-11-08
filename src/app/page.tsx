@@ -11,10 +11,8 @@ import graphicsDisplay from "@public/images/features/display/graphics.png";
 import photographyDisplay from "@public/images/features/display/photography.png";
 import musicDisplay from "@public/images/features/display/music.png";
 import Link from "next/link";
-import {CarouselItem} from "@/types/carousel-item";
-import SinglePaneCarousel from "@/components/carousel/SinglePaneCarousel";
-import DualPaneCarousel from "@/components/carousel/DualPaneCarousel";
-import CollapsibleDualPaneCarousel from "@/components/carousel/CollapsibleDualPaneCarousel";
+import ColToSplitCarousel from "../components/carousel/ColToSplitCarousel";
+import {CarouselItem} from "@/components/carousel/fragments/carousel-item";
 
 export const metadata: Metadata = {
   title: 'Home | JQB Portfolio'
@@ -22,7 +20,7 @@ export const metadata: Metadata = {
 
 const logo = <Image src={darkIcon} alt={"Justin Quinn logo"}/>;
 const displayText = "I’m a product manager by trade and a creator at heart. No matter the medium, I strive to work with purpose, lifting standards, people, and what's possible every day."
-const featureItemsBrief: CarouselItem[] = [
+const disciplineItemsBrief = [
   {
     display: {
       img: {
@@ -73,7 +71,7 @@ const featureItemsBrief: CarouselItem[] = [
   }
 ]
 
-const featureItemsFull: CarouselItem[] = [
+const disciplineItemsFull = [
   {
     display: {
       img: {
@@ -125,6 +123,54 @@ const featureItemsFull: CarouselItem[] = [
 ]
 
 export default function Home() {
+  const briefItems: CarouselItem[] = disciplineItemsBrief.map(item => (
+      {
+        backgroundImg: {
+          src: item.display.img.src,
+          alt: item.display.img.alt
+        },
+        overlayContent: (
+            <>
+              <Link href={item.display.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`}>
+                <div className={styles.primaryItemContent}>
+                  <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                </div>
+                <p className={`${styles.itemLink}`} style={{textDecoration: "underline"}}>
+                  {item.display.link.title}
+                </p>
+              </Link>
+              <div className={`${styles.itemContent} ${styles.onlyLink}`}>
+                <div className={styles.primaryItemContent}>
+                  <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                </div>
+                <Link className={`${styles.itemLink}`} href={item.display.link.href}>
+                  {item.display.link.title}
+                </Link>
+              </div>
+            </>
+        )
+      }
+  ))
+
+  const expandedItems = disciplineItemsFull.map(item => (
+      {
+        backgroundImg: {
+          src: item.display.img.src,
+          alt: item.display.img.alt
+        },
+        overlayContent: (
+            <div className={`${styles.itemContent}`}>
+              <div className={styles.primaryItemContent}>
+                <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+              </div>
+              <Link className={`${styles.itemLink}`} href={item.display.link.href}>
+                {item.display.link.title}
+              </Link>
+            </div>
+        )
+      }
+  ))
+
   return (
       <>
         <PageHeader img={heroImage}
@@ -148,7 +194,7 @@ export default function Home() {
             <p className={"display-text"}>{displayText}</p>
           </section>
           <section className={styles.disciplines}>
-            <CollapsibleDualPaneCarousel items={featureItemsBrief} expandedItems={featureItemsFull} initialSelection={0} staticContent={
+            <ColToSplitCarousel items={briefItems} expandedItems={expandedItems} staticContent={
               <div className={styles.staticCarouselContent}>
                 <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
                 <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
