@@ -28,25 +28,14 @@
     filter: blur(0.5)
 }
 
-.overlay {
-    position: absolute;
-    inset: 0;
-
+.content {
+    max-width: var(--max-content-width);
+    height: 100%;
     width: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
-    .content {
-        max-width: var(--max-content-width);
-        height: 100%;
-        width: 100%;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 
     .staticContent {
         padding: 1.2rem 1.2rem 0 1.2rem;
@@ -59,28 +48,35 @@
         display: flex;
         flex-direction: column;
 
+        .primaryDisplayBoxContent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            .itemContent {
+                flex-grow: 1;
+            }
+
+            .leftArrow, .rightArrow {
+                width: min-content;
+                height: 100%;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            button {
+                line-height: 1;
+            }
+        }
+
         .horizontalDotSelectors {
             height: min-content;
             padding: 0 1.2rem 1.2rem 1.2rem;
             filter: drop-shadow(var(--default-box-shadow));
-        }
-    }
-
-    .primaryDisplayBoxContent {
-        display: flex;
-        flex: 1;
-
-        .leftArrow, .rightArrow {
-            width: min-content;
-            height: 100%;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        button {
-            line-height: 1;
         }
     }
 }

@@ -1,21 +1,25 @@
 import styles from "@/components/carousel/fragments/carouselframe.module.css";
 import Image from "next/image";
-import {CarouselItem} from "@/types/carousel-item";
-import {CarouselControls} from "@/types/carousel-controls";
+import {CarouselItem} from "./carousel-item";
+import {CarouselControls} from "./carousel-controls";
 
 /**
  * A basic carousel frame with a background image and synced overlay content.
  *
  * @param items the items to display in the carousel
  * @param carouselControls the controls for the carousel
+ * @param className any classes to apply to the component
+ * @constructor
  */
 export default function CarouselFrame(
     {
-        items,
-        carouselControls
+      items,
+      carouselControls,
+      className = ""
     }: {
       items: CarouselItem[];
       carouselControls: CarouselControls;
+      className?: string;
     }
 ) {
 
@@ -27,7 +31,7 @@ export default function CarouselFrame(
   } = carouselControls;
 
   return (
-      <div className={styles.carousel}>
+      <div className={`${styles.carousel} ${className}`}>
         <div className={styles.imageTrack}>
           {transitionOrigin != null ? (
               <Image
@@ -54,7 +58,7 @@ export default function CarouselFrame(
           />
         </div>
         <div className={styles.overlay}>
-          items[currentIndex].overlayContent
+          {items[currentIndex].overlayContent}
         </div>
       </div>
   )

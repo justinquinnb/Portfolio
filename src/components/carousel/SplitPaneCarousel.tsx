@@ -1,11 +1,11 @@
-import {CarouselItem} from "@/types/carousel-item";
+import {CarouselItem} from "./fragments/carousel-item";
 import {JSX} from "react";
-import styles from "./dualpanecarousel.module.css";
+import styles from "./splitpanecarousel.module.css";
 import CarouselDotsSelector from "./fragments/CarouselDotsSelector";
 import Image from "next/image";
 import CarouselNavArrow from "./fragments/CarouselNavArrow";
-import {CarouselControls} from "@/types/carousel-controls";
-
+import {CarouselControls} from "./fragments/carousel-controls";
+import CarouselFrame from "@/components/carousel/fragments/CarouselFrame";
 
 /**
  * A carousel of images with per-image content adjacent to static content.
@@ -18,9 +18,14 @@ import {CarouselControls} from "@/types/carousel-controls";
  * @param className any classes to apply to the component
  * @constructor
  */
-export default function DualPaneCarousel(
+export default function SplitPaneCarousel(
     {
-      items, staticContent, showSelectors = true, showNavArrows = true, carouselControls, className = ""
+      items,
+      staticContent,
+      showSelectors = true,
+      showNavArrows = true,
+      carouselControls,
+      className = ""
     }:
     {
       items: CarouselItem[];
@@ -66,34 +71,10 @@ export default function DualPaneCarousel(
       </div>
   ) : null;
 
-  return (
-      <div className={`${styles.carousel} ${className}`}>
-        <div className={styles.imageTrack}>
-          {transitionOrigin != null ? (
-              <Image
-                  key={`previous-${transitionOrigin}`}
-                  src={items[transitionOrigin].backgroundImg.src}
-                  alt={items[transitionOrigin].backgroundImg.alt}
-                  className={`${styles.displayImage} ${
-                      transitionDirection === "forward" ? styles.slideOutForward : styles.slideOutBackward
-                  }`}
-              />
-          ) : null}
-          <Image
-              key={`current-${currentIndex}`}
-              src={items[currentIndex].backgroundImg.src}
-              alt={items[currentIndex].backgroundImg.alt}
-              className={`${styles.displayImage} ${
-                  transitionOrigin != null
-                      ? transitionDirection === "forward"
-                          ? styles.slideInForward
-                          : styles.slideInBackward
-                      : ""
-              }`}
-              onAnimationEnd={() => transitionComplete()}
-          />
-        </div>
-        <div className={styles.overlay}>
+  const completeItems: CarouselItem[] = items.map(base => {
+    return {
+      backgroundImg: base.backgroundImg,
+      overlayContent: (
           <div className={styles.content}>
             <div className={styles.staticContent}>
               {staticContent}
@@ -103,7 +84,12 @@ export default function DualPaneCarousel(
               {items[currentIndex].overlayContent}
             </div>
           </div>
-        </div>
-      </div>
+      )
+    }
+  })
+
+  return (
+      <CarouselFrame items={completeItems} carouselControls={carouselControls}
+                     className={className}/>
   )
 }

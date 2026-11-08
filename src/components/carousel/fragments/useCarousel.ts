@@ -1,7 +1,7 @@
 "use client"
 
 import {useCallback, useEffect, useState} from "react";
-import {CarouselControls} from "@/types/carousel-controls";
+import {CarouselControls} from "./carousel-controls";
 
 /**
  * ALl the state and logic for a carousel component
@@ -26,7 +26,7 @@ export function useCarousel(
   const [isPlaying, setIsPlaying] = useState(play);
   
   const selectItem = useCallback((index: number) => {
-    console.log("Transition initiated");
+    // console.log("Transition initiated");
     const from = currentIndex;
     setTransitionOrigin(from);
 
@@ -48,7 +48,7 @@ export function useCarousel(
       setTransitionDirection("forward");
     }
 
-    console.log(`Transitioning ${direction} from ${from} to ${to}`);
+    // console.log(`Transitioning ${direction} from ${from} to ${to}`);
     setCurrentIndex(to);
     onChange(from, to);
   }, [currentIndex, itemCount, onChange]);
@@ -63,7 +63,7 @@ export function useCarousel(
 
   const transitionComplete = useCallback(() => {
     setTransitionOrigin(null);
-    console.log("Transition complete");
+    // console.log("Transition complete");
   }, []);
 
   useEffect(() => {

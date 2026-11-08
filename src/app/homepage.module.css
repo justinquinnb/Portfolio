@@ -215,7 +215,7 @@
 
 @media (min-width: 769px) {
     .disciplines {
-        .itemContent.onlyLink {
+        .itemContent {
             display: flex;
             flex-direction: column;
             justify-content: center;

@@ -1,10 +1,10 @@
 "use client"
 
-import SinglePaneCarousel from "@/components/carousel/SinglePaneCarousel";
-import styles from "@/components/carousel/collapsibledualpanecarousel.module.css";
-import DualPaneCarousel from "@/components/carousel/DualPaneCarousel";
+import SingleColCarousel from "./SingleColCarousel";
+import SplitPaneCarousel from "./SplitPaneCarousel";
 import React, {JSX} from "react";
-import {CarouselItem} from "@/types/carousel-item";
+import styles from "./coltosplitcarousel.module.css";
+import {CarouselItem} from "./fragments/carousel-item";
 import {useCarousel} from "@/components/carousel/fragments/useCarousel";
 
 /**
@@ -18,10 +18,9 @@ import {useCarousel} from "@/components/carousel/fragments/useCarousel";
  * @param showNavArrows whether to display the navigation arrows
  * @param autoPlay whether to automatically cycle through the items
  * @param delay the delay between each item change, in milliseconds (automatically lengthened when in dual-pane mode)
- * @param className any classes to apply to the component
  * @constructor
  */
-export default function CollapsibleDualPaneCarousel(
+export default function ColToSplitCarousel(
     {
       items,
       expandedItems = items,
@@ -30,8 +29,7 @@ export default function CollapsibleDualPaneCarousel(
       showSelectors = true,
       showNavArrows = true,
       autoPlay = true,
-      delay = 4000,
-      className = ""
+      delay = 4000
     }:
     {
       items: CarouselItem[];
@@ -42,24 +40,23 @@ export default function CollapsibleDualPaneCarousel(
       showNavArrows?: boolean;
       autoPlay?: boolean;
       delay?: number;
-      className?: string;
     }
 ) {
-  const carouselControls = useCarousel(initialSelection, items.length, autoPlay, delay);
+  const carouselControls = useCarousel(initialSelection, items.length, false, delay);
 
   return (
       <>
-        <SinglePaneCarousel
-            className={`${styles.singlePaneCarousel} ${className}`} items={items}
-            staticContent={staticContent} showSelectors={showSelectors}
-            showNavArrows={showNavArrows}
-            carouselControls={carouselControls}
+        <SingleColCarousel items={items}
+                           staticContent={staticContent} showSelectors={showSelectors}
+                           showNavArrows={showNavArrows}
+                           carouselControls={carouselControls}
+                           className={styles.singlePaneCarousel}
         />
-        <DualPaneCarousel
-            className={`${styles.dualPaneCarousel} ${className}`} items={expandedItems}
-            staticContent={staticContent} showSelectors={showSelectors}
-            showNavArrows={showNavArrows}
-            carouselControls={carouselControls}
+        <SplitPaneCarousel items={expandedItems}
+                           staticContent={staticContent} showSelectors={showSelectors}
+                           showNavArrows={showNavArrows}
+                           carouselControls={carouselControls}
+                           className={styles.dualPaneCarousel}
         />
       </>
   )
