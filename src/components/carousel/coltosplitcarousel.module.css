@@ -1,23 +1,23 @@
 .content {
-    &.expanded {
-        display: none;
+    max-width: var(--max-content-width);
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .staticContent {
+        padding: 1.2rem 1.2rem 0 1.2rem;
+        text-wrap: balance;
     }
 
-    &.brief {
-        max-width: var(--max-content-width);
-        height: 100%;
-        width: 100%;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .staticContent {
-            padding: 1.2rem 1.2rem 0 1.2rem;
-            text-wrap: balance;
+    .dynamicContent {
+        &.expanded {
+            display: none;
         }
 
-        .dynamicContent {
+        &.brief {
             height: 100%;
             width: 100%;
             display: flex;
@@ -63,25 +63,25 @@
 
 @media (min-width: 769px) {
     .content {
-        &.brief {
-            display: none;
+        max-width: var(--max-content-width);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .staticContent {
+            flex: 1;
+            padding: 1.2rem;
+            text-wrap: pretty;
         }
 
-        &.expanded {
-            max-width: var(--max-content-width);
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-
-            .staticContent {
-                flex: 1;
-                padding: 1.2rem;
-                text-wrap: pretty;
+        .dynamicContent {
+            &.brief {
+                display: none;
             }
 
-            .dynamicContent {
+            &.expanded {
                 flex: 1;
                 height: 100%;
                 display: flex;

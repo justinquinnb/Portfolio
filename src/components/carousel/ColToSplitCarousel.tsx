@@ -108,11 +108,11 @@ export default function ColToSplitCarousel(
       backgroundImg: briefItem.backgroundImg,
       overlayContent: (
           <>
-            <div className={`${styles.content} ${styles.brief}`}>
+            <div className={styles.content}>
               <div className={styles.staticContent}>
                 {staticContent}
               </div>
-              <div className={styles.dynamicContent}>
+              <div className={`${styles.dynamicContent} ${styles.brief}`}>
                 <div className={styles.primaryDisplayBoxContent}>
                   {leftArrow}
                   <div className={styles.itemContent}>
@@ -122,12 +122,7 @@ export default function ColToSplitCarousel(
                 </div>
                 {horizontalDotSelectors}
               </div>
-            </div>
-            <div className={`${styles.content} ${styles.expanded}`}>
-              <div className={styles.staticContent}>
-                {staticContent}
-              </div>
-              <div className={styles.dynamicContent}>
+              <div className={`${styles.dynamicContent} ${styles.expanded}`}>
                 {verticalNav}
                 {expandedItems[index].overlayContent}
               </div>
