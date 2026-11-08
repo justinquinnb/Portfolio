@@ -123,7 +123,7 @@ const disciplineItemsFull = [
 ]
 
 export default function Home() {
-  const briefItems: CarouselItem[] = disciplineItemsBrief.map(item => (
+  const briefItems: CarouselItem[] = disciplineItemsBrief.map((item, index) => (
       {
         backgroundImg: {
           src: item.display.img.src,
@@ -131,7 +131,7 @@ export default function Home() {
         },
         overlayContent: (
             <>
-              <Link href={item.display.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`}>
+              <Link href={item.display.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`} key={`${index}-fullSurfaceClickable`}>
                 <div className={styles.primaryItemContent}>
                   <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
                 </div>
@@ -139,7 +139,7 @@ export default function Home() {
                   {item.display.link.title}
                 </p>
               </Link>
-              <div className={`${styles.itemContent} ${styles.onlyLink}`}>
+              <div className={`${styles.itemContent} ${styles.onlyLink}`} key={`${index}-linkOnly`}>
                 <div className={styles.primaryItemContent}>
                   <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
                 </div>
@@ -152,14 +152,14 @@ export default function Home() {
       }
   ))
 
-  const expandedItems = disciplineItemsFull.map(item => (
+  const expandedItems = disciplineItemsFull.map((item, index) => (
       {
         backgroundImg: {
           src: item.display.img.src,
           alt: item.display.img.alt
         },
         overlayContent: (
-            <div className={`${styles.itemContent}`}>
+            <div className={`${styles.itemContent}`} key={index}>
               <div className={styles.primaryItemContent}>
                 <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
               </div>
