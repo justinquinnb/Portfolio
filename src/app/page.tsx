@@ -39,10 +39,10 @@ const disciplineItemsBrief = [
         src: graphicsDisplay,
         alt: "A floating island composited into a pine forest with a mountain backdrop"
       },
-      title: "Graphics",
       link: {
-        href: "/my-work/graphics", title: "View Collections"
       }
+    title: "Designs",
+      href: "/my-work/designs", title: "View Collections"
     }
   },
   {
@@ -92,8 +92,8 @@ const disciplineItemsFull = [
       },
       title: "Graphic Composites",
       link: {
-        href: "/my-work/graphics/collection/composites", title: "View Collection"
       }
+      href: "/my-work/designs/collection/composites", title: "View Collection"
     }
   },
   {
@@ -126,25 +126,25 @@ export default function Home() {
   const briefItems: CarouselItem[] = disciplineItemsBrief.map((item, index) => (
       {
         backgroundImg: {
-          src: item.display.img.src,
-          alt: item.display.img.alt
+          src: item.img.src,
+          alt: item.img.alt
         },
         overlayContent: (
             <>
-              <Link href={item.display.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`} key={`${index}-fullSurfaceClickable`}>
+              <Link href={item.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`} key={`${index}-fullSurfaceClickable`}>
                 <div className={styles.primaryItemContent}>
-                  <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                  <p className={`feature-text ${styles.itemTitle}`}>{item.title}</p>
                 </div>
                 <p className={`${styles.itemLink}`} style={{textDecoration: "underline"}}>
-                  {item.display.link.title}
+                  {item.link.title}
                 </p>
               </Link>
               <div className={`${styles.itemContent} ${styles.onlyLink}`} key={`${index}-linkOnly`}>
                 <div className={styles.primaryItemContent}>
-                  <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                  <p className={`feature-text ${styles.itemTitle}`}>{item.title}</p>
                 </div>
-                <Link className={`${styles.itemLink}`} href={item.display.link.href}>
-                  {item.display.link.title}
+                <Link className={`${styles.itemLink}`} href={item.link.href}>
+                  {item.link.title}
                 </Link>
               </div>
             </>
@@ -155,16 +155,16 @@ export default function Home() {
   const expandedItems = disciplineItemsFull.map((item, index) => (
       {
         backgroundImg: {
-          src: item.display.img.src,
-          alt: item.display.img.alt
+          src: item.img.src,
+          alt: item.img.alt
         },
         overlayContent: (
             <div className={`${styles.itemContent}`} key={index}>
               <div className={styles.primaryItemContent}>
-                <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                <p className={`feature-text ${styles.itemTitle}`}>{item.title}</p>
               </div>
-              <Link className={`${styles.itemLink}`} href={item.display.link.href}>
-                {item.display.link.title}
+              <Link className={`${styles.itemLink}`} href={item.link.href}>
+                {item.link.title}
               </Link>
             </div>
         )
