@@ -8,10 +8,6 @@
     max-width: calc(var(--max-content-width) * .8);
     padding: 1.2rem;
 
-    .staticContent {
-
-    }
-
     .dynamicContent {
         display: flex;
 

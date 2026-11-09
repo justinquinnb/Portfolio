@@ -37,16 +37,6 @@ export default function ListCarousel(
       carouselControls: CarouselControls;
       className?: string;
     }) {
-  /*
-  TODO:
-  - flex row
-  - left is header with list below with lis per title, each with onclick -> selectItem() corresponding to their index (as static content)
-  - right is display text with description and link below it (as item overlay content)
-  - left should be prioritized with flex grow
-  - make it so that carousel frames have their image background filters customizable by the impl instead of dictated by the frame itself
-    - this is so we can do the circular mask here, but the linear one elsewhere
-   */
-  carouselControls = useCarousel(0, items.length);
 
   const listItems: JSX.Element[] = items.map((item, index) => {
     return (

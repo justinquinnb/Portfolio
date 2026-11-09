@@ -1,4 +1,3 @@
-
 import type {Metadata} from "next";
 import PageHeader from "@/components/frame-elements/PageHeader";
 import heroImage from "@public/images/heroes/bio.png";
@@ -6,13 +5,13 @@ import React from "react";
 import styles from "@/app/about/bio/biopage.module.css";
 import Image from "next/image";
 import meImage from "@public/images/me.png";
-import ListCarousel, {ListCarouselItem} from "@/components/carousel/ListCarousel";
+import {ListCarouselItem} from "@/components/carousel/ListCarousel";
 import softwareDisplay from "@public/images/features/display/software.png";
 import graphicsDisplay from "@public/images/features/display/graphics.png";
 import photographyDisplay from "@public/images/features/display/photography.png";
 import musicDisplay from "@public/images/features/display/music.png";
 import Link from "next/link";
-import {useCarousel} from "@/components/carousel/fragments/useCarousel";
+import ColToListCarousel from "@/components/carousel/ColToListCarousel";
 
 export const metadata: Metadata = {
   title: 'Bio | JQB Portfolio'
@@ -82,8 +81,9 @@ export default function Bio() {
         },
         overlayContent: (
             <div className={styles.dynamicContent}>
+              <h3>{item.title}</h3>
               <p className={`display-text`}>{item.description}</p>
-              <Link href={item.link.href}>{item.link.title}</Link>
+              <Link className={'display-text'} href={item.link.href}>{item.link.title}</Link>
             </div>
         )
       }
@@ -110,9 +110,9 @@ export default function Bio() {
             <p className={"signature"} style={{fontSize: "2.4rem"}}>Justin Quinn</p>
           </section>
           <section className={styles.disciplines}>
-            <ListCarousel items={completeItems} staticContent={(
+            <ColToListCarousel items={completeItems} staticContent={(
                 <h2 className={styles.disciplinesHeader}>What <span className={"emphasis"}>I Do</span></h2>
-            )}/>
+            )} delay={5000}/>
           </section>
         </main>
       </>

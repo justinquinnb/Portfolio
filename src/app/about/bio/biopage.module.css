@@ -64,22 +64,30 @@
 
 .disciplines {
     .disciplinesHeader {
-        text-align: start;
+        text-align: center;
     }
 
     .dynamicContent {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: end;
+        align-items: center;
         gap: 0.5rem;
 
-        p {
-            text-align: end;
+        h3 {
+            color: var(--text-on-full-bleed-color);
         }
 
-        a:hover {
-            color: var(--light-link-hover-color);
+        p {
+            text-align: center;
+        }
+
+        a {
+            text-align: center;
+
+            &:hover {
+                color: var(--light-link-hover-color);
+            }
         }
     }
 }
@@ -149,6 +157,26 @@
 
         & > p {
             display: none;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .disciplines {
+        .disciplinesHeader {
+            text-align: start;
+        }
+
+        .dynamicContent {
+            align-items: end;
+
+            p {
+                text-align: end;
+            }
+
+            h3 {
+                display: none;
+            }
         }
     }
 }
