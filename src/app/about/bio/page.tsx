@@ -1,3 +1,4 @@
+
 import type {Metadata} from "next";
 import PageHeader from "@/components/frame-elements/PageHeader";
 import heroImage from "@public/images/heroes/bio.png";
@@ -5,6 +6,13 @@ import React from "react";
 import styles from "@/app/about/bio/biopage.module.css";
 import Image from "next/image";
 import meImage from "@public/images/me.png";
+import ListCarousel, {ListCarouselItem} from "@/components/carousel/ListCarousel";
+import softwareDisplay from "@public/images/features/display/software.png";
+import graphicsDisplay from "@public/images/features/display/graphics.png";
+import photographyDisplay from "@public/images/features/display/photography.png";
+import musicDisplay from "@public/images/features/display/music.png";
+import Link from "next/link";
+import {useCarousel} from "@/components/carousel/fragments/useCarousel";
 
 export const metadata: Metadata = {
   title: 'Bio | JQB Portfolio'
@@ -12,7 +20,75 @@ export const metadata: Metadata = {
 
 const displayText = "A passionate techie and creative based in Metro Atlanta. I lead software products by day and create digital media by night."
 
+const disciplineItems = [
+  {
+    img: {
+      src: softwareDisplay,
+      alt: "A screenshot of OneFeed's code in an IDE"
+    },
+    title: "Software",
+    description: "Mobile, web, backend--you name it, I love it. I code across languages and platforms to make software that solves real problems.",
+    link: {
+      href: "/my-work/software", title: "View Projects"
+    }
+  },
+  {
+    img: {
+      src: graphicsDisplay,
+      alt: "A floating island composited into a pine forest with a mountain backdrop"
+    },
+    title: "Designs",
+    description: "I'm a sucker for good design, and try to explore the field myself. Check out my logo, composite, and UI work below.",
+    link: {
+      href: "/my-work/graphics", title: "View Collections"
+    }
+  },
+  {
+    img: {
+      src: photographyDisplay,
+      alt: "Aerial view of Manhattan in black and white"
+    },
+    title: "Photos",
+    description: "Photography gets me exploring the world. I love the challenge of accurately capturing each scene's feel.",
+    link: {
+      href: "/my-work/photos", title: "View Albums"
+    }
+  },
+  {
+    img: {
+      src: musicDisplay,
+      alt: "A screenshot of a track open in GarageBand"
+    },
+    title: "Music",
+    description: "Nothing beats a rich soundscape or telling stories through sound. I compose and produce to create them myself.",
+    link: {
+      href: "/my-work/music", title: "View Albums"
+    }
+  }
+]
+
 export default function Bio() {
+
+  const completeItems: ListCarouselItem[] = disciplineItems.map((item, index) => (
+      {
+        backgroundImg: {
+          src: item.img.src,
+          alt: item.img.alt
+        },
+        title: item.title,
+        link: {
+          href: item.link.href,
+          title: item.link.title
+        },
+        overlayContent: (
+            <div className={styles.dynamicContent}>
+              <p className={`display-text`}>{item.description}</p>
+              <Link href={item.link.href}>{item.link.title}</Link>
+            </div>
+        )
+      }
+  ))
+
   return (
       <>
         <PageHeader img={heroImage}
@@ -32,6 +108,11 @@ export default function Bio() {
             </div>
             <p className={"display-text"}>{displayText}</p>
             <p className={"signature"} style={{fontSize: "2.4rem"}}>Justin Quinn</p>
+          </section>
+          <section className={styles.disciplines}>
+            <ListCarousel items={completeItems} staticContent={(
+                <h2 className={styles.disciplinesHeader}>What <span className={"emphasis"}>I Do</span></h2>
+            )}/>
           </section>
         </main>
       </>
