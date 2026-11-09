@@ -5,7 +5,6 @@ import {JSX} from "react";
 import styles from "./listcarousel.module.css";
 import {CarouselControls} from "@/components/carousel/fragments/carousel-controls";
 import CarouselFrame from "@/components/carousel/fragments/CarouselFrame";
-import {useCarousel} from "@/components/carousel/fragments/useCarousel";
 
 export type ListCarouselItem = CarouselItem & {
   title: string;
@@ -38,9 +37,19 @@ export default function ListCarousel(
       className?: string;
     }) {
 
+  // TODO improve screen reader ability here
+  // read static first, then each header-dynamic content pair (in a single order, do not change order as carousel change)
+
   const listItems: JSX.Element[] = items.map((item, index) => {
     return (
-    <li key={index}><button className={`invisible ${carouselControls.currentIndex == index ? styles.active : ""}`} onClick={() => carouselControls.selectItem(index)}>{item.title}</button></li>
+    <li key={index} className={carouselControls.currentIndex == index ? styles.active : ""}>
+      <svg className={styles.bullet} viewBox="0 0 100 100"
+           fill="currentColor"
+           xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="40"/>
+      </svg>
+      <button className={"invisible"} onClick={() => carouselControls.selectItem(index)}>{item.title}</button>
+    </li>
   )})
 
   const completeItems: CarouselItem[] = items.map(base => {

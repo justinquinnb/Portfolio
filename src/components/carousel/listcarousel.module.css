@@ -16,21 +16,45 @@
 
             li {
                 list-style: none;
+                display: flex;
+                align-items: center;
+                gap: 1ch;
+
+                width: min-content;
+
+                .bullet {
+                    color: var(--text-on-full-bleed-color);
+                    opacity: 0.4;
+                    width: 0.5rem;
+                    height: 0.5rem;
+
+                    transition:
+                        color var(--default-transition), opacity var(--default-transition);
+                }
 
                 button {
                     font-size: 2rem;
-                    font-weight: 400;
+                    font-weight: 600;
                     color: var(--text-on-full-bleed-color);
-                    transition: color var(--default-transition), font-weight var(--default-transition);
+                    transition: color var(--default-transition);
                     padding: 0;
+                }
 
-                    &.active {
+                &.active {
+                    .bullet {
                         color: var(--emphasis-color);
-                        font-weight: 600;
+                        opacity: 1;
                     }
 
-                    &:hover {
-                        color: var(--dark-link-hover-color);
+                    button {
+                        color: var(--emphasis-color);
+                    }
+                }
+
+                &:hover:not(.active) {
+                    .bullet {
+                        opacity: 1;
+                        color: var(--light-link-hover-color);
                     }
                 }
             }
