@@ -39,7 +39,7 @@ const disciplineItems = [
     title: "Designs",
     description: "I'm a sucker for good design, and try to explore the field myself. Check out my logo, composite, and UI work below.",
     link: {
-      href: "/my-work/graphics", title: "View Collections"
+      href: "/my-work/designs", title: "View Collections"
     }
   },
   {

@@ -26,8 +26,8 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/graphics',
-        destination: '/my-work/graphics',
+        source: '/designs',
+        destination: '/my-work/designs',
         permanent: true,
       },
       {

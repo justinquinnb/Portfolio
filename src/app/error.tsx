@@ -18,6 +18,8 @@ export default function Error({error, reset,}: {
     console.error(error)
   }, [error])
 
+  // TODO See about forcing navbar visibility on this page because it's otherwise invisible
+
   return (
       <div className={styles.container}>
         <div className={styles.content}>
