@@ -67,6 +67,13 @@ body {
   font-family: var(--font-dynalight);
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
 body {
   background: var(--page-background-color);
   -webkit-font-smoothing: antialiased;
