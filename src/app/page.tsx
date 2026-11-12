@@ -169,7 +169,7 @@ export default function Home() {
             <div className={styles.introDecor}>
               <Image src={meImage} alt={"A stylized photo of Justin"} className={styles.horizImg}/>
               <div className={styles.introDecorText}>
-                <h2>I seek <span className={"emphasis"}>impact</span>...</h2>
+                <h2>I seek <b>impact</b>...</h2>
                 <Image src={meImage} className={styles.vertImg} alt={"A stylized photo of Justin"}/>
                 <p className={"display-text"}>{displayText}</p>
                 <Link className={"link-button"} href={"/about/bio"}>More About Me</Link>
@@ -180,7 +180,7 @@ export default function Home() {
           <section className={styles.disciplines}>
             <ColToSplitCarousel items={briefItems} expandedItems={expandedItems} staticContent={
               <div className={styles.staticCarouselContent}>
-                <h2>...and <span className={"emphasis"}>create a lot</span> of stuff.</h2>
+                <h2>...and <b>create a lot</b> of stuff.</h2>
                 <p className={"display-text"}>Software, graphics, music, and more: you name it, I've probably done in it. Here, you'll see some of my favorite mediums right now.</p>
               </div>
             } />
@@ -189,7 +189,7 @@ export default function Home() {
           {/*  */}
           {/*</section>*/}
           <section className={styles.contact}>
-            <h2>Interested? <span style={{fontWeight: "400"}}>Let's <Link href={"/contact"} className={"emphasis"}>get in touch</Link>.</span></h2>
+            <h2>Interested? <span style={{fontWeight: "400"}}>Let's <Link href={"/contact"} className={"emphasis"}>get in touch</Link>.</b></h2>
           </section>
         </main>
       </>

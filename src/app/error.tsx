@@ -24,7 +24,7 @@ export default function Error({error, reset,}: {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.notice}>
-            <h3>UNKNOWN <span className={"emphasis"}>ERROR</span></h3>
+            <h3>UNKNOWN <b>ERROR</b></h3>
             <h4>An unknown problem has occurred.</h4>
           </div>
           <div className={styles.message}>

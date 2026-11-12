@@ -196,7 +196,7 @@ h4.unselected {
   color: var(--large-text-color)
 }
 
-.emphasis {
+b {
   color: var(--emphasis-color);
 }
 

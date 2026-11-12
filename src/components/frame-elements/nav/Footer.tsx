@@ -33,8 +33,7 @@ export default function Footer() {
           <div className={`${styles.branding}`}>
             <Image src={"/branding/jq-icon-light.svg"} alt={"Justin Quinn logo"} width={75}
                    height={75}/>
-            <p className={`${styles.slogan}`}>Creating with <br /><span
-                className={`emphasis`}>Purpose</span>.</p>
+            <p className={`${styles.slogan}`}>Creating with <br /><b>Purpose</b>.</p>
           </div>
         </div>
       </footer>
