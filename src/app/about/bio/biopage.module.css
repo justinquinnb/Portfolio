@@ -91,6 +91,53 @@
     }
 }
 
+.whys {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 0 var(--section-horizontal-spacing) var(--section-vertical-spacing) var(--section-horizontal-spacing);
+
+    .reason {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .passionDecoration {
+            position: relative;
+
+            >p {
+                position: relative;
+                text-align: center;
+                background-image: linear-gradient(180deg, var(--q-black), var(--q-orange), var(--q-gray));
+                background-clip: text;
+                color: transparent;
+                font-size: 2.2rem;
+                font-weight: 800;
+            }
+
+            .scrollingText {
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+            }
+        }
+
+        p {
+            padding-top: .6rem;
+        }
+    }
+}
+
 @media (min-width: 321px) {
     .intro {
         .introDecor {

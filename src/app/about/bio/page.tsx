@@ -10,6 +10,7 @@ import softwareDisplay from "@public/images/features/software.png";
 import graphicsDisplay from "@public/images/features/graphics.png";
 import photographyDisplay from "@public/images/features/photography.png";
 import musicDisplay from "@public/images/features/music.png";
+import softwareTeam from "@public/images/features/softwareTeam.png";
 import Link from "next/link";
 import ColToListCarousel from "@/components/carousel/ColToListCarousel";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Bio | JQB Portfolio'
 }
 
-const displayText = "A passionate techie and creative based in Metro Atlanta. I lead software products by day and create digital media by night."
+const aboutText = "A passionate techie and creative based in Metro Atlanta. I lead software products by day and create digital media by night."
 
 const disciplineItems = [
   {
@@ -66,9 +67,12 @@ const disciplineItems = [
   }
 ]
 
+const whyPeopleText = "With their broad accessibility, I love tech and art’s ability to bring diverse perspectives together to create things bigger than ourselves.";
+const whyPassionText = "No matter the medium, my creative endeavors are motivated by my desire to move people with my thoughts and expression of them."
+
 export default function Bio() {
 
-  const completeItems: ListCarouselItem[] = disciplineItems.map((item, index) => (
+  const completeItems: ListCarouselItem[] = disciplineItems.map((item) => (
       {
         backgroundImg: {
           src: item.img.src,
@@ -99,20 +103,39 @@ export default function Bio() {
           <section className={styles.intro}>
             <div className={styles.introDecor}>
               <div className={styles.introDecorText}>
-                <h2>Who <span className={"emphasis"}>I Am</span></h2>
+                <h2>Who <b>I Am</b></h2>
                 <Image src={meImage} className={styles.vertImg} alt={"A stylized photo of Justin"}/>
-                <p className={"display-text"}>{displayText}</p>
+                <p className={"display-text"}>{aboutText}</p>
                 <p className={"signature"} style={{fontSize: "2.4rem"}}>Justin Quinn</p>
               </div>
               <Image src={meImage} alt={"A stylized photo of Justin"} className={styles.horizImg}/>
             </div>
-            <p className={"display-text"}>{displayText}</p>
+            <p className={"display-text"}>{aboutText}</p>
             <p className={"signature"} style={{fontSize: "2.4rem"}}>Justin Quinn</p>
           </section>
           <section className={styles.disciplines}>
             <ColToListCarousel items={completeItems} staticContent={(
-                <h2 className={styles.disciplinesHeader}>What <span className={"emphasis"}>I Do</span></h2>
+                <h2 className={styles.disciplinesHeader}>What <b>I Do</b></h2>
             )} delay={5000}/>
+          </section>
+          <section className={styles.whys}>
+            <h2>My <b>Whys</b></h2>
+            <div className={styles.reason}>
+              <h3>People</h3>
+              <Image src={softwareTeam} alt={"Justin and six of his DevDogs teammates smiling for a group photo"}/>
+              <p>{whyPeopleText}</p>
+            </div>
+            <div className={styles.reason}>
+              <h3>Passion</h3>
+              <div className={styles.passionDecoration}>
+                <p><i>Thoughts<br />Matter</i></p>
+                <div className={styles.scrollingText}>
+                  <p aria-hidden="true">Think different. Share it. Improve.</p>
+                  <p aria-hidden="true">Think different. Share it. Improve.</p>
+                </div>
+              </div>
+              <p>{whyPassionText}</p>
+            </div>
           </section>
         </main>
       </>
