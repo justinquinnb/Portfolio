@@ -5,8 +5,15 @@
 }
 
 .content {
-    max-width: calc(var(--max-content-width) * .8);
-    padding: 1.2rem;
+    /* bc border box sizing is used, not adding padding in here would cause content to not occupy full content width */
+    /* the .8 is just stylistic when setting the base content width */
+    max-width: calc((var(--max-content-width) * .8) + (var(--section-horizontal-spacing) * 2));
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--section-vertical-spacing) var(--section-horizontal-spacing);
 
     .dynamicContent {
         display: flex;

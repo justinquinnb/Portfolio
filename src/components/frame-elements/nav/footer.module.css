@@ -1,7 +1,7 @@
 .footer {
     background: var(--section-background-color);
     width: 100%;
-    padding: 1.2rem 1.2rem 6.45rem 1.2rem; /* To account for radial nav menu button */
+    padding: var(--section-vertical-spacing) var(--section-horizontal-spacing) 6.45rem var(--section-horizontal-spacing); /* To account for radial nav menu button */
     display: flex;
     justify-content: center;
 
@@ -14,7 +14,7 @@
 }
 
 .info {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
 
     .nav {
@@ -26,7 +26,7 @@
             color: var(--primary-text-color);
 
             li {
-                margin: 14px 0;
+                margin: 1rem 0;
 
                 a:hover {
                     color: var(--dark-link-hover-color);
@@ -49,7 +49,7 @@
 
 @media (min-width: 481px) {
     .footer {
-        padding: 1.2rem 1.2rem;
+        padding: var(--section-vertical-spacing) var(--section-horizontal-spacing);
 
         .centerIsland {
             justify-content: space-between;
@@ -59,7 +59,7 @@
 
     .info {
         width: auto;
-        margin: 0 0;
+        margin: 0;
         justify-content: end;
 
         & > p {
@@ -68,7 +68,7 @@
         }
 
         .nav ul li {
-            margin: 10px 0;
+            margin: 1rem 0;
         }
     }
 

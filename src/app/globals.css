@@ -12,6 +12,10 @@
   --max-reading-width: 50ch;
   --min-touch-target-size: 44px;
 
+  /* Spacing */
+  --section-vertical-spacing: 1rem;
+  --section-horizontal-spacing: 2rem;
+
   /* Color palette */
   --q-black: #1E1E1E;
   --q-dark-gray: #302525;
@@ -71,7 +75,7 @@ main {
   display: flex;
   flex-direction: column;
 
-  gap: 1rem;
+  gap: var(--section-vertical-spacing);
 }
 
 body {
