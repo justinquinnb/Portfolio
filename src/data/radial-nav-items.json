@@ -61,10 +61,10 @@
       "actionDesc": "Go to my software page"
     },
     {
-      "label": "Graphics",
+      "label": "Designs",
       "iconName": "design_services",
-      "target":  {"path":  "/my-work/graphics"},
-      "actionDesc": "Go to my graphics page"
+      "target":  {"path":  "/my-work/designs"},
+      "actionDesc": "Go to my designs page"
     },
     {
       "label": "Music",

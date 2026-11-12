@@ -17,6 +17,11 @@
     background-color: var(--full-bleed-background-color);
 }
 
+.bgImageFilter {
+    mask-image: linear-gradient(to top, black 0, transparent 100%);
+    filter: blur(0.5)
+}
+
 .content {
     max-width: var(--max-content-width);
     height: 100%;

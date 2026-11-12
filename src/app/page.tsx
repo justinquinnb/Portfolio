@@ -22,102 +22,86 @@ const logo = <Image src={darkIcon} alt={"Justin Quinn logo"}/>;
 const displayText = "I’m a product manager by trade and a creator at heart. No matter the medium, I strive to work with purpose, lifting standards, people, and what's possible every day."
 const disciplineItemsBrief = [
   {
-    display: {
-      img: {
-        src: softwareDisplay,
-        alt: "A screenshot of OneFeed's code in an IDE"
-      },
-      title: "Software",
-      link: {
-        href: "/my-work/software", title: "View Projects"
-      }
+    img: {
+      src: softwareDisplay,
+      alt: "A screenshot of OneFeed's code in an IDE"
+    },
+    title: "Software",
+    link: {
+      href: "/my-work/software", title: "View Projects"
     }
   },
   {
-    display: {
-      img: {
-        src: graphicsDisplay,
-        alt: "A floating island composited into a pine forest with a mountain backdrop"
-      },
-      title: "Graphics",
-      link: {
-        href: "/my-work/graphics", title: "View Collections"
-      }
+    img: {
+      src: graphicsDisplay,
+      alt: "A floating island composited into a pine forest with a mountain backdrop"
+    },
+    title: "Designs",
+    link: {
+      href: "/my-work/designs", title: "View Collections"
     }
   },
   {
-    display: {
-      img: {
-        src: photographyDisplay,
-        alt: "Aerial view of Manhattan in black and white"
-      },
-      title: "Photos",
-      link: {
-        href: "/my-work/photos", title: "View Albums"
-      }
+    img: {
+      src: photographyDisplay,
+      alt: "Aerial view of Manhattan in black and white"
+    },
+    title: "Photos",
+    link: {
+      href: "/my-work/photos", title: "View Albums"
     }
   },
   {
-    display: {
-      img: {
-        src: musicDisplay,
-        alt: "A screenshot of a track open in GarageBand"
-      },
-      title: "Music",
-      link: {
-        href: "/my-work/music", title: "View Albums"
-      }
+    img: {
+      src: musicDisplay,
+      alt: "A screenshot of a track open in GarageBand"
+    },
+    title: "Music",
+    link: {
+      href: "/my-work/music", title: "View Albums"
     }
   }
 ]
 
 const disciplineItemsFull = [
   {
-    display: {
-      img: {
-        src: softwareDisplay,
-        alt: "A screenshot of OneFeed's code in an IDE"
-      },
-      title: "Social Feed Aggregator",
-      link: {
-        href: "/my-work/software/project/onefeed", title: "View Project"
-      }
+    img: {
+      src: softwareDisplay,
+      alt: "A screenshot of OneFeed's code in an IDE"
+    },
+    title: "Social Feed Aggregator",
+    link: {
+      href: "/my-work/software/project/onefeed", title: "View Project"
     }
   },
   {
-    display: {
-      img: {
-        src: graphicsDisplay,
-        alt: "A floating island composited into a pine forest with a mountain backdrop"
-      },
-      title: "Graphic Composites",
-      link: {
-        href: "/my-work/graphics/collection/composites", title: "View Collection"
-      }
+    img: {
+      src: graphicsDisplay,
+      alt: "A floating island composited into a pine forest with a mountain backdrop"
+    },
+    title: "Graphic Composites",
+    link: {
+      href: "/my-work/designs/collection/composites", title: "View Collection"
     }
   },
   {
-    display: {
-      img: {
-        src: photographyDisplay,
-        alt: "Aerial view of Manhattan in black and white"
-      },
-      title: "NYC Photos",
-      link: {
-        href: "/my-work/photos/album/iceland", title: "View Album"
-      }
+    img: {
+      src: photographyDisplay,
+      alt: "Aerial view of Manhattan in black and white"
+    },
+    title: "NYC Photos",
+    link: {
+      href: "/my-work/photos/album/iceland", title: "View Album"
     }
   },
   {
-    display: {
-      img: {
-        src: musicDisplay,
-        alt: "A screenshot of a track open in GarageBand"
-      },
-      title: "Chillhop Tracks",
-      link: {
-        href: "/my-work/music/album/fragmented", title: "View Album"
-      }
+    img: {
+      src: musicDisplay,
+      alt: "A screenshot of a track open in GarageBand"
+    },
+    title: "Chillhop Tracks",
+    link: {
+      href: "/my-work/music/album/fragmented", title: "View Album"
     }
   }
 ]
@@ -126,25 +110,25 @@ export default function Home() {
   const briefItems: CarouselItem[] = disciplineItemsBrief.map((item, index) => (
       {
         backgroundImg: {
-          src: item.display.img.src,
-          alt: item.display.img.alt
+          src: item.img.src,
+          alt: item.img.alt
         },
         overlayContent: (
             <>
-              <Link href={item.display.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`} key={`${index}-fullSurfaceClickable`}>
+              <Link href={item.link.href} className={`${styles.fullSurfaceClickable} ${styles.itemContent}`} key={`${index}-fullSurfaceClickable`}>
                 <div className={styles.primaryItemContent}>
-                  <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                  <p className={`feature-text ${styles.itemTitle}`}>{item.title}</p>
                 </div>
                 <p className={`${styles.itemLink}`} style={{textDecoration: "underline"}}>
-                  {item.display.link.title}
+                  {item.link.title}
                 </p>
               </Link>
               <div className={`${styles.itemContent} ${styles.onlyLink}`} key={`${index}-linkOnly`}>
                 <div className={styles.primaryItemContent}>
-                  <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                  <p className={`feature-text ${styles.itemTitle}`}>{item.title}</p>
                 </div>
-                <Link className={`${styles.itemLink}`} href={item.display.link.href}>
-                  {item.display.link.title}
+                <Link className={`${styles.itemLink}`} href={item.link.href}>
+                  {item.link.title}
                 </Link>
               </div>
             </>
@@ -155,16 +139,16 @@ export default function Home() {
   const expandedItems = disciplineItemsFull.map((item, index) => (
       {
         backgroundImg: {
-          src: item.display.img.src,
-          alt: item.display.img.alt
+          src: item.img.src,
+          alt: item.img.alt
         },
         overlayContent: (
             <div className={`${styles.itemContent}`} key={index}>
               <div className={styles.primaryItemContent}>
-                <p className={`feature-text ${styles.itemTitle}`}>{item.display.title}</p>
+                <p className={`feature-text ${styles.itemTitle}`}>{item.title}</p>
               </div>
-              <Link className={`${styles.itemLink}`} href={item.display.link.href}>
-                {item.display.link.title}
+              <Link className={`${styles.itemLink}`} href={item.link.href}>
+                {item.link.title}
               </Link>
             </div>
         )

@@ -2,7 +2,6 @@ import {CarouselItem} from "./fragments/carousel-item";
 import {JSX} from "react";
 import styles from "./splitpanecarousel.module.css";
 import CarouselDotsSelector from "./fragments/CarouselDotsSelector";
-import Image from "next/image";
 import CarouselNavArrow from "./fragments/CarouselNavArrow";
 import {CarouselControls} from "./fragments/carousel-controls";
 import CarouselFrame from "@/components/carousel/fragments/CarouselFrame";
@@ -87,6 +86,6 @@ export default function SplitPaneCarousel(
 
   return (
       <CarouselFrame items={completeItems} carouselControls={carouselControls}
-                     className={className}/>
+                     className={className} imageFilterClassName={styles.bgImageFilter}/>
   )
 }

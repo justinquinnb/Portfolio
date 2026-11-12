@@ -22,7 +22,7 @@ export default function Footer() {
                 <h6>Work</h6>
                 <ul>
                   <li><Link href="/my-work/software">Software</Link></li>
-                  <li><Link href="/my-work/graphics">Graphics</Link></li>
+                  <li><Link href="/my-work/designs">Designs</Link></li>
                   <li><Link href="/my-work/photos">Photos</Link></li>
                   <li><Link href="/my-work/music">Music</Link></li>
                 </ul>

@@ -1,0 +1,13 @@
+.listCarousel {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .singleColCarousel {
+        display: none;
+    }
+
+    .listCarousel {
+        display: block;
+    }
+}

@@ -21,7 +21,7 @@ const dynaLight = Dynalight({
 
 export const metadata: Metadata = {
   title: "JQB Portfolio",
-  description: "A collection of Justin Quinn's software, graphics, photography, and music."
+  description: "A collection of Justin Quinn's software, designs, photography, and music."
 };
 
 export default function RootLayout({

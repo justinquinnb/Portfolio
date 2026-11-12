@@ -91,6 +91,6 @@ export default function SingleColCarousel(
 
   return (
       <CarouselFrame items={completeItems} carouselControls={carouselControls}
-                     className={className}/>
+                     className={className} imageFilterClassName={styles.bgImageFilter}/>
   )
 }

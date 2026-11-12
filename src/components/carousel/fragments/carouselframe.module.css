@@ -2,6 +2,7 @@
     width: 100%;
     height: min(56vh, 40vw);
     min-height: 18rem;
+    max-height: 24rem;
 
     h1, h2, p, a {
         color: var(--text-on-full-bleed-color);
@@ -24,8 +25,6 @@
     position: absolute;
 
     object-fit: cover;
-    mask-image: linear-gradient(to top, black 0, transparent 100%);
-    filter: blur(0.5)
 }
 
 .overlay {
@@ -47,36 +46,36 @@
 }
 
 .slideInForward {
-    animation: slideInFromRight var(--carousel-transition-speed) ease both;
+    animation: slideInFromRight var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
 }
 
 .slideOutForward {
-    animation: slideOutToLeft var(--carousel-transition-speed) ease both;
+    animation: slideOutToLeft var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
 }
 
 .slideInBackward {
-    animation: slideInFromLeft var(--carousel-transition-speed) ease both;
+    animation: slideInFromLeft var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
 }
 
 .slideOutBackward {
-    animation: slideOutToRight var(--carousel-transition-speed) ease both;
+    animation: slideOutToRight var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
 }
 
 @media (min-width: 769px) {
     .slideInForward {
-        animation: slideInFromBottom var(--carousel-transition-speed) ease both;
+        animation: slideInFromBottom var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
     }
 
     .slideOutForward {
-        animation: slideOutToTop var(--carousel-transition-speed) ease both;
+        animation: slideOutToTop var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
     }
 
     .slideInBackward {
-        animation: slideInFromTop var(--carousel-transition-speed) ease both;
+        animation: slideInFromTop var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
     }
 
     .slideOutBackward {
-        animation: slideOutToBottom var(--carousel-transition-speed) ease both;
+        animation: slideOutToBottom var(--carousel-transition-speed) cubic-bezier(0.4, 0, 0.6, 1) both;
     }
 }
 
