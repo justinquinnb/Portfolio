@@ -6,10 +6,10 @@ import styles from "@/app/about/bio/biopage.module.css";
 import Image from "next/image";
 import meImage from "@public/images/me.png";
 import {ListCarouselItem} from "@/components/carousel/ListCarousel";
-import softwareDisplay from "@public/images/features/display/software.png";
-import graphicsDisplay from "@public/images/features/display/graphics.png";
-import photographyDisplay from "@public/images/features/display/photography.png";
-import musicDisplay from "@public/images/features/display/music.png";
+import softwareDisplay from "@public/images/features/software.png";
+import graphicsDisplay from "@public/images/features/graphics.png";
+import photographyDisplay from "@public/images/features/photography.png";
+import musicDisplay from "@public/images/features/music.png";
 import Link from "next/link";
 import ColToListCarousel from "@/components/carousel/ColToListCarousel";
 
