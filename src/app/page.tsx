@@ -189,7 +189,7 @@ export default function Home() {
           {/*  */}
           {/*</section>*/}
           <section className={styles.contact}>
-            <h2>Interested? <span style={{fontWeight: "400"}}>Let's <Link href={"/contact"} className={"emphasis"}>get in touch</Link>.</b></h2>
+            <h2>Interested? <span style={{fontWeight: "400"}}>Let's <b><Link href={"/contact"}>get in touch</Link>.</b></span></h2>
           </section>
         </main>
       </>

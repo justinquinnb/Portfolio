@@ -47,6 +47,12 @@
     display: none;
 }
 
+@media (min-width: 321px) {
+    .info {
+        width: 70%;
+    }
+}
+
 @media (min-width: 481px) {
     .footer {
         padding: var(--section-vertical-spacing) var(--section-horizontal-spacing);
