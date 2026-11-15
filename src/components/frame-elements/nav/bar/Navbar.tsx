@@ -3,7 +3,7 @@
 import Link from "next/link";
 import pagesJson from "@/data/navbar-pages.json";
 import Image from "next/image";
-import Socials from "../../../socials/Socials";
+import Socials from "../../../Socials";
 import {usePathname} from "next/navigation";
 import {NavbarGroup, NavbarPage} from "@/types/nav-page";
 import styles from "./navbar.module.css";

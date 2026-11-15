@@ -1,0 +1,39 @@
+.scrollingTextContainer {
+    width: 200%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+    overflow: hidden;
+    z-index: 2;
+
+
+
+    .textTrack {
+        width: 200%;
+        animation: scroll-text var(--scroll-text-duration, calc(60s * (250 / (1vw)))) linear infinite;
+
+        p {
+            display: inline;
+            width: 100%;
+            user-select: none;
+            white-space: nowrap;
+        }
+    }
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Moves half the total width (since content is duplicated once) */
+        transform: translateX(-100%);
+    }
+}
+
+@media (min-width: 481px) {
+}
