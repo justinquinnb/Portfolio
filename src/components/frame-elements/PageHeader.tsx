@@ -21,7 +21,7 @@ export default function PageHeader(
           <div className={styles.heroContainer}>
             <Image src={img} alt={imgAlt}/>
           </div>
-          <ScrollingText text={backgroundText} xsScrollTimeSec={60} containerClassName={styles.repeatedTextContainer} textClassName={styles.repeatedText}/>
+          <ScrollingText text={backgroundText} lowerTimeBound={{sec: 60, px: 251}} upperTimeBound={{sec: 150, px: 481}} containerClassName={styles.repeatedTextContainer} textClassName={styles.repeatedText}/>
           <div className={styles.headerContent}>
             <h1 style={{animation: `${styles['rise-up']} ${weightedTransitionTime}s ease-out`}}>
               {foregroundText}
