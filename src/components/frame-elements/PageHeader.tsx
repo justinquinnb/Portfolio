@@ -1,6 +1,7 @@
 import styles from "./page-header.module.css";
 import Image, {StaticImageData} from 'next/image';
 import {ReactNode} from "react";
+import ScrollingText from "@/components/ScrollingText";
 
 /**
  * Page header
@@ -11,7 +12,6 @@ export default function PageHeader(
     {img: StaticImageData; imgAlt: string; backgroundText: string; foregroundText: string;
       children?: ReactNode; subtitle?: string; className?: string}
 ) {
-  const repeatedText = repeatText(backgroundText, 4000);
   const weightedTransitionTime = weighTransitionTime(foregroundText,
       "\n", 0.2, 0.1);
 
@@ -21,10 +21,7 @@ export default function PageHeader(
           <div className={styles.heroContainer}>
             <Image src={img} alt={imgAlt}/>
           </div>
-          <div className={styles.repeatedTextContainer}>
-            <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
-            <p aria-hidden="true" className={styles.repeatedText}>{repeatedText}</p>
-          </div>
+          <ScrollingText text={backgroundText} xsScrollTimeSec={60} containerClassName={styles.repeatedTextContainer} textClassName={styles.repeatedText}/>
           <div className={styles.headerContent}>
             <h1 style={{animation: `${styles['rise-up']} ${weightedTransitionTime}s ease-out`}}>
               {foregroundText}
@@ -42,16 +39,6 @@ export default function PageHeader(
 }
 
 /**
- * Repeats the given text as many times as necessary to reach the target character count.
- * @param text the text to repeat
- * @param targetCharCount the target number of characters in the output string
- */
-function repeatText(text: string, targetCharCount: number): string {
-  const repetitionCount = Math.ceil(targetCharCount / text.length);
-  return (text + " ").repeat(repetitionCount);
-}
-
-/**
  * Weighs the transition time of text given its number of lines, the minimum transition time,
  * and the amount of time to add per additional line of text.
  *
@@ -61,8 +48,7 @@ function repeatText(text: string, targetCharCount: number): string {
  * @param scaleFactor the amount to add to the transition time per additional line of text
  */
 function weighTransitionTime(text: string, lineBreak: string, minTime: number,
-                             scaleFactor: number): number
-{
+                             scaleFactor: number): number {
   const numLines = text.split(lineBreak).length;
   return ((numLines - 1) * scaleFactor) + minTime;
 }
