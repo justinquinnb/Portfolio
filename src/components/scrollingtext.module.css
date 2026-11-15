@@ -10,7 +10,7 @@
     overflow: hidden;
     z-index: 2;
 
-
+    transition: opacity .5s ease-in;
 
     .textTrack {
         width: 200%;

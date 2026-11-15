@@ -1,31 +1,39 @@
 "use client";
 
 import styles from "@/components/scrollingtext.module.css";
-import {JSX, useEffect, useMemo, useState} from "react";
-import {CSSProperties} from "react";
+import {CSSProperties, JSX, useEffect, useMemo, useState} from "react";
+
+export type ScrollTimeBound = {
+  sec: number,
+  px: number
+};
 
 export default function ScrollingText(
-    {text, xsScrollTimeSec, containerClassName = "", textClassName = ""}:
+    {text, lowerTimeBound, upperTimeBound, containerClassName = "", textClassName = ""}:
     {
       text: string;
-      xsScrollTimeSec: number;
+      lowerTimeBound: ScrollTimeBound;
+      upperTimeBound: ScrollTimeBound;
       containerClassName?: string;
       textClassName?: string;
     }
 ) {
-  const [scaledScrollTimeSec, setScaledScrollTimeSec] = useState(xsScrollTimeSec);
+  const [scaledScrollTimeSec, setScaledScrollTimeSec] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleResize = () => {
-      const newScrollTimeSec = xsScrollTimeSec * (window.innerWidth / 250);
+    const updateScrollTime = () => {
+      const newScrollTimeSec = computeScrollTime(window.innerWidth, lowerTimeBound, upperTimeBound);
+      console.log(`Viewport width updated, new scroll time is: ${newScrollTimeSec}s`);
       setScaledScrollTimeSec(newScrollTimeSec);
     }
 
-    window.addEventListener("resize", handleResize);
+    updateScrollTime();
+
+    window.addEventListener("resize", updateScrollTime);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updateScrollTime);
     }
-  }, [xsScrollTimeSec])
+  }, [lowerTimeBound, upperTimeBound])
 
   const textTracks = useMemo<JSX.Element[]>(() => {
     const repeatedText = repeatText(text, 3000);
@@ -45,8 +53,14 @@ export default function ScrollingText(
     return wipTextTracks;
   }, [text, textClassName]);
 
+  const isScrollDurationReady = scaledScrollTimeSec !== null;
+
   return (
-      <div className={`${styles.scrollingTextContainer} ${containerClassName}`} style={{'--scroll-text-duration': `${scaledScrollTimeSec}s`} as CSSProperties}>
+      <div className={`${styles.scrollingTextContainer} ${containerClassName}`}
+           style={{
+             '--scroll-text-duration': `${isScrollDurationReady ? scaledScrollTimeSec : 0}s`,
+             opacity: isScrollDurationReady ? 1 : 0
+           } as CSSProperties}>
         {textTracks}
       </div>
   )
@@ -60,4 +74,21 @@ export default function ScrollingText(
 function repeatText(text: string, targetCharCount: number): string {
   const repetitionCount = Math.ceil(targetCharCount / text.length);
   return (text + " ").repeat(repetitionCount);
+}
+
+/**
+ * Computes the scroll time for a given viewport width, given a lower and upper bound.
+ * @param viewportWidth the width of the viewport, in pixels
+ * @param lowerBound the lower bound of the scroll time, in seconds and pixels
+ * @param upperBound the upper bound of the scroll time, in seconds and pixels
+ */
+function computeScrollTime(viewportWidth: number, lowerBound: ScrollTimeBound, upperBound: ScrollTimeBound): number {
+  if (viewportWidth < lowerBound.px) {
+    return lowerBound.sec;
+  } else if (upperBound.px <= viewportWidth) {
+    return upperBound.sec;
+  } else {
+    const secPerPx = (upperBound.sec - lowerBound.sec) / (upperBound.px - lowerBound.px);
+    return lowerBound.sec + (secPerPx * (viewportWidth - lowerBound.px));
+  }
 }
