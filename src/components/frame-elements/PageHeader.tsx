@@ -9,8 +9,10 @@ import ScrollingText from "@/components/ScrollingText";
  */
 export default function PageHeader(
     {img, imgAlt, backgroundText, foregroundText, children, subtitle}:
-    {img: StaticImageData; imgAlt: string; backgroundText: string; foregroundText: string;
-      children?: ReactNode; subtitle?: string; className?: string}
+    {
+      img: StaticImageData; imgAlt: string; backgroundText: string; foregroundText: string;
+      children?: ReactNode; subtitle?: string; className?: string
+    }
 ) {
   const weightedTransitionTime = weighTransitionTime(foregroundText,
       "\n", 0.2, 0.1);
@@ -21,7 +23,8 @@ export default function PageHeader(
           <div className={styles.heroContainer}>
             <Image src={img} alt={imgAlt}/>
           </div>
-          <ScrollingText text={backgroundText} lowerTimeBound={{sec: 60, px: 251}} upperTimeBound={{sec: 150, px: 481}} containerClassName={styles.repeatedTextContainer} textClassName={styles.repeatedText}/>
+          <ScrollingText text={backgroundText} containerClassName={styles.repeatedTextContainer}
+                         textClassName={styles.repeatedText}/>
           <div className={styles.headerContent}>
             <h1 style={{animation: `${styles['rise-up']} ${weightedTransitionTime}s ease-out`}}>
               {foregroundText}

@@ -9,11 +9,11 @@ export type ScrollTimeBound = {
 };
 
 export default function ScrollingText(
-    {text, lowerTimeBound, upperTimeBound, containerClassName = "", textClassName = ""}:
+    {text, lowerTimeBound = {sec: 60, px: 251}, upperTimeBound = {sec: 150, px: 481}, containerClassName = "", textClassName = ""}:
     {
       text: string;
-      lowerTimeBound: ScrollTimeBound;
-      upperTimeBound: ScrollTimeBound;
+      lowerTimeBound?: ScrollTimeBound;
+      upperTimeBound?: ScrollTimeBound;
       containerClassName?: string;
       textClassName?: string;
     }
@@ -23,7 +23,6 @@ export default function ScrollingText(
   useEffect(() => {
     const updateScrollTime = () => {
       const newScrollTimeSec = computeScrollTime(window.innerWidth, lowerTimeBound, upperTimeBound);
-      console.log(`Viewport width updated, new scroll time is: ${newScrollTimeSec}s`);
       setScaledScrollTimeSec(newScrollTimeSec);
     }
 
