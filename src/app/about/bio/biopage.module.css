@@ -118,17 +118,22 @@
             >p {
                 position: relative;
                 text-align: center;
-                background-image: linear-gradient(180deg, var(--q-black), var(--q-orange), var(--q-gray));
+                background-image: linear-gradient(180deg, var(--q-black) 0%, var(--q-orange), var(--q-gray) 100%);
                 background-clip: text;
                 color: transparent;
                 font-size: 2.2rem;
                 font-weight: 800;
             }
 
-            .scrollingText {
+            .scrollingTextContainer {
                 position: absolute;
                 inset: 0;
                 z-index: -1;
+                mask: radial-gradient(ellipse at center, white 0%, transparent 80%);
+            }
+
+            .scrollingText {
+                opacity: 20%;
             }
         }
 

@@ -13,6 +13,7 @@ import musicDisplay from "@public/images/features/music.png";
 import softwareTeam from "@public/images/features/softwareTeam.png";
 import Link from "next/link";
 import ColToListCarousel from "@/components/carousel/ColToListCarousel";
+import ScrollingText from "@/components/ScrollingText";
 
 export const metadata: Metadata = {
   title: 'Bio | JQB Portfolio'
@@ -68,7 +69,7 @@ const disciplineItems = [
 ]
 
 const whyPeopleText = "With their broad accessibility, I love tech and art’s ability to bring diverse perspectives together to create things bigger than ourselves.";
-const whyPassionText = "No matter the medium, my creative endeavors are motivated by my desire to move people with my thoughts and expression of them."
+const whyPassionText = "The cycle of learning, experimenting, and sharing is addictive. The challenge of accurately capturing my latest ideas always keeps me growing."
 
 export default function Bio() {
 
@@ -128,11 +129,8 @@ export default function Bio() {
             <div className={styles.reason}>
               <h3>Passion</h3>
               <div className={styles.passionDecoration}>
-                <p><i>Thoughts<br />Matter</i></p>
-                <div className={styles.scrollingText}>
-                  <p aria-hidden="true">Think different. Share it. Improve.</p>
-                  <p aria-hidden="true">Think different. Share it. Improve.</p>
-                </div>
+                <p><i>Learn<br />Try<br />Share</i></p>
+                <ScrollingText text={"Learn, Try, Share."} containerClassName={styles.scrollingTextContainer} textClassName={styles.scrollingText}/>
               </div>
               <p>{whyPassionText}</p>
             </div>
